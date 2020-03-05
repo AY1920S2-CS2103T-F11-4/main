@@ -18,12 +18,16 @@ By: `Team F11-4`      Since: `Jun 2016`      Licence: `MIT`
 
 == Introduction
 
-Cooking Papa is for those who prefer to use a desktop app for managing recipes. More importantly, Cooking Papa is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Cooking Papa can help you plan and cook meals more easily than traditional GUI apps. Interested? Jump to <<Quick Start>> to get started. Enjoy!
+Cooking Papa is for those who prefer to use a desktop app for managing recipes. More importantly,
+Cooking Papa is optimized for those who prefer to work with a Command Line Interface (CLI) while still
+having the benefits of a Graphical User Interface (GUI). If you can type fast, Cooking Papa can help you
+plan and cook meals more easily than traditional GUI apps. Interested?
+Jump to <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `cookingpapa.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Cooking Papa.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -49,130 +53,18 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
-=== Ingredients inventory commands
-The Ingredients inventory commands are commands that update the user's very own inventory at home.
-These commands include adding, remove and viewing the current inventory database.
-
-==== Add ingredient to the inventory
-This commands allows you to add ingredients to your inventory.
-
-- Format: `inventory add i/INGREDIENT q/QUANTITY`
-- Examples:
-* `inventory add i/Egg q/10` +
-Adds 10 eggs into your inventory.
-* `inventory add i/Butter q/200g` +
-Adds 200g of butter into your inventory.
-
-==== Remove ingredient from the inventory
-This command allows you to remove ingredients from your inventory. You may add in
-an additional argument for the quantity you wish to remove. If no additional argument for quantity
-is supplied, that instance of the ingredient will be removed entirely.
-
-- Format: `inventory remove i/INGREDIENT [q/QUANTITY]`
-- Examples:
-* `inventory remove i/Egg` +
-Remove all eggs from your inventory.
-* `inventory remove i/Butter q/200g` +
-Removes 200g of butter from your inventory.
-
-==== View inventory of ingredients
-This command allows you to view your current list of ingredients. You may add in an
-additional argument for a particular ingredient you are looking for in your database.
-If no additional arguments for the ingredient is supplied, it will display the entire inventory.
-
-- Format: `inventory view`
-- Examples:
-* `inventory view` +
-Displays the entire inventory
-
-=== Recipe commands
-Recipe commands are commands that change a particular recipe, which you can indicate using the index of the recipe.
-Some things you can do are to add and remove ingredients from a recipe's ingredient list.
-You can also write instructions for your recipes.
-
-==== Add an ingredient
-This command allows you to add ingredients to a recipe.
-
-- Format: `recipe INDEX add i/INGREDIENT q/QUANTITY`
-- Examples:
-* `recipe 1 add i/Egg q/2` +
-Adds 2 eggs to the 1st recipe's list of ingredients.
-* `recipe 2 remove i/Milk q/200 ml` +
-Adds 200 ml of milk to the 2nd recipe's list of ingredients.
-
-==== Edit an ingredient
-If you want to change the quantity of an ingredient after some experimentation, this command will help you achieve that.
-
-- Format: `recipe INDEX edit i/INGREDIENT q/QUANTITY`
-- Examples:
-* `recipe 1 edit i/Egg q/2` +
-Changes the quantity of eggs to 3 in the 1st recipe's list of ingredients.
-* `recipe 2 edit i/Milk q/100 ml` +
-Changes the quantity of milk to 100 ml in the 2nd recipe's list of ingredients.
-
-==== Remove an ingredient
-You can remove ingredients that spoil the taste of the dish using this command.
-If the quantity to be removed is not specified, all of the ingredient will be removed.
-
-- Format: `recipe INDEX remove i/INGREDIENT [q/QUANTITY]`
-- Examples:
-* `recipe 1 remove i/Egg q/1` +
-Removes 1 egg from the 1st recipe's list of ingredients.
-* `recipe 2 remove i/Milk` +
-Removes milk from the 2nd recipe's list of ingredients.
-
-==== Add a cooking step
-
-This command allows you to add a cooking step to the selected recipe.
-Requires a valid index in the list of recipes and the cooking step.
-
-- Format: `recipe INDEX add x/STEP_INDEX S/STEP_DESCRIPTION`
-- Examples:
-* `recipe 1 add x/2 s/Bring the water to boil` +
-Add a cooking step 2 (Bring water to boil) to the 1st recipe.
-* `recipe 2 insert x/next s/Add a teaspoon of salt in the soup` +
-Add the next cooking step (Add a teaspoon of salt in the soup) to the 2nd recipe
-
-==== Remove a cooking step
-
-This command allows you to remove a cooking step from the selected recipe.
-Requires a valid index in the list of recipes and the cooking step.
-
-- Format: `recipe INDEX remove x/STEP_INDEX`
-- Example:
-* `recipe 1 remove x/2` +
-Remove cooking step 2 from the 1st recipe.
-
-==== Add a tag
-
-This command allows you to add a tag to the selected recipe.
-Requires a valid index in the list of recipes.
-
-- Format: `recipe INDEX add t/TAG`
-- Example:
-* `recipe 1 add t/Pasta` +
-Add a tag (Pasta) to the 1st recipe.
-
-==== Remove a tag
-
-This command allows you to remove a tag from the selected recipe.
-Requires a valid index in the list of recipes.
-
-- Format: `recipe INDEX remove t/TAG`
-- Example:
-* `recipe 1 remove t/Beef` +
-Remove a tag (Beef) from the 1st recipe.
-
-=== Cookbook commands
-Cookbook commands are commands for that allows users to add and remove recipes from the cookbook, as well as view recipes stored in the  cookbook. Cookbook commands also comprise of actions that can be done with recipes that are not covered in <<Recipe commands>>.
+=== Cookbook Commands
+Cookbook commands are commands that allow users to add and remove recipes from the cookbook,
+as well as view recipes stored in the cookbook. More commands that can be done with recipes
+are covered in <<Recipe commands>>.
 
 ==== View a recipe from the cookbook
 This command allows you to view a recipe, the ingredients required, and the steps to cook it.
 
-- Format: `cookbook view recipe INDEX`
+- Format: `cookbook view INDEX`
 - Example:
 * `cookbook view 1` +
-    Views the ingredients and steps of recipe 1.
+    Views the details of recipe 1.
 
 ==== Add a new recipe to the cookbook
 This command allows you to add and store a new recipe with the specified recipe name to the cookbook.
@@ -183,7 +75,7 @@ If neither of the details is specified, an empty recipe will be added.
 * `cookbook add n/Bacon Carbonara` +
     Adds a new empty recipe with the name 'Bacon Carbonara'.
 * `cookbook add n/Chicken Ham Sandwich i/Chicken Ham i/White Bread q/2 slices
-   x/1 s/Toast the bread x/2 s/Grill the ham. t/sandwich t/easy` +
+      x/1 s/Toast the bread x/2 s/Grill the ham. t/sandwich t/easy` +
     Adds a new recipe with the name 'Chicken Ham Sandwich' and the following recipe details. +
     Tags: sandwich, easy +
     Ingredients: Ham, Bread (2 slices) +
@@ -225,36 +117,165 @@ This command allows you to see what you can cook with your current inventory of 
 * `cookbook search inventory` +
     Searches the cookbook for recipes whose ingredients are owned by you.
 
-=== Cart commands
-==== Add ingredients in a recipe to a cart
-This command allows you to create a cart with in seconds by adding the ingredients in a recipe to it.
+
+=== Recipe Commands
+Recipe commands are commands that change a particular recipe, which you can indicate using the index of the recipe.
+Some things you can do are to add and remove ingredients from a recipe's ingredient list.
+You can also write preparation steps for your recipes.
+
+==== Add an ingredient to a recipe
+This command allows you to add ingredients to a recipe.
+
+- Format: `recipe INDEX add i/INGREDIENT q/QUANTITY`
+- Examples:
+* `recipe 1 add i/Egg q/2` +
+Adds 2 eggs to the 1st recipe's list of ingredients.
+* `recipe 2 remove i/Milk q/200 ml` +
+Adds 200 ml of milk to the 2nd recipe's list of ingredients.
+
+==== Edit an ingredient in a recipe
+If you want to change the quantity of an ingredient after some experimentation, this command will help you achieve that.
+
+- Format: `recipe INDEX edit i/INGREDIENT q/QUANTITY`
+- Examples:
+* `recipe 1 edit i/Egg q/2` +
+Changes the quantity of eggs to 3 in the 1st recipe's list of ingredients.
+* `recipe 2 edit i/Milk q/100 ml` +
+Changes the quantity of milk to 100 ml in the 2nd recipe's list of ingredients.
+
+==== Remove an ingredient from a recipe
+You can remove ingredients that spoil the taste of the dish using this command.
+If the quantity to be removed is not specified, all of the ingredient will be removed.
+
+- Format: `recipe INDEX remove i/INGREDIENT [q/QUANTITY]`
+- Examples:
+* `recipe 1 remove i/Egg q/1` +
+Removes 1 egg from the list of ingredients in recipe 1.
+* `recipe 2 remove i/Milk` +
+Removes milk from the list of ingredients in recipe 2.
+
+==== Add a preparation step to a recipe
+
+This command allows you to add a preparation step to the selected recipe.
+Requires a valid index in the list of recipes and the cooking step.
+
+- Format: `recipe INDEX add x/STEP_INDEX S/STEP_DESCRIPTION`
+- Examples:
+* `recipe 1 add x/2 s/Bring the water to boil` +
+Add a preparation step 2 (Bring water to boil) to recipe 1.
+* `recipe 2 insert x/next s/Add a teaspoon of salt in the soup` +
+Add the next preparation step (Add a teaspoon of salt in the soup) to recipe 2.
+
+==== Remove a preparation step from a recipe
+
+This command allows you to remove a preparation step from the selected recipe.
+Requires a valid index in the list of recipes and the cooking step.
+
+- Format: `recipe INDEX remove x/STEP_INDEX`
+- Example:
+* `recipe 1 remove x/2` +
+Remove preparation step 2 from the recipe 1.
+
+==== Add a tag to a recipe
+
+This command allows you to add a tag to the selected recipe.
+Requires a valid index in the list of recipes.
+
+- Format: `recipe INDEX add t/TAG`
+- Example:
+* `recipe 1 add t/Pasta` +
+Add a tag (Pasta) to the recipe 1.
+
+==== Remove a tag from a recipe
+
+This command allows you to remove a tag from the selected recipe.
+Requires a valid index in the list of recipes.
+
+- Format: `recipe INDEX remove t/TAG`
+- Example:
+* `recipe 1 remove t/Beef` +
+Remove a tag (Beef) from the recipe 1.
+
+
+=== Inventory Commands
+Inventory commands are commands that update the user's very own inventory at home.
+These commands include adding, remove and viewing the current inventory database.
+
+==== Add an ingredient to the inventory
+This commands allows you to add ingredients to your inventory.
+
+- Format: `inventory add i/INGREDIENT q/QUANTITY`
+- Examples:
+* `inventory add i/Egg q/10` +
+Adds 10 eggs into your inventory.
+* `inventory add i/Butter q/200g` +
+Adds 200g of butter into your inventory.
+
+==== Remove an ingredient from the inventory
+This command allows you to remove ingredients from your inventory. You may add in
+an additional argument for the quantity you wish to remove. If no additional argument for quantity
+is supplied, that instance of the ingredient will be removed entirely.
+
+- Format: `inventory remove i/INGREDIENT [q/QUANTITY]`
+- Examples:
+* `inventory remove i/Egg` +
+Remove all eggs from your inventory.
+* `inventory remove i/Butter q/200g` +
+Removes 200g of butter from your inventory.
+
+==== View the inventory
+This command allows you to view your current inventory of owned ingredients.
+
+- Format: `inventory view`
+- Examples:
+* `inventory view` +
+Displays the entire inventory
+
+
+=== Cart Commands
+Cart commands are commands that allow you to easily add ingredients needed for a recipe
+into a shopping cart. This provides convenience for your grocery shopping needs.
+
+==== Add ingredients in a recipe to the cart
+This command allows you to add all the ingredients in a recipe to the cart.
 
 - Format: `cart INDEX`
 - Example:
 * `cart 1` +
     Adds ingredients required of recipe 1 to the cart.
 
-==== Add ingredients to a cart
-This command allows you to add ingredients to a cart.
+==== Add ingredients to the cart
+This command allows you to add ingredients to the cart.
 
 - Format: `cart add i/INGREDIENT q/QUANTITY`
 - Example:
 * `cart add i/Eggs q/5` +
     Adds 5 eggs to the cart.
 
+==== Remove ingredients from the cart
+This command allows you to remove ingredients from the cart.
+If the quantity to be removed is not specified, all of the specified ingredient will be removed.
+
+- Format: `cart remove i/INGREDIENT [q/QUANTITY]`
+- Example:
+* `cart remove i/Egg q/1` +
+Removes 1 egg from the cart.
+* `cart remove i/Milk` +
+Removes milk from the cart.
+
 ==== Clear all the items in the cart
-This command allows you to clear all the items in the cart. It can be used to discard an unwanted cart, or to clear the cart after completing the purchase.
+This command allows you to clear all the items in the cart. It can be used to discard an unwanted cart,
+or to clear the cart after completing the purchase.
 
 - Format: `cart clear`
 - Example:
 * `cart clear` +
     Clears the cart of all items.
 
-=== Calendar commands
+=== Calendar Commands [v2.0]
+Calendar commands are commands that allow you to plan your meal preparations ahead and view the
+ingredients needed for a specified date or time period.
 
-=== Miscellaneous commands
-
-=== Coming in v2.0
 
 == FAQ
 

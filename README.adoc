@@ -14,9 +14,11 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* This is a desktop Address Book application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-* Summary
-* Target audience
+* Cooking Papa is a desktop application that makes cooking at home easier.
+Cooking Papa provides a cookbook for users to search and add recipes.
+It also allows users to manage their ingredient inventory and shopping list with ease.
+* Target users are those who are interested to cook at home but finds it hard to
+manage their ingredients inventory and shopping list.
 
 == Site Map
 
