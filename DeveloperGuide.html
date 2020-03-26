@@ -22,10 +22,11 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#add-recipe-to-the-cookbook">3.1. Add Recipe to the Cookbook</a></li>
+<li><a href="#proposed-undo-redo-feature">3.2. [Proposed] Undo/Redo feature</a></li>
+<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -330,9 +331,170 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></h3>
+<h3 id="add-recipe-to-the-cookbook"><a class="link" href="#add-recipe-to-the-cookbook">3.1. Add Recipe to the Cookbook</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.1.1. Proposed Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The recipe addition mechanism is facilitated by <code>CookbookAddCommand</code>, which extends the <code>Command</code> abstract class. The format of the command is as follows: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT_NAME]&#8230;&#8203; [q/INGREDIENT_QUANTITY]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user enters this command</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters a recipe adding command using the command line input <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [x/STEP_INDEX]&#8230;&#8203; [s/STEP_DESCRIPTION]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>.</p>
+</li>
+<li>
+<p><code>CookbookAddCommandParser</code> parsers the user input and checks if <code>n/NAME</code> and <code>d/DESCRIPTION</code> are provided. It then parses the input into the following fields: recipe name, recipe description, ingredients, and tags. Note that the ingredient names and ingredient quantities provided must be the same, or a <code>ParseException</code> will be thrown, likewise for step indices and step descriptions.</p>
+</li>
+<li>
+<p>These fields are then passed as parameters for <code>Recipe</code>, which is then passed as the parameter for <code>CookbookAddCommand</code> and returned to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CookbookAddCommand#execute()</code> which checks if the cookbook already contains the same recipe with the same name, description, ingredient names, ingredient quantities, and tags using <code>Model#hasCookbookRecipe()</code>. If there is a duplicate, a <code>CommandException</code> is thrown, stating that the user is attempting to add a duplicate recipe.</p>
+</li>
+<li>
+<p>If <code>CommandException</code> is not thrown, <code>Model#addCookbookRecipe</code> will be executed, with the recipe to be added as a parameter.</p>
+</li>
+<li>
+<p><code>Model#addCookbookRecipe()</code> then executes <code>Cookbook#addRecipe()</code>, which adds the recipe to the cookbook, and the <code>FilteredList&lt;Recipe&gt;</code> representing the recipes in the cookbook are updated with <code>Model#updateFilteredCookbookRecipeList()</code></p>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the text to display to the user is then returned to <code>LogicManager</code>, which can passed back to <code>MainWindow</code>, which displays it to the user on the CLI and GUI.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-reasoning"><a class="link" href="#implementation-reasoning">3.1.2. Implementation reasoning</a></h4>
+<div class="paragraph">
+<p>This command is implemented this way  to allow a user to add a recipe with optional fields (ingredients, tags) - only the recipe name and recipe description are mandatory fields. This way, a user does not have input all the fields that they may not have at the moment to create a recipe. After creating the skeleton of the recipe, the user can then use the other <code>Cookbook</code> methods to add ingredients and steps to the recipe. However, one key point is that should ingredient names be provided, the same number of ingredient quantities have to be provided as well, vice versa, likewise for step indices and step descriptions.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sequence-diagram"><a class="link" href="#sequence-diagram">3.1.3. Sequence diagram</a></h4>
+<div class="paragraph">
+<p>The following sequence diagram shows how the recipe adding function works (full command omitted for brevity):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookAddRecipeSequenceDiagram.png" alt="CookbookAddRecipeSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-the-feature-works"><a class="link" href="#how-the-feature-works">3.1.4. How the feature works</a></h4>
+<div class="paragraph">
+<p>Step 1: Input the command in the command box and hit <kbd>Enter</kbd> on the keyboard.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookAddRecipe1.png" alt="CookbookAddRecipe1">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2: Results will be parsed and displayed back to the user.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookAddRecipe2.png" alt="CookbookAddRecipe2">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookAddRecipe3.png" alt="CookbookAddRecipe3">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3: The newly added recipe will now appear in the recipes panel, which a brief overview, consisting of its name, description, and tags.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookAddRecipe4.png" alt="CookbookAddRecipe4">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.5. Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-parse-optional-fields"><a class="link" href="#aspect-how-to-parse-optional-fields">Aspect: How to parse optional fields</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Parse each category separately</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Each category (ingredient name, ingredient quantity, step index, step description, tag) are parsed separately and returned as <code>List</code>. If the returned <code>List</code> is empty, then it means that that field was not provided in the input, and will be set to an empty <code>List</code> in the recipe.</p>
+</li>
+<li>
+<p>Pros: Provides more flexibility for the user, no need to deal with null values</p>
+</li>
+<li>
+<p>Cons: More methods have to be executed which may increase time complexity</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Parse all the categories together</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Each category will be parse together in one function</p>
+</li>
+<li>
+<p>Pros: Straightforward, no need to call multiple functions from other classes</p>
+</li>
+<li>
+<p>Cons: Have to deal with null values and include null checks (<code>ifPresent()</code> etc.), method will be very long and decreases readability</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-string-formatting-for-commandresult"><a class="link" href="#aspect-string-formatting-for-commandresult">Aspect: String formatting for CommandResult</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Separate each field with newlines</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: vastly improves readability</p>
+</li>
+<li>
+<p>Cons: smaller font size to improve fit in <code>ResultDisplay</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternatve 2: Combine all the fields in one line</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: bigger font size due to the lack of newlines</p>
+</li>
+<li>
+<p>Cons: difficult to read, difficult for user to extract desired information from the text in <code>ResultDisplay</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.2. [Proposed] Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -474,7 +636,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -544,20 +706,20 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -588,7 +750,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1067,4 +1229,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-19 15:40:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-26 15:54:29 UTC</div></div></div></body></html>
