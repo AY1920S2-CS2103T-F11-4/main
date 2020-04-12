@@ -39,7 +39,7 @@ recipes!</p>
 <div class="paragraph">
 <p>Cooking Papa aims to help university students who live alone, to make learning how to cook more convenient,
 increasing the diversity of their meals. With Cooking Papa, users can easily edit recipes, keep track of ingredients
-they have at home and have a shopping list that to help them expedite their grocery shopping process.</p>
+they have at home and have a shopping list to help them expedite their grocery shopping process.</p>
 </div>
 <div class="paragraph">
 <p>CookingPapa consists of 3 main features:</p>
@@ -431,7 +431,7 @@ recipe that contains any of the given tags.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes wisth tags matching 'Easy'.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe t/Pasta t/Cream t/Easy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search tag t/Pasta t/Cream t/Easy</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with tags matching 'Pasta', or 'Cream', or 'Easy'.</p></td>
 </tr>
 </tbody>
@@ -445,7 +445,7 @@ recipe that contains any of the given tags.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>cookbook search recipe inventory</code></p>
+<p>Format: <code>cookbook search inventory</code></p>
 </li>
 <li>
 <p>Example:</p>
@@ -465,7 +465,7 @@ recipe that contains any of the given tags.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe inventory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search inventory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes whose ingredients are available in the inventory.</p></td>
 </tr>
 </tbody>
@@ -1412,7 +1412,7 @@ be replaced with 'today' for the current date.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="7"><p class="tableblock"><code>cookbook</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="8"><p class="tableblock"><code>cookbook</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>view recipe INDEX</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Shows recipe at given INDEX</p>
@@ -1423,9 +1423,9 @@ be replaced with 'today' for the current date.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new empty recipe with the given NAME and DESCRIPTION.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add recipe n/NAME d/DESCRIPTION [i/INGREDIENT] [q/QUANTITY] [x/STEP_INDEX] [s/STEP] [t/TAG]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add recipe n/NAME d/DESCRIPTION [i/INGREDIENT] [q/QUANTITY] [s/STEP] [t/TAG]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new recipe with the given NAME and DESCRIPTION.
-INGREDIENT and its QUANTITY, STEP and its STEP_INDEX, and TAG are optional parameters and will be added according to input from user.</p></td>
+INGREDIENT and its QUANTITY, STEP, and TAG are optional parameters and will be added according to input from user.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove recipe INDEX</code></p></td>
@@ -1436,12 +1436,16 @@ INGREDIENT and its QUANTITY, STEP and its STEP_INDEX, and TAG are optional param
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes by a keyword</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search recipe t/TAG</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes by a keyword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search tag t/TAG</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes by a tag</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search recipe inventory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes whose ingredients are available in the inventory.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search inventory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes by the ingredients in the inventory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List all recipes in the cookbook.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock"><code>recipe</code></p></td>
@@ -1511,4 +1515,4 @@ INGREDIENT and its QUANTITY, STEP and its STEP_INDEX, and TAG are optional param
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 02:26:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 06:48:47 UTC</div></div></div></body></html>
