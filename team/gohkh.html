@@ -10,7 +10,7 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cooking Papa is a desktop recipe application used for cooking. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>Cooking Papa is a desktop cookbook application used to manage recipes and ingredients for cooking. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.</p>
 </div>
 </div>
 </div>
@@ -20,20 +20,20 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>:</p>
+<p><strong>Major enhancement</strong>: added <strong>the ability to search for recipes based on the ingredients in the inventory</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does:</p>
+<p>What it does: allows the user to find recipes that match the inventory ingredients best, sorted by the similarity to the inventory ingredients.</p>
 </li>
 <li>
-<p>Justification:</p>
+<p>Justification: This feature improves the product significantly because a user may not know what to cook with their ingredients, and the app should provide a convenient way to find the most suitable recipes to cook with the available ingredients.</p>
 </li>
 <li>
-<p>Highlights:</p>
+<p>Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation too was challenging as it required a robust way of handling ingredient quantities.</p>
 </li>
 <li>
-<p>Credits:</p>
+<p>Credits: <a href="https://commons.apache.org/proper/commons-math/">Apache Commons Math</a> (The <code>Fraction</code> class was used in implementing ingredient quantities)</p>
 </li>
 </ul>
 </div>
@@ -42,7 +42,7 @@
 <p><strong>Minor enhancement</strong>:</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>:</p>
+<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&amp;search=gohkh">Link</a></p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -59,9 +59,35 @@
 </li>
 <li>
 <p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial comments):
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/18">#18</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/57">#57</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/61">#61</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/90">#90</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/92">#92</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/99">#99</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/113">#113</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/122">#122</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/131">#131</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/139">#139</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/160">#160</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/208">#208</a></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrated a third-party library, <a href="https://commons.apache.org/proper/commons-math/">Apache Commons Math</a>, to the project (<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/60">#60</a>)</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -101,8 +127,23 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="search-for-recipes-based-on-ingredients-in-the-inventory"><a class="link" href="#search-for-recipes-based-on-ingredients-in-the-inventory">Search for recipes based on ingredients in the inventory</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
 <div class="paragraph">
-<p>include::../DeveloperGuide.adoc</p>
+<p>The comparison is facilitated by the <code>RecipeInventorySimilarityComparator</code>. It extends <code>Comparator&lt;Recipe&gt;</code> and stores
+the inventory being used for ingredient comparison.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes how objects interact when a user executes the command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookSearchByInventorySequenceDiagram.png" alt="CookbookSearchByInventorySequenceDiagram">
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-03 05:28:56 UTC</div></div></div></body></html>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 02:26:11 UTC</div></div></div></body></html>

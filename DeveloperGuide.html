@@ -23,10 +23,12 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#add-recipe-to-the-cookbook">3.1. Add Recipe to the Cookbook</a></li>
-<li><a href="#proposed-undo-redo-feature">3.2. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#export-ingredients-in-cart-to-pdf-file">3.2. Export ingredients in cart to PDF file</a></li>
+<li><a href="#search-for-recipes-based-on-ingredients-in-the-inventory">3.3. Search for recipes based on ingredients in the inventory</a></li>
+<li><a href="#adding-ingredients-to-inventory-and-cart">3.4. Adding ingredients to inventory and cart</a></li>
+<li><a href="#moving-ingredients-from-cart-to-inventory">3.5. Moving ingredients from cart to inventory</a></li>
+<li><a href="#proposed-undo-redo-feature">3.6. [Proposed] Undo/Redo feature</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -41,10 +43,13 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#adding-a-recipe-to-the-cookbook">G.2. Adding a recipe to the cookbook</a></li>
+<li><a href="#removing-a-recipe-from-the-cookbook">G.3. Removing a recipe from the cookbook</a></li>
+<li><a href="#searching-for-recipes-by-tags">G.4. Searching for recipes by tags</a></li>
+<li><a href="#exporting-the-cart-to-a-pdf-file">G.5. Exporting the cart to a PDF file</a></li>
 </ul>
 </li>
+<li><a href="#effort">Appendix H: Effort</a></li>
 </ul>
 </div>
 </div>
@@ -311,7 +316,13 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Cookbook</cod
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can save <code>Cookbook</code> data in json format and read it back.</p>
+</li>
+<li>
+<p>can save <code>Inventory</code> data in json format and read it back.</p>
+</li>
+<li>
+<p>can save <code>Cart</code> data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -335,188 +346,850 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Cookbook</cod
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The recipe addition mechanism is facilitated by <code>CookbookAddCommand</code>, which extends the <code>Command</code> abstract class. The format of the command is as follows: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT_NAME]&#8230;&#8203; [q/INGREDIENT_QUANTITY]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+<p>The recipe addition mechanism is facilitated by <code>CookbookAddCommand</code>, which extends the <code>Command</code> abstract class. The
+format of the command is as follows: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT_NAME]&#8230;&#8203; [q/INGREDIENT_QUANTITY]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>.</p>
 </div>
 <div class="paragraph">
-<p>Below is a step by step sequence of what happens when a user enters this command</p>
+<p>Below is a step by step sequence of what happens when a user enters this command:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The user enters a recipe adding command using the command line input <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [x/STEP_INDEX]&#8230;&#8203; [s/STEP_DESCRIPTION]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>.</p>
+<p>The user enters a recipe adding command using the command line input <code>cookbook add recipe n/NAME d/DESCRIPTION
+[i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [s/STEP_DESCRIPTION]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>.</p>
 </li>
 <li>
-<p><code>CookbookAddCommandParser</code> parsers the user input and checks if <code>n/NAME</code> and <code>d/DESCRIPTION</code> are provided. It then parses the input into the following fields: recipe name, recipe description, ingredients, and tags. Note that the ingredient names and ingredient quantities provided must be the same, or a <code>ParseException</code> will be thrown, likewise for step indices and step descriptions.</p>
+<p><code>CookbookAddCommandParser</code> parsers the user input and checks if <code>n/NAME</code> and <code>d/DESCRIPTION</code> are provided. It then
+parses the input into the following fields: recipe name, recipe description, ingredients, steps, and tags.</p>
+<div class="paragraph">
+<p>Note that
+the ingredient names and ingredient quantities provided must be the same, or a <code>ParseException</code> will be thrown:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (names.size() != quantities.size()) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(
+        <span class="predefined-type">String</span>.format(MESSAGE_DIFFERENT_NUMBER_OF_INPUTS, names.size(), quantities.size()));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p></p>
+</div>
 </li>
 <li>
-<p>These fields are then passed as parameters for <code>Recipe</code>, which is then passed as the parameter for <code>CookbookAddCommand</code> and returned to <code>LogicManager</code>.</p>
+<p>These fields are then passed as parameters for <code>Recipe</code>, which is then passed as the parameter for
+<code>CookbookAddCommand</code> and returned to <code>LogicManager</code>.</p>
 </li>
 <li>
-<p><code>LogicManager</code> calls <code>CookbookAddCommand#execute()</code> which checks if the cookbook already contains the same recipe with the same name, description, ingredient names, ingredient quantities, and tags using <code>Model#hasCookbookRecipe()</code>. If there is a duplicate, a <code>CommandException</code> is thrown, stating that the user is attempting to add a duplicate recipe.</p>
+<p><code>LogicManager</code> calls <code>CookbookAddCommand#execute()</code> which checks if the cookbook already contains the same recipe with the same name, description, ingredient names, ingredient quantities, and tags using <code>Model#hasCookbookRecipe()</code>.</p>
+<div class="paragraph">
+<p>If there is a duplicate, a <code>CommandException</code> is thrown, stating that the user is attempting to add a duplicate recipe:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (model.hasCookbookRecipe(toAdd)) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_RECIPE);
+}</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>If <code>CommandException</code> is not thrown, <code>Model#addCookbookRecipe</code> will be executed, with the recipe to be added as a parameter.</p>
 </li>
 <li>
-<p><code>Model#addCookbookRecipe()</code> then executes <code>Cookbook#addRecipe()</code>, which adds the recipe to the cookbook, and the <code>FilteredList&lt;Recipe&gt;</code> representing the recipes in the cookbook are updated with <code>Model#updateFilteredCookbookRecipeList()</code></p>
+<p><code>Model#addCookbookRecipe()</code> then executes <code>Cookbook#addRecipe()</code>, which adds the recipe to the cookbook, and the
+<code>FilteredList&lt;Recipe&gt;</code> representing the recipes in the cookbook are updated with <code>Model#updateFilteredCookbookRecipeList()</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">updateFilteredCookbookRecipeList(PREDICATE_SHOW_ALL_RECIPES)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>PREDICATE_SHOW_ALL_RECIPES = unused &#8594; true</code>.</p>
+</div>
 </li>
 <li>
-<p>A <code>CommandResult</code> with the text to display to the user is then returned to <code>LogicManager</code>, which can passed back to <code>MainWindow</code>, which displays it to the user on the CLI and GUI.</p>
+<p>A <code>CommandResult</code> with the text to display to the user is then returned to <code>LogicManager</code>, which can passed back to
+<code>MainWindow</code>, which displays it to the user on the CLI and GUI: <code>resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser())</code>. The text displayed will notify the user on whether
+their addition was successful.</p>
 </li>
 </ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RecipeObjectDiagram.png" alt="RecipeObjectDiagram">
+</div>
+<div class="title">Figure 9. UML object diagram of Recipe</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="implementation-reasoning"><a class="link" href="#implementation-reasoning">3.1.2. Implementation reasoning</a></h4>
 <div class="paragraph">
-<p>This command is implemented this way  to allow a user to add a recipe with optional fields (ingredients, tags) - only the recipe name and recipe description are mandatory fields. This way, a user does not have input all the fields that they may not have at the moment to create a recipe. After creating the skeleton of the recipe, the user can then use the other <code>Cookbook</code> methods to add ingredients and steps to the recipe. However, one key point is that should ingredient names be provided, the same number of ingredient quantities have to be provided as well, vice versa, likewise for step indices and step descriptions.</p>
+<p>This command is implemented this way  to allow a user to add a recipe with optional fields (ingredients, steps, tags) -
+only the recipe name and recipe description are mandatory fields. This way, a user does not have input all the fields
+that they may not have at the moment to create a recipe. After creating the skeleton of the recipe, the user can then
+use the other <code>Cookbook</code> commands to add ingredients and steps to the recipe. However, one key point is that should
+ingredient names be provided, the same number of ingredient quantities have to be provided as well.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="sequence-diagram"><a class="link" href="#sequence-diagram">3.1.3. Sequence diagram</a></h4>
 <div class="paragraph">
-<p>The following sequence diagram shows how the recipe adding function works (full command omitted for brevity):</p>
+<p>The following sequence diagram shows how the recipe adding function works (full command [<code>cookbook add recipe
+                                                                                          n/Recipe name d/Recipe
+                                                                                          description i/Ingredient 1
+                                                                                          q/1 piece i/Ingredient 2
+                                                                                          q/20 ml s/Do step 1 s/Do
+                                                                                          step 2 t/This t/Is t/A
+                                                                                          t/Tag</code>]  omitted from diagram
+for brevity):</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/CookbookAddRecipeSequenceDiagram.png" alt="CookbookAddRecipeSequenceDiagram">
 </div>
+<div class="title">Figure 10. Sequence diagram for CookbookAddCommand</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="how-the-feature-works"><a class="link" href="#how-the-feature-works">3.1.4. How the feature works</a></h4>
 <div class="paragraph">
 <p>Step 1: Input the command in the command box, then hit <kbd>Enter</kbd> on the keyboard. The command is as follows:
-<code>cookbook add recipe n/Recipe name d/Recipe description i/Ingredient 1 q/1 piece i/Ingredient 2 q/20 ml x/1 s/Do step 1 x/2 s/Do step 2 t/This t/Is t/A t/Tag</code>.</p>
+<code>cookbook add recipe n/Recipe name d/Recipe description i/Ingredient 1 q/1 piece i/Ingredient 2 q/20 ml s/Do step 1
+ s/Do step 2 t/This t/Is t/A t/Tag</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/CookbookAddRecipe1.png" alt="CookbookAddRecipe1">
 </div>
+<div class="title">Figure 11. CookbookAddCommand sample command in Command box</div>
 </div>
 <div class="paragraph">
-<p>Step 2: Results will be parsed and displayed back to the user.</p>
+<p>Step 2: Results will be parsed, and if the command is valid, a success message will be displayed to the user.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/CookbookAddRecipe2.png" alt="CookbookAddRecipe2">
 </div>
+<div class="title">Figure 12. CookbookAddCommand sample command result in Result display</div>
 </div>
 <div class="paragraph">
-<p>Step 3: The newly added recipe will now appear in the recipes panel, which a brief overview, consisting of its name, description, and tags.</p>
+<p>Step 3: The newly added recipe will now appear in the recipes panel, which a brief overview, consisting of its name,
+description, and tags. To view all the details of a recipe, the user can either enter <code>cookbook view recipe INDEX</code>,
+where index is a valid integer, or click the view button.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/CookbookAddRecipe3.png" alt="CookbookAddRecipe3">
 </div>
+<div class="title">Figure 13. CookbookAddCommand sample recipe in Recipe panel</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.5. Design considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-parse-optional-fields"><a class="link" href="#aspect-how-to-parse-optional-fields">Aspect: How to parse optional fields</a></h5>
-<div class="ulist">
+<h5 id="aspect-1-how-to-parse-optional-parameters"><a class="link" href="#aspect-1-how-to-parse-optional-parameters">Aspect 1: How to parse optional parameters</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Design considerations for parsing optional parameters</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A: Parse each category separately (current choice)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: Parse all the categories together</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each category (ingredient name, ingredient quantity, step description, tag) are parsed separately and returned as <code>List</code>. If the returned <code>List</code> is empty, then it means that that field was not provided in the input, and will be set to an empty <code>List</code> in the recipe.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each category will be parsed together in one function in <code>CookbookAddCommandParser</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Alternative 1 (current choice): Parse each category separately</p>
-<div class="ulist">
+<p>Provides more flexibility for the user and does not make it mandatory to input fields that they may not necessarily
+have.</p>
+</li>
+<li>
+<p>No need to deal with null values, can simply check if list is empty.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Each category (ingredient name, ingredient quantity, step index, step description, tag) are parsed separately and returned as <code>List</code>. If the returned <code>List</code> is empty, then it means that that field was not provided in the input, and will be set to an empty <code>List</code> in the recipe.</p>
+<p>Straightforward</p>
 </li>
 <li>
-<p>Pros: Provides more flexibility for the user, no need to deal with null values</p>
-</li>
-<li>
-<p>Cons: More methods have to be executed which may increase time complexity</p>
+<p>No need to create and call multiple methods from other classes</p>
 </li>
 </ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Parse all the categories together</p>
-<div class="ulist">
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Each category will be parse together in one function</p>
+<p>More methods have to be executed which may increase time and NPath complexity.</p>
 </li>
 <li>
-<p>Pros: Straightforward, no need to call multiple functions from other classes</p>
+<p>Debugging and tracing becomes more confusing due to the method being defined in the lowest level of abstraction.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Have to deal with null values and include null checks (<code>ifPresent()</code> etc.)</p>
 </li>
 <li>
-<p>Cons: Have to deal with null values and include null checks (<code>ifPresent()</code> etc.), method will be very long and decreases readability</p>
+<p>Method will be very long and decreases readability</p>
 </li>
 </ul>
-</div>
-</li>
-</ul>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect4">
-<h5 id="aspect-string-formatting-for-commandresult"><a class="link" href="#aspect-string-formatting-for-commandresult">Aspect: String formatting for CommandResult</a></h5>
-<div class="ulist">
+<h5 id="aspect-2-result-to-show-user"><a class="link" href="#aspect-2-result-to-show-user">Aspect 2: Result to show user</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Design considerations for results to show users</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A: Show a short result on the success of the command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: Show all the details back to the user</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show a message to a usage which notifies them that the command was successful in adding the recipe to
+the cookbook.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a message similar to design choice A, and also show all the details of the added recipe.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Alternative 1 (current choice): Separate each field with newlines</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: vastly improves readability</p>
+<p>Short and succinct message, tells the user what they need to know</p>
 </li>
 <li>
-<p>Cons: smaller font size to improve fit in <code>ResultDisplay</code></p>
+<p>User interface is cleaner and more intuitive, and does not overload users with unnecessary information</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easier to implement</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Requires the graphical user interface to be able to toggle and show recipes, without the need for a command,
+implemented here:</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Alternatve 2: Combine all the fields in one line</p>
-<div class="ulist">
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookAddRecipe3.png" alt="CookbookAddRecipe3">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Pros: bigger font size due to the lack of newlines</p>
+<p>Overloads the user with unnecessary information</p>
 </li>
 <li>
-<p>Cons: difficult to read, difficult for user to extract desired information from the text in <code>ResultDisplay</code></p>
+<p>Requires result display to take up more space than required, to reduce the need for users to scroll down the result
+display.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-ingredients-in-cart-to-pdf-file"><a class="link" href="#export-ingredients-in-cart-to-pdf-file">3.2. Export ingredients in cart to PDF file</a></h3>
+<div class="paragraph">
+<p>The user may use this command to export the ingredients in their cart to a PDF file, which they can then use as their
+shopping list at the supermarkets.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The cart exporting mechanism is facilitated by <code>CookbookExportCommand</code>, which extends the <code>Command</code> abstract class.
+The format is as follows: <code>cart export</code>.</p>
+</div>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user enters this command:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters a cart export command using the command line input <code>cart export</code>.</p>
+</li>
+<li>
+<p><code>CartExportCommandParser</code> parses the user input and checks if the argument passed to it is an empty String, as the
+command takes in no extra parameters.</p>
+<div class="paragraph">
+<p>Note that if the String is not empty, a <code>ParseException</code> will be thrown:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (userInput.isEmpty()) {
+    <span class="keyword">return</span> <span class="keyword">new</span> CartExportCommand();
+} <span class="keyword">else</span> {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, CartExportCommand.MESSAGE_USAGE));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means that <code>cart export ingredient</code> will not work.</p>
+</div>
+</li>
+<li>
+<p><code>CartExportCommandParser</code> then returns a <code>CartExportCommand</code> to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CartExportCommand#execute()</code> calls the static method of <code>PdfExporter</code>,
+<code>PdfExporter#exportCart()</code>, which takes in the <code>ObservableList&lt;Ingredient&gt;</code> stored in <code>Cart</code></p>
+</li>
+<li>
+<p>Step 4 is executed within a try-catch block. If a previously generated pdf (saved as <code>cart.pdf</code> by default) is
+opened in another program, or there is an issue writing to the PDF file (more information can be found
+<a href="https://api.itextpdf.com/iText5/5.59/com/itextpdf/text/DocumentException.html">here</a>), a <code>CommandResult</code> with an error
+message will returned to <code>LogicManager</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">try</span> {
+    PdfExporter.exportCart(model.getCart().getIngredientList());
+} <span class="keyword">catch</span> (<span class="exception">IOException</span> | DocumentException e) {
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FILE_NOT_FOUND);
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Else, a <code>CommandResult</code> with the text to display to the user will be returned to <code>LogicManager</code>. The
+<code>CommandResult</code> is then passed back to <code>MainWindow</code>, which displays it to the user on the CLI and GUI: <code>resultDisplay
+.setFeedbackToUser(commandResult.getFeedbackToUser())</code>. The text displayed will notify the user on whether
+their addition was successful.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-reasoning-2"><a class="link" href="#implementation-reasoning-2">3.2.2. Implementation reasoning</a></h4>
+<div class="paragraph">
+<p>This command was implemented to bridge the (current, v1.4) inadequacy of Cooking Papa, which is that it is not
+portable (yet). It was still not convenient <em>enough</em> to be able to organize cart ingredients. Evenutally, users had
+to go outside to the supermarket, and Cooking Papa is a desktop-only application. By allowing users to export the
+ingredients in their cart to a PDF file, they can then print it out, or transfer it to their mobile devices, and
+bring them along as shopping lists. Additionally, the layout and content of the generated PDF file is simple,
+informational, and easy for users to extend, allowing them to add (handwritten or  annotated) remarks.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sequence-diagram-2"><a class="link" href="#sequence-diagram-2">3.2.3. Sequence diagram</a></h4>
+<div class="paragraph">
+<p>The following sequence diagram shows how the function of exporting ingredients in the cart to a PDF file works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartExportCommandSequenceDiagram.png" alt="CartExportCommandSequenceDiagram">
+</div>
+<div class="title">Figure 14. Sequence diagram for CartExportCommand</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.4. Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-1-file-format-to-export-ingredients-in-cart-to"><a class="link" href="#aspect-1-file-format-to-export-ingredients-in-cart-to">Aspect 1: File format to export ingredients in cart to</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A (current choice): .pdf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: .txt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exports it to a flexible pdf file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exports it to a txt file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easier to format with <code>iTextPDF</code> 's vast library and API</p>
+</li>
+<li>
+<p>More versatile in that images can be added if the function was to be extended to include images of the ingredients</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Simple to implement</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>More formatting code required</p>
+</li>
+<li>
+<p>May take slightly longer to export as compared to design B</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Lack of design/formatting flexibility</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="aspect-2-what-information-to-export"><a class="link" href="#aspect-2-what-information-to-export">Aspect 2: What information to export</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A (current choice): Export the ingredient names and quantities in the cart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: Export the entirety of
+Cooking Papa
+(cookbook, inventory, cart)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow exporting of just the cart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow exporting of the cart, inventory, and cookbook</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easier to implement as there will be less information to parse</p>
+</li>
+<li>
+<p>Keeps the exported PDF short and sweet</p>
+</li>
+<li>
+<p>Ingredients in the inventory and recipes in the cookbook generally correlates (and are consequential of) with the
+ingredients in the cart, so exporting the inventory as well as the cookbook is likely to be redundant.</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookExportExample2.png" alt="CookbookExportExample2">
+</div>
+<div class="title">Figure 15. A sample shopping list generated by the command</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Provides users an all-in-one file containing all the information they entered into Cooking Papa</p>
+</li>
+<li>
+<p>Allows user to reproduce hard-copy recipe books using Cooking Papa</p>
 </li>
 </ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Certain information may be needed and not exportable by the user, i.e. recipes</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Slightly more difficult to implement</p>
+</li>
+<li>
+<p>May be providing users with unnecessary information</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="search-for-recipes-based-on-ingredients-in-the-inventory"><a class="link" href="#search-for-recipes-based-on-ingredients-in-the-inventory">3.3. Search for recipes based on ingredients in the inventory</a></h3>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The comparison is facilitated by the <code>RecipeInventorySimilarityComparator</code>. It extends <code>Comparator&lt;Recipe&gt;</code> and stores
+the inventory being used for ingredient comparison.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes how objects interact when a user executes the command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookSearchByInventorySequenceDiagram.png" alt="CookbookSearchByInventorySequenceDiagram">
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.2. [Proposed] Undo/Redo feature</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
+<h3 id="adding-ingredients-to-inventory-and-cart"><a class="link" href="#adding-ingredients-to-inventory-and-cart">3.4. Adding ingredients to inventory and cart</a></h3>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
+<p>The inventory and cart acts as storage for <code>Ingredient</code> classes. They are facilitated by <code>InventoryCommand</code> and <code>CartCommand</code>
+respectively, which extends the <code>Command</code> abstract class. Since <code>CartAddCommand</code> and <code>InventoryAddCommand</code> both serve the
+same purpose in different contexts of <code>Cart</code> and <code>Inventory</code> respectively, they will be mentioned together in tandem.<br>
+The format of the commands are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For cart: <code>cart add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code></p>
+</li>
+<li>
+<p>For inventory: <code>inventory add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
+<div class="paragraph">
+<p>Below is a step-by-step sequence of what happens when the command <code>cart add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code> is added.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user adds a ingredient to the cart by entering the command <code>cart  add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code> in the command line input.</p>
+</li>
+<li>
+<p><code>CartAddCommandParser</code> parsers the input to check and verify that the input provided for <code>i/INGREDIENT_NAME</code> amd <code>q/INGREDIENT_QUANTITY</code>
+are correct. Otherwise a <code>ParseException</code> will be thrown.</p>
+</li>
+<li>
+<p>The fields are then passed to <code>CartAddIngredientCommand</code> as an <code>Ingredient</code> object and is returned to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CartAddIngredientCommand#execute()</code> and checks if the <code>Ingredient</code> object given has the same <code>INGREDIENT_NAME</code> and
+<code>INGREDIENT_QUANTITY</code> unit. If that <code>Ingredient</code> exists, it will simply add on to the quantity of that ingredient. Otherwise,
+a new instance of that <code>Ingredient</code> will be added to the Cart.</p>
+</li>
+<li>
+<p>If <code>CommandException</code> is not thrown, <code>Model#addCartIngredient</code> will be executed, with the given <code>Ingredient</code> as the parameter</p>
+</li>
+<li>
+<p><code>Model#addCartIngredient</code> then executes, adding the <code>Ingredient</code> to the local cart storage and updates with
+<code>Model#updateFilteredCartIngredientList()</code>.</p>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the successful text message is returned to <code>LogicManager</code> and will be displayed to the user via the GUI to feedback to the
+user that the <code>Ingredient</code> has been successfully added.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The above implementation is the same for <code>Inventory</code> with the command <code>inventory  add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-reasoning-3"><a class="link" href="#implementation-reasoning-3">3.4.2. Implementation reasoning</a></h4>
+<div class="paragraph">
+<p>This command was implemented to allow the user know to add an ingredient to the cart or inventory respectively.
+An ingredient only has two main components - its name and quantity. We allow the user to use their own measurement up to their own
+preferences and do not force any fixed unit of measurement. Although similar, <code>Cart</code> and <code>Ingredients</code> differ in certain functions
+from a user&#8217;s point of view. For a user to immediately sort where they wish to sort the ingredient they are adding, <code>Cart</code> and
+<code>Inventory</code> is the first parameter they would use for the command.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sequence-diagram-3"><a class="link" href="#sequence-diagram-3">3.4.3. Sequence diagram</a></h4>
+<div class="paragraph">
+<p>The following sequence diagram shows how the function of adding ingredients to cart work (full command omitted for brevity):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartAddIngredientSequenceDiagram.png" alt="CartAddIngredientSequenceDiagram">
+</div>
+<div class="title">Figure 16. Sequence diagram for CartAddIngredientCommand</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-the-feature-works-2"><a class="link" href="#how-the-feature-works-2">3.4.4. How the feature works</a></h4>
+<div class="paragraph">
+<p>Step 1: The below diagram shows an initially empty cart</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartAddCommand1.png" alt="CartAddCommand1">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2: Input the command <code>cart add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code>. An example command is as follows: <code>cart add ingredient i/Eggs q/10</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartAddCommand2.png" alt="CartAddCommand2">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3: Hit <kbd>Enter</kbd>. The cart should be updated as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartAddCommand3.png" alt="CartAddCommand3">
+</div>
+</div>
+<div class="paragraph">
+<p>The above implementation is the same for <code>Inventory</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.5. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-the-need-for-many-parsers-for-this-command"><a class="link" href="#aspect-the-need-for-many-parsers-for-this-command">Aspect: The need for many parsers for this command</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Design considerations for the need for many parsers for this command</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Design A (Current choice): Create parsers for every individual action</th>
+<th class="tableblock halign-left valign-top">Design B: Create parsers for each specific action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The command will go through the parsers in the following order: <code>CookingPapaParser</code> &#8594; <code>CartCommandParser</code> &#8594; <code>CartAddCommandParser</code>
+&#8594; <code>CartAddIngredientParser</code> before finally returning <code>CartAddIngredientCommand</code>. We eventually went with this as we wanted the add
+functionality to be expanded, namely to be able to add all the ingredients of cookbook recipes into the cart.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CartAddCommand</code> will not be created facilitate <code>CartAddIngredientCommand</code> and <code>CartAddRecipeIngredientCommand</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More organised and can do more with <code>cart add</code> as the prefix.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Many parser classes to make and keep track of.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The classes can be more specific and atomic in their actions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Might lead to disorganisation during troubleshooting with so many classes to keep track.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="moving-ingredients-from-cart-to-inventory"><a class="link" href="#moving-ingredients-from-cart-to-inventory">3.5. Moving ingredients from cart to inventory</a></h3>
+<div class="paragraph">
+<p>The user may use this command after their shopping trip. With this one command, all ingredients will be shifted from the cart to the inventory.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
+<div class="paragraph">
+<p>This command is facilitated by <code>CartMoveCommand</code>, which extends the <code>Command</code> class. The format of the command is as follows:
+<code>cart move</code>.</p>
+</div>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when the user executes this command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters the command <code>cart move</code> in to the command line input.</p>
+</li>
+<li>
+<p><code>CartMoveCommandParser</code> then ensures that the user does not enter any other commands after <code>cart clear</code>.</p>
+</li>
+<li>
+<p><code>CartMoveCommandParser</code> then returns a <code>CartMoveCommand</code> and returns it to <code>LogicManager</code></p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CartMoveCommand#execute()</code>. If there are other commands after <code>cart clear</code>, a <code>CommandException</code>
+will be thrown.</p>
+</li>
+<li>
+<p>If <code>CommandException</code> is not thrown, <code>Model#cartMoveIngredients()</code> will be executed.</p>
+</li>
+<li>
+<p><code>Model#cartMoveIngredients()</code> will move every ingredient from the <code>cart</code> and add it into the <code>inventory</code></p>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the success message text will be returned to <code>LogicManager</code>, which will then be passed to <code>MainWindow</code>
+and will then feedback to the user.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-reasoning-4"><a class="link" href="#implementation-reasoning-4">3.5.2. Implementation reasoning</a></h4>
+<div class="paragraph">
+<p>This command is implemented to ease the process of having the user adding every single ingredient to their inventory after they have bought ingredients from their cart
+and eventually deleting the cart after that tedious process. These gives a convenience to users that frequently use our application and we forsee
+that such an action will be used very often by these users. As this command only performs an atomic action, no extra
+arguments are needed to further supplement the use of this command.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sequence-diagram-4"><a class="link" href="#sequence-diagram-4">3.5.3. Sequence Diagram</a></h4>
+<div class="paragraph">
+<p>The following sequence diagram shows how this function works (full command omitted for brevity):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartMoveSequenceDiagram.png" alt="CartMoveSequenceDiagram">
+</div>
+<div class="title">Figure 17. Sequence Diagram for CartMoveCommand</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-this-feature-works"><a class="link" href="#how-this-feature-works">3.5.4. How this feature works</a></h4>
+<div class="paragraph">
+<p>Step 1: This feature is intended when you have ingredients in the cart. As an example, the diagram below shows an
+empty inventory, along with a cart with an ingredient.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartMoveCommand1.png" alt="CartMoveCommand1">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2: Press <kbd>Enter</kbd>. The ingredients from cart will all be shifted to inventory as shown in the diagram below</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartMoveCommand2.png" alt="CartMoveCommand2">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.5. Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-allowing-users-to-move-some-or-all-ingredients-from-cart-to-inventory"><a class="link" href="#aspect-allowing-users-to-move-some-or-all-ingredients-from-cart-to-inventory">Aspect: Allowing users to move some or all ingredients from cart to inventory</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Design considerations for allowing users to move some or all ingredients from cart to inventory</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Design A (Current choice): Move all ingredients</th>
+<th class="tableblock halign-left valign-top">Design B: Allow users to move individually or exclude some ingredients when moving</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">There was a consideration to allow the user to move the ingredients by individual ingredients. Eventually the options was
+not given as we know that typical users will want to move all the ingredients except for individual ingredients.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The use cases of such an action happening is very little and the user can simply manually remove the few
+ingredients they do not wish to add to the inventory after using the <code>cart move</code> command. The user can also manually
+add back the ingredients to the cart after it is cleared if they wish to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Straightforward to implement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lesser implementations, more time to focus on other parts of the project</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lesser functionality to users that really want to only move certain ingredients</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Poorer user experience for users that do not want to move all ingredients from the cart to inventory on a regular basis,</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.6. [Proposed] Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.6.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>The undo/redo mechanism will be facilitated by <code>VersionedCookingPapa</code>.
+It extends <code>CookingPapa</code> with an undo/redo history, stored internally as an <code>cookingPapaStateList</code> and <code>currentStatePointer</code>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
+<p><code>VersionedCookingPapa#commit()</code>&#8201;&#8212;&#8201;Saves the current state of CookingPapa in its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
+<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous state of CookingPapa from its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
+<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone state of CookingPapa from its history.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitCookingPapa()</code>, <code>Model#undoCookingPapa()</code> and <code>Model#redoCookingPapa()</code> respectively.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
+<p>Step 1. The user launches the application for the first time. The <code>VersionedCookingPapa</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single CookingPapa state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -524,7 +1197,9 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
+<p>Step 2. The user executes <code>cookbook remove recipe 2</code> command to delete the 2nd recipe in the cookbook of CookingPapa.
+The <code>delete</code> command calls <code>Model#commitCookingPapa()</code>, causing the modified state of the address book after the <code>cookbook remove recipe 2</code> command executes to be saved in the <code>cookingPapaStateList</code>,
+and the <code>currentStatePointer</code> is shifted to the newly inserted state of CookingPapa.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -532,7 +1207,8 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
+<p>Step 3. The user executes <code>inventory add ingredient i/Egg q/10</code> to add a new ingredient to the inventory.
+The <code>inventory add</code> command also calls <code>Model#commitCookingPapa()</code>, causing another modified address book state to be saved into the <code>cookingPapaStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -546,13 +1222,14 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitCookingPapa()</code>, so that state of CookingPapa will not be saved into the <code>cookingPapaStateList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
+<p>Step 4. The user now decides that adding the ingredient to the inventory was a mistake, and decides to undo that action by executing the <code>undo</code> command.
+The <code>undo</code> command will call <code>Model#undoCookingPapa()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores CookingPapa to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -566,7 +1243,8 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial state of CookingPapa, then there will be no previous state of CookingPapa to restore.
+The <code>undo</code> command uses <code>Model#canUndoCookingPapa()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -592,7 +1270,7 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoCookingPapa()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores CookingPapa to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -601,13 +1279,13 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>cookingPapaStateList.size() - 1</code>, pointing to the latest CookingPapa state, then there are no undone CookingPapa states to restore. The <code>redo</code> command uses <code>Model#canRedoCookingPapa()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitCookingPapa()</code>, <code>Model#undoCookingPapa()</code> or <code>Model#redoCookingPapa()</code>. Thus, the <code>cookingPapaStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -615,7 +1293,8 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>cart clear</code>, which calls <code>Model#commitCookingPapa()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>cookingPapaStateList</code>,
+all CookingPapa states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo any add commands. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -632,13 +1311,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
+<p><strong>Alternative 1 (current choice):</strong> Saves the entire state of CookingPapa.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -651,102 +1330,28 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
+<p><strong>Alternative 2:</strong> Implement commands of <code>add</code> and <code>remove</code> to have the same format.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Ease for users to easily undo or redo their own mistakes. Also gives overall lower memory usage</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
+<p>Cons: Poorer user experience.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="paragraph">
+<p>Eventually, we decided that saving the memory state of the project is still manageable, given the current scale of the project.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
-<div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
-</li>
-<li>
-<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
-</li>
-<li>
-<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Logging Levels</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
-</li>
-<li>
-<p><code>WARNING</code> : Can continue, but with caution</p>
-</li>
-<li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
-</li>
-<li>
-<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -970,7 +1575,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>Use case: UC01 - Create a recipe
+<pre>Use case: UC01 - Create a recipe
 
 MSS:
 1. User chooses to create a recipe.
@@ -988,24 +1593,24 @@ Extensions:
         Use case resumes from step 4.
 
     *a. At any time, User chooses to end the creation of a recipe.
-        *a1. Cooking Papa cancels creation of a recipe.</code></pre>
+        *a1. Cooking Papa cancels creation of a recipe.</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>Use Case: UC02 - Search for recipes
+<pre>Use Case: UC02 - Search for recipes
 
 MSS:
 1. User chooses to search recipes.
 2. Cooking Papa requests for the tag to be searched.
 3. User enters the tag.
 4. Cooking Papa displays recipes with the corresponding tag.
-Use case ends.</code></pre>
+Use case ends.</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>Use Case: UC03 - View a recipe
+<pre>Use Case: UC03 - View a recipe
 
 MSS:
 1. User chooses to view recipes.
@@ -1020,12 +1625,12 @@ Extensions:
         3a2. Cooking Papa requests for the correct index.
         3a3. User enters the new index.
         Steps 3a1-3a3 are repeated until the index entered is valid.
-        Use case resumes from step 4.</code></pre>
+        Use case resumes from step 4.</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>Use case: UC04 - Add a recipe's ingredients to the cart
+<pre>Use case: UC04 - Add a recipe's ingredients to the cart
 
 MSS:
 1. User chooses to add a recipe's ingredients to the cart.
@@ -1040,7 +1645,7 @@ Extensions:
         3a2. Cooking Papa requests for the correct index.
         3a3. User enters the new index.
         Steps 3a1-3a3 are repeated until the index entered is valid.
-        Use case resumes from step 4.</code></pre>
+        Use case resumes from step 4.</pre>
 </div>
 </div>
 </div>
@@ -1129,10 +1734,16 @@ Extensions:
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing.
+These instructions only provide a starting point for testers to work on, and are in no way exhaustive.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Below are some test inputs for manual testing, please note that these test inputs are <strong>only</strong> valid for the sample
+cookbook, cart, and inventory data, i.e. the data that is present when Cooking Papa is opened for the first time. If
+the data has been modified prior to using these commands, please delete the <code>.json</code> files in <code>/data</code> (<code>cookbook
+                                                                                                       .json</code>, <code>inventory.json</code>, <code>cart.json</code>).</p>
 </div>
 <div class="sect2">
 <h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
@@ -1147,82 +1758,181 @@ These instructions only provide a starting point for testers to work on; testers
 </li>
 <li>
 <p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Saving window preferences</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
-</li>
-<li>
-<p>Re-launch the app by double-clicking the jar file.<br>
-Expected: The most recent window size and location is retained.</p>
+Expected: Shows the GUI with a set of sample cookbook, inventory, and cart.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Deleting a person while all persons are listed</p>
+<h3 id="adding-a-recipe-to-the-cookbook"><a class="link" href="#adding-a-recipe-to-the-cookbook">G.2. Adding a recipe to the cookbook</a></h3>
+<div class="paragraph">
+<p>Please note that these cases are to be tested individually, i.e. should test case
+a be executed, executing test case e will not be valid as there is already an existing recipe with the recipe name
+"Name". In such cases, please remove the existing recipe in the cookbook using <code>cookbook remove recipe INDEX</code>.</p>
+</div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all recipes in the cookbook using the <code>cookbook list</code> command, and <strong>using the sample cookbook</strong>.</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Test case: <code>cookbook add recipe n/Name d/Description i/Ingredient q/1 s/Step 1 t/Tag</code><br>
+   Expected: a new recipe is added to the cookbook, and displayed as the index 3 (one-based index) in the cookbook
+panel.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case: <code>cookbook add recipe n/Name d/Description i/Ingredient q/1 s/Step 1 t/Tag</code> (a duplicate recipe)<br>
+   Expected: no recipe will be added, and an error message indicating that there is already an existing recipe with
+the same name in the cookbook will
+be displayed.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
-Expected: Similar to previous.</p>
+<p>Test case: <code>cookbook add recipe n/Name d/Description i/Ingredient q/1 s/Step 1 s/Step 1 t/Tag</code> (a recipe with
+duplicated
+steps)<br>
+   Expected: no recipe will be added, and an error message indicating that there is a duplicate step  in the command
+will
+be displayed.</p>
+</li>
+<li>
+<p>Test case: <code>cookbook add recipe n/Name d/Description i/Ingredient q/1 i/Ingredient q/1 s/Step 1t/Tag</code> (a recipe with
+duplicated
+ingredients)<br>
+   Expected: a new recipe is added to the cookbook, with the duplicate ingredients being added to one another. The
+new recipe will be displayed as the index 3 (one-based index) in the cookbook panel.</p>
 </li>
 </ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Dealing with missing/corrupted data files</p>
+<h3 id="removing-a-recipe-from-the-cookbook"><a class="link" href="#removing-a-recipe-from-the-cookbook">G.3. Removing a recipe from the cookbook</a></h3>
+<div class="paragraph">
+<p>Please note that these test cases are to be tested individually, i.e. should test case a be executed, executing test
+case a again will remove a different recipe from the cookbook. In this case, after executing test case a once, to
+execute it again, please add back the removed recipe using <code>cookbook add recipe &#8230;&#8203;</code> or by deleting the <code>.json</code> files.</p>
+</div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Prerequisites: List all recipes in the cookbook using the <code>cookbook list</code> command, and <strong>using the sample
+cookbook</strong>.</p>
+</li>
+<li>
+<p>Test case: <code>cookbook remove recipe 1</code><br>
+Expected: a recipe (Aglio Olio) will be removed from the cookbook.</p>
+</li>
+<li>
+<p>Test case: <code>cookbook remove recipe 0</code> and <code>cookbook remove recipe 5</code><br>
+    Expected: since the indices in the recipe panel are one-based, i.e. starting from 1, the former command is
+out-of-bounds; the latter command is out-of-bounds because there are only 4 recipes in the cookbook. Both commands
+will show an error message reflecting the invalid recipe indices provided.</p>
 </li>
 </ol>
 </div>
-</li>
-</ol>
 </div>
+<div class="sect2">
+<h3 id="searching-for-recipes-by-tags"><a class="link" href="#searching-for-recipes-by-tags">G.4. Searching for recipes by tags</a></h3>
 <div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<p>Please note for this search command, with more tags being included, the number of results returned will be greater, i
+.e. if
+there are three tags included, the recipes returned do not have to be tagged with all three tags.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all recipes in the cookbook using the <code>cookbook list</code> command, and <strong>using the sample cookbook</strong>.</p>
+</li>
+<li>
+<p>Test case: <code>cookbook search tag t/Simple</code><br>
+Expected: the recipe panel will be updated to show only two recipes, both which are tagged with "Simple".</p>
+</li>
+<li>
+<p>Test case: 'cookbook search tag t/Simple t/Celebrity'
+    Expected: the recipe panel will be updated to show only three recipes, of these three recipes, they are either
+tagged with "Simple" or "Celebrity".</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-the-cart-to-a-pdf-file"><a class="link" href="#exporting-the-cart-to-a-pdf-file">G.5. Exporting the cart to a PDF file</a></h3>
+<div class="paragraph">
+<p>Please note that for the export command, the result is based on the sample cart.
+a. Prerequisite: have the sample cart data in <code>cart.json</code>, if the file has been modified, please exit Cooking Papa,
+and delete it in <code>/data</code>, and run Cooking Papa again.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>cart export</code>
+Expected: a PDF file will be created in the same folder as Cooking Papa, and the content should look like:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookExportExample2.png" alt="CookbookExportExample2">
+</div>
+<div class="title">Figure 18. Content of cart.pdf created from sample cart data</div>
+</div>
+</li>
+<li>
+<p>Test case: <code>cart export</code>, with a previously created <code>cart.pdf</code> open in a program
+    Expected: an error will be thrown, as <code>PdfExporter</code> is unable to modify a file that is currently open in another
+program. Closing the file and executing the command will return the same result (assuming the cart data is the same
+as the sample cart data)
+as test case a.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-03 05:28:56 UTC</div></div></div></body></html>
+</div>
+<div class="sect1">
+<h2 id="effort"><a class="link" href="#effort">Appendix H: Effort</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 65%;">
+<col style="width: 10%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Achievements/ challenges</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Effort required</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Difficulty level (out of <code>***</code> )</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Greater number of entities than AB3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As AB3 only had one overarching entity (<code>Person</code>), it was a challenge to extract
+the implementation for <code>Person</code> and apply it to three overarching entities (<code>Cart</code>, <code>Cookbook</code>, <code>Inventory</code>). Much
+time was spent refactoring to our needs, but was not too tough given the great documentation and clarity in AB3&#8217;s
+code.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Development of the GUI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As the team had not much experience with regards to CSS and JavaFX, it took awhile to get
+rolling and adapt the aesthetics to Cooking Papa&#8217;s needs. Moreover, one challenge faced was ensuring that the GUI ran
+as expected on Windows, MacOS, and Linux.</p>
+<p class="tableblock">Additionally, the use of SceneBuilder was encouraged, however, it led to many unintended changes and extra variables
+which made troubleshooting a lot more complex (especially to a novice).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integrating <code>cookbook view command</code> with a button on the GUI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We wanted to make the command more of a toggle instead
+of something users <strong>had</strong> to type, as it was not intuitive. While implementing the button was rather trivial, one
+requirement of the app was that it had to be testable via the command line. Connecting the command from the command
+line (<code>Logic</code>) to the <code>UI</code> was a big challenge, especially while trying to maintain the abstraction between the
+two.</p>
+<p class="tableblock">In hindsight, perhaps greater experience with GUIs would have made this process easier, but our team were
+all novices in that aspect, and being able to pull this off, especially when we could have simply left it as the
+status quo, is a huge achievement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>***</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 02:26:11 UTC</div></div></div></body></html>

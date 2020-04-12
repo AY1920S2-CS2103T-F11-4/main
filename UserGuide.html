@@ -17,9 +17,11 @@
 <li><a href="#Recipe">3.2. Recipe Commands</a></li>
 <li><a href="#Inventory">3.3. Inventory Commands</a></li>
 <li><a href="#Cart">3.4. Cart Commands</a></li>
-<li><a href="#edit-recipe-details-v2-0">3.5. Edit recipe details [v2.0]</a></li>
-<li><a href="#calendar-commands-v2-0">3.6. Calendar Commands [v2.0]</a></li>
-<li><a href="#recipe-of-the-day-generator-v2-0">3.7. Recipe of the day generator [v2.0]</a></li>
+<li><a href="#help-command">3.5. Help command</a></li>
+<li><a href="#exit-command">3.6. Exit command</a></li>
+<li><a href="#edit-recipe-details-v2-0">3.7. Edit recipe details [v2.0]</a></li>
+<li><a href="#calendar-commands-v2-0">3.8. Calendar Commands [v2.0]</a></li>
+<li><a href="#recipe-of-the-day-generator-v2-0">3.9. Recipe of the day generator [v2.0]</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -31,11 +33,13 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CookingPapa is an all-in-one application that acts as a personalised cookbook with your own favourite recipes!
-CookingPapa is an easy-to-use application that serves to help university students who live alone, to experiment and
-try out new recipes so that they will not always have to eat the same kind of food every day. With CookingPapa,
-users can easily edit recipes, keep track of ingredients they have at home and have a shopping list that can help
-them remember the ingredients they have to buy.</p>
+<p>Cooking Papa is an all-in-one, and easy-to-use application that acts as a personalised cookbook, with <strong>your</strong> favourite
+recipes!</p>
+</div>
+<div class="paragraph">
+<p>Cooking Papa aims to help university students who live alone, to make learning how to cook more convenient,
+increasing the diversity of their meals. With Cooking Papa, users can easily edit recipes, keep track of ingredients
+they have at home and have a shopping list that to help them expedite their grocery shopping process.</p>
 </div>
 <div class="paragraph">
 <p>CookingPapa consists of 3 main features:</p>
@@ -58,7 +62,7 @@ Cart commands can be seen here: <a href="#Cart">Section 3.4, &#8220;Cart Command
 </ul>
 </div>
 <div class="paragraph">
-<p>Say goodbye to thick and disorganised cookbooks and start using CookingPapa today!</p>
+<p>Do away with thick, confusing, and expensive cookbooks, and start cooking with Cooking Papa today!</p>
 </div>
 </div>
 </div>
@@ -92,7 +96,7 @@ the commands given in <a href="#Features">Section 3, &#8220;Features&#8221;</a>.
 <div class="content">
 <img src="images/Example1.png" alt="Example1" width="790">
 </div>
-<div class="title">Figure 2. CookingPapa User Interface, marked with command window</div>
+<div class="title">Figure 2. Cooking Papa User Interface; marked: command window</div>
 </div>
 </li>
 <li>
@@ -102,7 +106,7 @@ command given by the user.</p>
 <div class="content">
 <img src="images/Example2.png" alt="Example2" width="790">
 </div>
-<div class="title">Figure 3. CookingPapa User Interface, marked with display window</div>
+<div class="title">Figure 3. Cooking Papa User Interface; marked: display window</div>
 </div>
 </li>
 </ol>
@@ -113,7 +117,7 @@ command given by the user.</p>
 <h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CookingPapa accepts the following command formats for its application. It is important to follow these guidelines
+<p>Cooking Papa accepts the following command formats for its application. It is important to follow these guidelines
 for smooth usage of the application.</p>
 </div>
 <div class="paragraph">
@@ -127,29 +131,73 @@ for smooth usage of the application.</p>
 is a parameter which can be used as <code>inventory add ingredient i/Bacon</code>).</p>
 </li>
 <li>
-<p>Items in square brackets are optional.<br>
- (e.g <code>cookbook add recipe n/NAME d/DESCRIPTION [t/TAG]</code> can be used as <code>cookbook add recipe n/Cheesecake d/Delicious New York cheesecake t/Dessert</code>
-or as <code>cookbook add recipe n/Cheesecake d/Delicious New York cheesecake</code>).</p>
+<p>Words in square brackets are optional.<br>
+ (e.g in <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [s/STEP]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code> can be
+used as
+<code>cookbook add recipe n/Cheesecake d/Delicious New York cheesecake t/Dessert</code>
+or as <code>cookbook add recipe n/Cheesecake d/Delicious New York cheesecake</code> as tags are optional).</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times.<br>
-(e.g. <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT] [q/QUANTITY]&#8230;&#8203;</code>
-can be used to add multiple ingredients and its respective quantities in the same command such as
-`cookbook add recipe n/Sandwich d/Delicious Sandwich i/Bread q/2 pieces i/Ham q/3 slices i/Cheese q/2 slices).</p>
+<p>Words with <code>…</code>​ after them can be included multiple times.<br>
+(e.g. <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [s/STEP]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code> can be used
+to add multiple ingredients and its respective quantities in the same command: <code>cookbook add recipe n/Sandwich
+d/Delicious Sandwich i/Bread q/2 pieces i/Ham q/3 slices i/Cheese q/2 slices</code>).</p>
 </li>
 <li>
 <p>Parameters can be in any order.<br>
-(e.g. if the command specifies <code>n/NAME t/TAG i/INGREDIENT q/QUANTITY</code>,
-<code>q/QUANTITY t/TAG i/INGREDIENT</code> is also acceptable).</p>
+(e.g. if the command specifies <code>i/INGREDIENT q/QUANTITY</code>, <code>q/QUANTITY i/INGREDIENT</code> is a valid command).</p>
+</li>
+<li>
+<p>Command and delimiter (eg. i/, q/) formats given in the lowercase are <strong>case-sensitive</strong>. (eg <code>cookbook</code> is given as
+all lowercase. <code>Cookbook</code> or <code>COOKBOOK</code> or <code>cOoKbOoK</code> are not valid.)</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Additionally, parameters also cannot start with spaces. <strong>Please follow the format given carefully for a seamless
+experience.</strong></p>
+</div>
+<div class="paragraph">
+<p>A table of parameters and their associated constraints:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter type</th>
+<th class="tableblock halign-left valign-top">Constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INDEX</code>, <code>STEP_INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Must be a whole number.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NAME</code>,<code>DESCRIPTION</code>, <code>STEP</code>, <code>INGREDIENT</code>, <code>KEYWORD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can contain alphabet letters, numbers, and spaces, as well as the symbols <code>'</code>, <code>-</code>, and <code>%</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QUANTITY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Must start with a numerical value, which can contain decimal points or slashes to represent a fraction.</p>
+<p class="tableblock">The value can be followed by an optional unit that only consists of alphabet letters, which may be separated by spaces.</p>
+<p class="tableblock">A quarter cup of milk can be represented in a command as: <code>i/Milk q/1/4 cup</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TAG</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can only contain alphabet letters and numbers. <strong>No spaces are permitted</strong>.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
 <h3 id="Cookbook"><a class="link" href="#Cookbook">3.1. Cookbook Commands</a></h3>
 <div class="paragraph">
 <p>Cookbook commands are commands that allow users to add and remove recipes from the cookbook,
-as well as view recipes stored in the cookbook. More commands can be done with recipes and
-are covered in <a href="#Recipe commands">[Recipe commands]</a>.</p>
+as well as view recipes stored in the cookbook. More commands can be done with recipes, and
+are covered in <a href="#Recipe">Section 3.2, &#8220;Recipe Commands&#8221;</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="view-a-recipe-from-the-cookbook"><a class="link" href="#view-a-recipe-from-the-cookbook">3.1.1. View a recipe from the cookbook</a></h4>
@@ -173,38 +221,43 @@ are covered in <a href="#Recipe commands">[Recipe commands]</a>.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook view recipe 1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Views the details of recipe 1 in the following format:<br>
-<code>Selected recipe &lt;NAME&gt;</code><br>
-<code>Description: &lt;DESCRIPTION&gt;</code><br>
-<code>Ingredients: &lt;INGREDIENTS&gt;</code><br>
-<code>Preparation Steps:</code><br>
-<code>1: &lt;STEP_1&gt;</code><br>
-<code>2: &lt;STEP_2&gt;</code><br>
-<code>.</code><br>
-<code>.</code><br>
-<code>.</code><br>
-<code>Tags: [&lt;tag1&gt;] [&lt;tag2&gt;]&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/CookbookViewExample2.png" alt="CookbookViewExample2" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to show you
+the details of the recipe.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>A recipe&#8217;s details can also be viewed by pressing the "eye" icon, without the need to type in the command above:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookViewExample1.png" alt="CookbookViewExample1" width="790">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="add-a-new-recipe-to-the-cookbook"><a class="link" href="#add-a-new-recipe-to-the-cookbook">3.1.2. Add a new recipe to the cookbook</a></h4>
 <div class="paragraph">
-<p>This command allows you to add and store a new recipe with the specified recipe name to the cookbook.
-If neither of the details is specified, an empty recipe will be added.</p>
+<p>This command allows you to add (and store) a new recipe with the provided recipe details to the cookbook.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT] [q/QUANTITY] [x/STEP_INDEX] [s/STEP] [t/TAG]</code></p>
+<p>Format: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [s/STEP]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
 </li>
 <li>
 <p>Examples:</p>
@@ -218,35 +271,45 @@ If neither of the details is specified, an empty recipe will be added.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook add recipe n/Bacon Carbonara d/Best cream pasta made in Italy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new empty recipe to the cookbook with the following details:<br>
-<code>New recipe added: Bacon Carbonara</code><br>
-<code>Description: Best cream pasta made in Italy</code><br>
-<code>Ingredients:</code><br>
-<code>Preparation Steps:</code><br>
-<code>Tags:</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Adds a recipe with only its name and description specified.<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>New recipe added: Bacon Carbonara
+Description: Best cream pasta made in Italy
+Ingredients:
+Preparation Steps:
+Tags:</pre>
+</div>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook add recipe n/Chicken Ham Sandwich d/Juicy ham sandwiched between crispy toasted bread.
-i/Chicken Ham q/1 slice i/White Bread q/2 slices x/1 s/Toast the bread x/2 s/Grill the ham.
+i/Chicken Ham q/1 slice i/White Bread q/2 slices s/Toast the bread s/Grill the ham.
 t/sandwich t/easy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new recipe to the cookbook with the following details:<br>
-<code>New recipe added: Chicken Ham Sandwich</code><br>
-<code>Description: Juicy ham sandwiched between crispy toasted bread.</code><br>
-<code>Ingredients: 1 slice Chicken Ham, 2 slices White Bread</code><br>
-<code>Preparation Steps:</code><br>
-<code>1: Toast the bread</code><br>
-<code>2: Grill the ham.</code><br>
-<code>Tags: [sandwich] [easy]</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Adds a recipe with its name, description, ingredients, steps, and tags specified.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>New recipe (index 1) added: Chicken Ham Sandwich</pre>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Note: the number of ingredient names provided must be the same as the number of ingredient quantities provided,
+otherwise Cooking Papa will not be able to add the recipe.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="remove-a-recipe-from-the-cookbook"><a class="link" href="#remove-a-recipe-from-the-cookbook">3.1.3. Remove a recipe from the cookbook</a></h4>
@@ -270,27 +333,41 @@ t/sandwich t/easy</code></p></td>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook remove recipe 1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes recipe 1 from the cookbook.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Removed recipe: Bacon Carbonara from the cookbook</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to remove the recipe.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to remove the recipe.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="search-recipes-by-keyword"><a class="link" href="#search-recipes-by-keyword">3.1.4. Search recipes by keyword</a></h4>
 <div class="paragraph">
-<p>This command allows you to search for recipes by a keyword. The search result will be returned along with the respective recipe indices.</p>
+<p>This command allows you to search for recipes by keywords, returning a list of recipes.</p>
+</div>
+<div class="paragraph">
+<p>Note: Adding more keywords will not narrow the search results, but will expand the search results to return any recipe
+that contains any of the given keywords.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>cookbook search recipe k/KEYWORD</code></p>
+<p>Format: <code>cookbook search recipe k/KEYWORD&#8230;&#8203;</code></p>
 </li>
 <li>
 <p>Example:</p>
@@ -304,7 +381,7 @@ t/sandwich t/easy</code></p></td>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -313,18 +390,26 @@ t/sandwich t/easy</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe k/Carbonara</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with names matching the keyword 'Carbonara'.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe k/Carbonara k/Simple k/Cheesy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with names matching the keywords 'Carbonara', or <code>Simple</code>, or <code>Cheesy</code>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="search-recipes-by-tag"><a class="link" href="#search-recipes-by-tag">3.1.5. Search recipes by tag</a></h4>
 <div class="paragraph">
-<p>This command allows you to search for recipes by tags, and the search result will be returned along with the respective recipe indices.</p>
+<p>This command allows you to search for recipes by tags, returning a list of recipes.</p>
+</div>
+<div class="paragraph">
+<p>Note: Adding more tags will not narrow the search results, but will expand the search results to return any
+recipe that contains any of the given tags.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>cookbook search recipe t/TAG…</code></p>
+<p>Format: <code>cookbook search tag t/TAG…</code></p>
 </li>
 <li>
 <p>Examples:</p>
@@ -336,20 +421,18 @@ t/sandwich t/easy</code></p></td>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
-<th class="tableblock halign-left valign-top">Result</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe t/Easy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with tags matching 'Easy'.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search tag t/Easy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes wisth tags matching 'Easy'.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe t/Pasta t/Cream t/Easy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with tags matching 'Pasta', 'Cream', and 'Easy'.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with tags matching 'Pasta', or 'Cream', or 'Easy'.</p></td>
 </tr>
 </tbody>
 </table>
@@ -357,7 +440,7 @@ t/sandwich t/easy</code></p></td>
 <div class="sect3">
 <h4 id="search-recipes-by-ingredients-owned"><a class="link" href="#search-recipes-by-ingredients-owned">3.1.6. Search recipes by ingredients owned</a></h4>
 <div class="paragraph">
-<p>This command allows you to see what you can cook with your current inventory of ingredients.</p>
+<p>This command allows you to see search for recipes you can cook with your current inventory of ingredients.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -376,7 +459,7 @@ t/sandwich t/easy</code></p></td>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -388,11 +471,46 @@ t/sandwich t/easy</code></p></td>
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="list-all-recipes-in-the-cookbook"><a class="link" href="#list-all-recipes-in-the-cookbook">3.1.7. List all recipes in the cookbook</a></h4>
+<div class="paragraph">
+<p>This commands allows you to view the whole collection of recipes in the cookbook. Additionally, it can be used after
+using the search commands to view all the recipes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook list</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists all recipes in the cookbook</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="Recipe"><a class="link" href="#Recipe">3.2. Recipe Commands</a></h3>
 <div class="paragraph">
-<p>Recipe commands are commands that change a particular recipe, which you can indicate using the index of the recipe.
+<p>Recipe commands are commands that change an existing recipe, which can be indicated using the index of the recipe.
 Some things you can do are to add and remove ingredients from a recipe&#8217;s ingredient list.
 You can also write preparation steps for your recipes.</p>
 </div>
@@ -400,6 +518,14 @@ You can also write preparation steps for your recipes.</p>
 <h4 id="add-an-ingredient-to-a-recipe"><a class="link" href="#add-an-ingredient-to-a-recipe">3.2.1. Add an ingredient to a recipe</a></h4>
 <div class="paragraph">
 <p>This command allows you to add ingredients to a recipe.</p>
+</div>
+<div class="paragraph">
+<p>You can increase the quantity of an ingredient that is already in the recipe, provided that you indicate the same unit.
+Otherwise, Cooking Papa will not add the ingredient.</p>
+</div>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to add an ingredient to
+the recipe.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -418,18 +544,20 @@ You can also write preparation steps for your recipes.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add ingredient i/Egg q/2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 2 eggs to the 1st recipe&#8217;s list of ingredients.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add ingredient i/Eggs q/2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 2 eggs to the 1st recipe&#8217;s list of ingredients.</p>
+<p class="tableblock"><code>New ingredient added for Scrambled eggs: 2 Eggs</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 2 add i/Milk ingredient q/200 ml</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 200 ml of milk to the 2nd recipe&#8217;s list of ingredients.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 2 add ingredient i/Milk  q/200 ml</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 200 ml of milk to the 2nd recipe&#8217;s list of ingredients.</p>
+<p class="tableblock"><code>New ingredient added for Carbonara: 200 ml Milk</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -437,14 +565,21 @@ You can also write preparation steps for your recipes.</p>
 <div class="sect3">
 <h4 id="remove-an-ingredient-from-a-recipe"><a class="link" href="#remove-an-ingredient-from-a-recipe">3.2.2. Remove an ingredient from a recipe</a></h4>
 <div class="paragraph">
-<p>You can remove ingredients that spoil the taste of the dish using this command.
-If the quantity specified is of smaller value, the ingredient quantity will be subtracted and updated.
-Please ensure that the unit specified corresponds accordingly.</p>
+<p>This command allows you to remove ingredients from a recipe.</p>
+</div>
+<div class="paragraph">
+<p>You can indicate the quantity you want to remove for an ingredient, which should not be greater that than the
+ingredient&#8217;s quantity. Please ensure that the unit of the quantity matches the ingredient&#8217;s unit in the recipe. <strong>If
+you do not indicate any quantity, all of the specified ingredient will be removed from the recipe.</strong></p>
+</div>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to remove an ingredient
+from the recipe.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>recipe INDEX remove ingredient i/INGREDIENT q/QUANTITY</code></p>
+<p>Format: <code>recipe INDEX remove ingredient i/INGREDIENT [q/QUANTITY]</code></p>
 </li>
 <li>
 <p>Examples:</p>
@@ -458,14 +593,14 @@ Please ensure that the unit specified corresponds accordingly.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 remove ingredient i/Egg q/2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 1 egg from the list of ingredients in recipe 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 remove ingredient i/Eggs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all egg from the list of ingredients in recipe 1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 2 remove ingredient i/Milk q/200 ml</code></p></td>
@@ -479,7 +614,10 @@ Please ensure that the unit specified corresponds accordingly.</p>
 <h4 id="add-a-preparation-step-to-a-recipe"><a class="link" href="#add-a-preparation-step-to-a-recipe">3.2.3. Add a preparation step to a recipe</a></h4>
 <div class="paragraph">
 <p>This command allows you to add a preparation step to the selected recipe.
-Requires a valid index in the list of recipes and the cooking step.</p>
+Requires a valid index in the list of recipes and the cooking step.
+The STEP_INDEX given must be at most 1 more than the current number of steps currently in the recipe.
+(eg. If the number of steps in the current recipe you are trying to add to has 4 steps,
+the user can only add a STEP_INDEX of up to 5)</p>
 </div>
 <div class="ulist">
 <ul>
@@ -498,14 +636,14 @@ Requires a valid index in the list of recipes and the cooking step.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add step x/2 s/Bring the water to boil</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a preparation step 2 (Bring water to boil) to recipe 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add step x/1 s/Bring the water to boil</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a preparation step 1 (Bring water to boil) to recipe 1.</p></td>
 </tr>
 </tbody>
 </table>
@@ -533,7 +671,7 @@ Requires a valid index in the list of recipes and the cooking step.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -568,7 +706,7 @@ Requires a valid index in the list of recipes.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -603,7 +741,7 @@ Requires a valid index in the list of recipes.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -625,7 +763,8 @@ These commands include adding, remove and viewing the current inventory database
 <div class="sect3">
 <h4 id="add-an-ingredient-to-the-inventory"><a class="link" href="#add-an-ingredient-to-the-inventory">3.3.1. Add an ingredient to the inventory</a></h4>
 <div class="paragraph">
-<p>This commands allows you to add ingredients to your inventory.</p>
+<p>This commands allows you to add ingredients to your inventory. Ingredient names added are case-insensitive.
+Ingredient names such as 'Bacon' and 'bacon' will be recognised by CookingPapa as 'Bacon'.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -644,7 +783,7 @@ These commands include adding, remove and viewing the current inventory database
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -663,17 +802,59 @@ These commands include adding, remove and viewing the current inventory database
 <div class="sect3">
 <h4 id="remove-an-ingredient-from-the-inventory"><a class="link" href="#remove-an-ingredient-from-the-inventory">3.3.2. Remove an ingredient from the inventory</a></h4>
 <div class="paragraph">
-<p>This command allows you to remove ingredients from your inventory.
-If the quantity specified is of a smaller value, the ingredient quantity will be subtracted and updated.
-Please ensure that the unit specified corresponds accordingly.</p>
+<p>This command allows you to remove ingredients from the inventory.
+You can indicate the quantity you want to remove for an ingredient, which should not be greater that than the
+ingredient&#8217;s quantity.
+Please ensure that the unit of the quantity matches the ingredient&#8217;s unit in the inventory.
+If you do not indicate any quantity, all entries in the inventory that have the specified ingredient name will be
+removed regardless of the unit.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>inventory remove ingredient i/INGREDIENT q/QUANTITY</code></p>
+<p>Format: <code>inventory remove ingredient i/INGREDIENT [q/QUANTITY]</code></p>
 </li>
 <li>
 <p>Examples:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory remove ingredient i/Eggs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all eggs from your inventory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory remove ingredient i/Butter q/200g</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 200g of butter from your inventory.
+<em>(If your inventory had 500 g of milk, it will be subtracted and updated to 300 g of butter)</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="remove-all-ingredients-from-the-inventory"><a class="link" href="#remove-all-ingredients-from-the-inventory">3.3.3. Remove all ingredients from the inventory.</a></h4>
+<div class="paragraph">
+<p>This command allows you to remove all ingredients from the inventory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>inventory clear ingredient</code></p>
+</li>
+<li>
+<p>Example:</p>
 </li>
 </ul>
 </div>
@@ -690,13 +871,8 @@ Please ensure that the unit specified corresponds accordingly.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory remove ingredient i/Egg q/10</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 10 eggs from your inventory.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory remove ingredient i/Butter q/200g</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 200g of butter from your inventory.
-<em>(If your inventory had 500 g of milk, it will be subtracted and updated to 300 g of butter)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory clear ingredient</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all ingredients from the inventory</p></td>
 </tr>
 </tbody>
 </table>
@@ -730,7 +906,7 @@ into a shopping cart. This provides convenience for your grocery shopping needs.
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -764,7 +940,7 @@ into a shopping cart. This provides convenience for your grocery shopping needs.
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -780,13 +956,16 @@ into a shopping cart. This provides convenience for your grocery shopping needs.
 <h4 id="remove-ingredients-from-the-cart"><a class="link" href="#remove-ingredients-from-the-cart">3.4.3. Remove ingredients from the cart</a></h4>
 <div class="paragraph">
 <p>This command allows you to remove ingredients from the cart.
-If the quantity specified is of a smaller value, the ingredient quantity will be subtracted and updated.
-Please ensure that the unit specified corresponds accordingly.</p>
+You can indicate the quantity you want to remove for an ingredient, which should not be greater that than the
+ingredient&#8217;s quantity.
+Please ensure that the unit of the quantity matches the ingredient&#8217;s unit in the cart.
+If you do not indicate any quantity, all entries in the cart that have the specified ingredient name will be removed
+regardless of the unit.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>cart remove ingredient i/INGREDIENT q/QUANTITY</code></p>
+<p>Format: <code>cart remove ingredient i/INGREDIENT [q/QUANTITY]</code></p>
 </li>
 <li>
 <p>Example:</p>
@@ -798,16 +977,14 @@ Please ensure that the unit specified corresponds accordingly.</p>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
-<th class="tableblock halign-left valign-top">Result</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cart remove ingredient i/Egg q/1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 1 egg from the cart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cart remove ingredient i/Eggs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all eggs from the cart</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cart remove i/Milk q/200ml</code></p></td>
@@ -826,7 +1003,7 @@ or to clear the cart after completing the purchase.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>cart clear ingredient</code></p>
+<p>Format: <code>cart clear</code></p>
 </li>
 <li>
 <p>Example:</p>
@@ -840,7 +1017,7 @@ or to clear the cart after completing the purchase.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Result</th>
 </tr>
 </thead>
@@ -852,14 +1029,158 @@ or to clear the cart after completing the purchase.</p>
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="move-all-ingredients-currently-in-the-cart-to-inventory"><a class="link" href="#move-all-ingredients-currently-in-the-cart-to-inventory">3.4.5. Move all ingredients currently in the cart to inventory</a></h4>
+<div class="paragraph">
+<p>This command allows you to move all the ingredients from the cart into your inventory. This command also
+empties your cart. This is helpful after the user has finished shopping and wish to conveniently move all
+the ingredients to the inventory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cart move ingredient</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cart move ingredients</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves all ingredients from the cart into the inventory. Also clears the cart of all items.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="export-ingredients-in-cart-to-pdf-file"><a class="link" href="#export-ingredients-in-cart-to-pdf-file">3.4.6. Export ingredients in cart to PDF file</a></h4>
+<div class="paragraph">
+<p>This command allows you to export all the ingredients in the cart to a PDF file. The PDF file will be located in the
+same folder as Cooking Papa.</p>
+</div>
+<div class="paragraph">
+<p>Note: if a previous version of the PDF file, <code>cart.pdf</code> is open in another program (Internet browser, Adobe PDF),
+Cooking Papa will not be able to export the cart.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cart export</code></p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cart export</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/CookbookExportExample1.png" alt="CookbookExportExample1" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>The exported PDF file will be in the same folder where Cooking Papa is located.</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookExportExample2.png" alt="CookbookExportExample2" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>An example of the PDF file exported from the sample cart in Cooking Papa.</em></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="edit-recipe-details-v2-0"><a class="link" href="#edit-recipe-details-v2-0">3.5. Edit recipe details [v2.0]</a></h3>
+<h3 id="help-command"><a class="link" href="#help-command">3.5. Help command</a></h3>
+<div class="paragraph">
+<p>This command shows a popup window with a URL to Cooking Papa&#8217;s user guide (what you are reading now), easy for access
+should you need some help executing a certain action in Cooking Papa.</p>
+</div>
+<div class="paragraph">
+<p>There are 2 ways a user can access the help window:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type <code>help</code>.</p>
+</li>
+<li>
+<p>Click on the <code>Help</code> button on the top left corner of Cooking Papa, and then click on the <code>Help</code> button in the
+dropdown menu. You can then click the <code>Copy URL</code> button which can then be pasted into a web browser to access Cooking
+Papa&#8217;s user guide.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookHelpExample.png" alt="CookbookHelpExample" width="250">
+</div>
+<div class="title">Figure 4. Cooking Papa 'Help' button to access the Help window</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookHelpExample2.png" alt="CookbookHelpExample2" width="700">
+</div>
+<div class="title">Figure 5. Cooking Papa Help window and 'Copy URL' button</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exit-command"><a class="link" href="#exit-command">3.6. Exit command</a></h3>
+<div class="paragraph">
+<p>There are 3 ways a user can exit Cooking Papa:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type <code>exit</code>.</p>
+</li>
+<li>
+<p>Click on the <code>x</code> button on the top right corner of the Cooking Papa.</p>
+</li>
+<li>
+<p>Click on the <code>File</code> button on the top left corner of Cooking Papa, and then click on the <code>Exit</code> button in the dropdown menu.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExitExample.png" alt="ExitExample" width="790">
+</div>
+<div class="title">Figure 6. Cooking Papa 'X' button to exit the application.</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-recipe-details-v2-0"><a class="link" href="#edit-recipe-details-v2-0">3.7. Edit recipe details [v2.0]</a></h3>
 <div class="paragraph">
 <p>The following commands allow you to edit the details of the recipes that are currently in the cookbook.</p>
 </div>
 <div class="sect3">
-<h4 id="edit-an-ingredient-in-a-recipe"><a class="link" href="#edit-an-ingredient-in-a-recipe">3.5.1. Edit an ingredient in a recipe</a></h4>
+<h4 id="edit-an-ingredient-in-a-recipe"><a class="link" href="#edit-an-ingredient-in-a-recipe">3.7.1. Edit an ingredient in a recipe</a></h4>
 <div class="paragraph">
 <p>If you want to change the quantity of an ingredient after some experimentation, this command will help you achieve that.</p>
 </div>
@@ -897,7 +1218,7 @@ or to clear the cart after completing the purchase.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="edit-a-preparation-step-in-a-recipe"><a class="link" href="#edit-a-preparation-step-in-a-recipe">3.5.2. Edit a preparation step in a recipe</a></h4>
+<h4 id="edit-a-preparation-step-in-a-recipe"><a class="link" href="#edit-a-preparation-step-in-a-recipe">3.7.2. Edit a preparation step in a recipe</a></h4>
 <div class="paragraph">
 <p>This command allows you to edit a preparation step from the selected recipe.
 Requires a valid index in the list of recipes and the cooking step</p>
@@ -933,13 +1254,13 @@ Requires a valid index in the list of recipes and the cooking step</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="calendar-commands-v2-0"><a class="link" href="#calendar-commands-v2-0">3.6. Calendar Commands [v2.0]</a></h3>
+<h3 id="calendar-commands-v2-0"><a class="link" href="#calendar-commands-v2-0">3.8. Calendar Commands [v2.0]</a></h3>
 <div class="paragraph">
 <p>Calendar commands are commands that allow you to set date-related commands, such as reminders and
 recipe of the day</p>
 </div>
 <div class="sect3">
-<h4 id="add-a-recipe-to-cook-on-a-certain-day"><a class="link" href="#add-a-recipe-to-cook-on-a-certain-day">3.6.1. Add a recipe to cook on a certain day</a></h4>
+<h4 id="add-a-recipe-to-cook-on-a-certain-day"><a class="link" href="#add-a-recipe-to-cook-on-a-certain-day">3.8.1. Add a recipe to cook on a certain day</a></h4>
 <div class="paragraph">
 <p>Reminds the user to cook a certain recipe on a certain day</p>
 </div>
@@ -973,7 +1294,7 @@ recipe of the day</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="view-recipes-to-cook-on-a-certain-day"><a class="link" href="#view-recipes-to-cook-on-a-certain-day">3.6.2. View recipes to cook on a certain day</a></h4>
+<h4 id="view-recipes-to-cook-on-a-certain-day"><a class="link" href="#view-recipes-to-cook-on-a-certain-day">3.8.2. View recipes to cook on a certain day</a></h4>
 <div class="paragraph">
 <p>User can view the recipes they were supposed to cook on a certain day. The date input can
 be replaced with 'today' for the current date.</p>
@@ -1013,7 +1334,7 @@ be replaced with 'today' for the current date.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recipe-of-the-day-generator-v2-0"><a class="link" href="#recipe-of-the-day-generator-v2-0">3.7. Recipe of the day generator [v2.0]</a></h3>
+<h3 id="recipe-of-the-day-generator-v2-0"><a class="link" href="#recipe-of-the-day-generator-v2-0">3.9. Recipe of the day generator [v2.0]</a></h3>
 <div class="paragraph">
 <p>CookingPapa can generate a recipe of the day to cook based on the recipes currently in their cookbook.</p>
 </div>
@@ -1053,7 +1374,23 @@ be replaced with 'today' for the current date.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CookingPapa folder.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Where can I install the latest version of CookingPapa?<br>
+<strong>A</strong>: You can find the latest releases at: <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/releases" class="bare">https://github.com/AY1920S2-CS2103T-F11-4/main/releases</a>. You only have to download the latest version of CookingPapa.jar</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Do I need to be connected to the internet to access this application?<br>
+<strong>A</strong>: All information is stored locally in your own computer. No internet connection is required.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Something is not working as expected. Who can I contact?<br>
+<strong>A</strong>: You may report your bugs to: <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/issues" class="bare">https://github.com/AY1920S2-CS2103T-F11-4/main/issues</a>. Bug reports are highly appreciated!</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Is this application free?<br>
+<strong>A</strong>: Yes! This application is open-source under the MIT license. You may feel free to modify, contribute and share this application with any community!</p>
 </div>
 </div>
 </div>
@@ -1075,95 +1412,103 @@ be replaced with 'today' for the current date.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="7"><p class="tableblock">cookbook</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">view recipe INDEX</p></td>
+<td class="tableblock halign-left valign-top" rowspan="7"><p class="tableblock"><code>cookbook</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>view recipe INDEX</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Shows recipe at given INDEX</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add recipe n/NAME d/DESCRIPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add recipe n/NAME d/DESCRIPTION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new empty recipe with the given NAME and DESCRIPTION.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add recipe n/NAME d/DESCRIPTION [i/INGREDIENT] [q/QUANTITY] [x/STEP_INDEX] [s/STEP] [t/TAG]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add recipe n/NAME d/DESCRIPTION [i/INGREDIENT] [q/QUANTITY] [x/STEP_INDEX] [s/STEP] [t/TAG]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new recipe with the given NAME and DESCRIPTION.
 INGREDIENT and its QUANTITY, STEP and its STEP_INDEX, and TAG are optional parameters and will be added according to input from user.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove recipe INDEX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove recipe INDEX</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remove recipe at given INDEX</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">search recipe k/KEYWORD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search recipe k/KEYWORD</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes by a keyword</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">search recipe t/TAG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search recipe t/TAG</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes by a keyword</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">search recipe inventory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search recipe inventory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes whose ingredients are available in the inventory.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">recipe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INDEX add ingredient i/INGREDIENT q/QUANTITY</p></td>
+<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock"><code>recipe</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INDEX add ingredient i/INGREDIENT q/QUANTITY</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Add ingredients to a recipe at given INDEX</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INDEX remove ingredient i/INGREDIENT q/QUANTITY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INDEX remove ingredient i/INGREDIENT q/QUANTITY</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes the ingredient and the specified quantity from recipe at given INDEX</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INDEX add step x/STEP_INDEX s/STEP_DESCRIPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INDEX add step x/STEP_INDEX s/STEP_DESCRIPTION</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds a step at STEP_INDEX with STEP_DESCRIPTION to the recipe at given INDEX</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INDEX remove step x/STEP_INDEX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INDEX remove step x/STEP_INDEX</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remove a step at STEP_INDEX from the recipe at given INDEX</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INDEX add tag t/TAG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INDEX add tag t/TAG</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds a tag 'TAG' to the recipe at given INDEX</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INDEX remove tag t/TAG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INDEX remove tag t/TAG</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes a tag 'TAG' to the recipe at given INDEX</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">inventory</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add ingredient  i/INGREDIENT q/QUANTITY</p></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">inventory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add ingredient  i/INGREDIENT q/QUANTITY</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Adds QUANTITY of INGREDIENTS into your inventory.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove ingredient i/INGREDIENT q/QUANTITY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove ingredient i/INGREDIENT q/QUANTITY</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes QUANTITY of INGREDIENTS from your inventory.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">cart</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add recipe INDEX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear ingredient</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all ingredients from the inventory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock"><code>cart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add recipe INDEX</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Adds all ingredients required of recipe at given INDEX to the cart.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add ingredient i/INGREDIENT q/QUANTITY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add ingredient i/INGREDIENT q/QUANTITY</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds QUANTITY of INGREDIENTS into your cart.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove ingredient i/INGREDIENT q/QUANTITY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove ingredient i/INGREDIENT q/QUANTITY</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes QUANTITY of INGREDIENTS from your cart.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">clear ingredient</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear ingredient</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clears the cart of all ingredients.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>move ingredient</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves all the ingredients from the cart to the inventory, clearing the cart in the process.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-03 05:28:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 02:26:11 UTC</div></div></div></body></html>
