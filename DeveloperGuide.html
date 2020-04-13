@@ -22,12 +22,12 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#add-recipe-to-the-cookbook-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.1. Add Recipe to the Cookbook <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
+<li><a href="#add-recipe-to-the-cookbook-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.1. Add recipe to the cookbook <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
 <li><a href="#view-recipe-in-the-cookbook-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.2. View recipe in the cookbook <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
 <li><a href="#search-for-recipes-based-on-ingredients-in-the-inventory-a-href-https-github-com-gohkh-by-goh-ka-hui-a">3.3. Search for recipes based on ingredients in the inventory <a href="https://github.com/gohkh">(by Goh Ka Hui)</a></a></li>
-<li><a href="#adding-ingredients-to-inventory-and-cart-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.4. Adding ingredients to inventory and cart <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></li>
+<li><a href="#add-ingredients-to-inventory-and-cart-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.4. Add ingredients to inventory and cart <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></li>
 <li><a href="#remove-ingredients-of-a-recipe-from-the-inventory-a-href-https-github-com-shanecsj-by-chan-shun-jie-a">3.5. Remove ingredients of a recipe from the inventory <a href="https://github.com/shanecsj">(by Chan Shun Jie)</a></a></li>
-<li><a href="#moving-ingredients-from-cart-to-inventory-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.6. Moving ingredients from cart to inventory <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></li>
+<li><a href="#move-ingredients-from-cart-to-inventory-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.6. Move ingredients from cart to inventory <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></li>
 <li><a href="#add-a-recipe-s-ingredients-to-cart-a-href-https-github-com-hans555-by-ong-han-sheng-a">3.7. Add a Recipe&#8217;s Ingredients to Cart <a href="https://github.com/hans555">(by Ong Han Sheng)</a></a></li>
 <li><a href="#export-ingredients-in-cart-to-pdf-file-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.8. Export ingredients in cart to PDF file <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
 <li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
@@ -45,11 +45,11 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#adding-a-recipe-to-the-cookbook">F.2. Adding a recipe to the cookbook</a></li>
-<li><a href="#removing-a-recipe-from-the-cookbook">F.3. Removing a recipe from the cookbook</a></li>
-<li><a href="#searching-for-recipes-by-tags">F.4. Searching for recipes by tags</a></li>
-<li><a href="#adding-an-ingredient-to-a-recipe">F.5. Adding an ingredient to a recipe</a></li>
+<li><a href="#remove-a-recipe-from-the-cookbook">F.3. Remove a recipe from the cookbook</a></li>
+<li><a href="#search-for-recipes-by-tags">F.4. Search for recipes by tags</a></li>
+<li><a href="#add-an-ingredient-to-a-recipe">F.5. Add an ingredient to a recipe</a></li>
 <li><a href="#removing-an-ingredient-from-a-recipe">F.6. Removing an ingredient from a recipe</a></li>
-<li><a href="#exporting-the-cart-to-a-pdf-file">F.7. Exporting the cart to a PDF file</a></li>
+<li><a href="#export-the-cart-to-a-pdf-file">F.7. Export the cart to a PDF file</a></li>
 </ul>
 </li>
 <li><a href="#effort">Appendix G: Effort</a></li>
@@ -329,12 +329,12 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Cookbook</cod
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="add-recipe-to-the-cookbook-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#add-recipe-to-the-cookbook-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.1. Add Recipe to the Cookbook <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
+<h3 id="add-recipe-to-the-cookbook-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#add-recipe-to-the-cookbook-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.1. Add recipe to the cookbook <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The recipe addition mechanism is facilitated by <code>CookbookAddCommand</code>, which extends the <code>Command</code> abstract class. The
-format of the command is as follows: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT_NAME]&#8230;&#8203; [q/INGREDIENT_QUANTITY]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>.</p>
+format of the command is as follows: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>.</p>
 </div>
 <div class="paragraph">
 <p>This command is implemented this way  to allow a user to add a recipe with optional fields (ingredients, steps, tags) -
@@ -977,7 +977,7 @@ Given more time, Design B will be implemented to handle conversion for standard 
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-ingredients-to-inventory-and-cart-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a"><a class="link" href="#adding-ingredients-to-inventory-and-cart-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.4. Adding ingredients to inventory and cart <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></h3>
+<h3 id="add-ingredients-to-inventory-and-cart-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a"><a class="link" href="#add-ingredients-to-inventory-and-cart-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.4. Add ingredients to inventory and cart <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></h3>
 <div class="paragraph">
 <p>The inventory and cart acts as storage for <code>Ingredient</code> classes. They are facilitated by <code>InventoryCommand</code> and <code>CartCommand</code>
 respectively, which extends the <code>Command</code> abstract class. Since <code>CartAddCommand</code> and <code>InventoryAddCommand</code> both serve the
@@ -1177,7 +1177,7 @@ Otherwise, a <code>CommandException</code> is thrown.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="moving-ingredients-from-cart-to-inventory-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a"><a class="link" href="#moving-ingredients-from-cart-to-inventory-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.6. Moving ingredients from cart to inventory <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></h3>
+<h3 id="move-ingredients-from-cart-to-inventory-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a"><a class="link" href="#move-ingredients-from-cart-to-inventory-a-href-https-github-com-tzihiang-by-tay-zi-hiang-willis-a">3.6. Move ingredients from cart to inventory <a href="https://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></h3>
 <div class="paragraph">
 <p>The user may use this command after their shopping trip. With this one command, all ingredients will be shifted from the cart to the inventory.</p>
 </div>
@@ -1542,6 +1542,11 @@ their addition was successful.</p>
 <img src="images/CartExportCommandSequenceDiagram.png" alt="CartExportCommandSequenceDiagram">
 </div>
 <div class="title">Figure 20. Sequence diagram for CartExportCommand</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows a possible flow of events for a user using this command:
+.Activity diagram for CartExportCommand
+image::CartExportActivityDiagram.png[]</p>
 </div>
 </div>
 <div class="sect3">
@@ -2109,7 +2114,7 @@ new recipe will be displayed as the index 3 (one-based index) in the cookbook pa
 </div>
 </div>
 <div class="sect2">
-<h3 id="removing-a-recipe-from-the-cookbook"><a class="link" href="#removing-a-recipe-from-the-cookbook">F.3. Removing a recipe from the cookbook</a></h3>
+<h3 id="remove-a-recipe-from-the-cookbook"><a class="link" href="#remove-a-recipe-from-the-cookbook">F.3. Remove a recipe from the cookbook</a></h3>
 <div class="paragraph">
 <p>Please note that these test cases are to be tested individually, i.e. should test case a be executed, executing test
 case a again will remove a different recipe from the cookbook. In this case, after executing test case a once, to
@@ -2135,7 +2140,7 @@ will show an error message reflecting the invalid recipe indices provided.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="searching-for-recipes-by-tags"><a class="link" href="#searching-for-recipes-by-tags">F.4. Searching for recipes by tags</a></h3>
+<h3 id="search-for-recipes-by-tags"><a class="link" href="#search-for-recipes-by-tags">F.4. Search for recipes by tags</a></h3>
 <div class="paragraph">
 <p>Please note for this search command, with more tags being included, the number of results returned will be greater, i
 .e. if
@@ -2159,7 +2164,7 @@ tagged with "Simple" or "Celebrity".</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-an-ingredient-to-a-recipe"><a class="link" href="#adding-an-ingredient-to-a-recipe">F.5. Adding an ingredient to a recipe</a></h3>
+<h3 id="add-an-ingredient-to-a-recipe"><a class="link" href="#add-an-ingredient-to-a-recipe">F.5. Add an ingredient to a recipe</a></h3>
 <div class="paragraph">
 <p>Please note that the results of these test cases are based on the sample cookbook. The tests can be performed in any order.</p>
 </div>
@@ -2217,7 +2222,7 @@ Expected: cheese is removed from the recipe entirely, and the recipe no longer c
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-cart-to-a-pdf-file"><a class="link" href="#exporting-the-cart-to-a-pdf-file">F.7. Exporting the cart to a PDF file</a></h3>
+<h3 id="export-the-cart-to-a-pdf-file"><a class="link" href="#export-the-cart-to-a-pdf-file">F.7. Export the cart to a PDF file</a></h3>
 <div class="paragraph">
 <p>Please note that for the export command, the result is based on the sample cart.
 a. Prerequisite: have the sample cart data in <code>cart.json</code>, if the file has been modified, please exit Cooking Papa,
@@ -2303,4 +2308,4 @@ table due to the lack of time, and the payoff for tinkering with PDFbox was not 
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:05:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:26:24 UTC</div></div></div></body></html>

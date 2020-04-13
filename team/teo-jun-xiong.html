@@ -10,7 +10,11 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cooking Papa is a desktop cookbook application used to manage recipes and ingredients for cooking. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.</p>
+<p>Cooking Papa is a desktop cookbook application used to manage recipes and ingredients for cooking. The user interacts
+with it using a CLI (Command Line Input), and it has a GUI (Graphical User Interface) created with JavaFX. It is written
+in
+Java, and has about
+15 kLoC.</p>
 </div>
 </div>
 </div>
@@ -90,7 +94,7 @@ button.</p>
 which allows them bring along with them to the supermarkets. This feature solved the constraint of the application
 being desktop-only, and with it, Cooking Papa can <em>still</em> help users when they are away from their computers.</p>
 <div class="paragraph">
-<p>Credits: <em>Apache PDFbox</em> and <em>mkl</em> on
+<p>Credits: <em>Apache PDFbox</em> and user  <em>mkl</em> on
 <a href="https://stackoverflow.com/questions/19635275/how-to-generate-multiple-lines-in-pdf-using-apache-pdfbox">StackOverflow</a>
 for a great example on using <code>PDFbox</code>.</p>
 </div>
@@ -114,7 +118,8 @@ standardisation of coding style and messages shown to the user (
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.2.1</code> and <code>v1.3</code> (2 releases) out of 5 releases(<code>v1.1</code>, <code>v1.2</code>, <code>v.1.2.1</code>, <code>v1.3</code>, <code>v1.4</code>) on
+<p>Managed releases <code>v1.2.1</code>, <code>v1.3</code>, and <code>v1.4</code> (3 releases) out of 5 releases(<code>v1.1</code>, <code>v1.2</code>, <code>v.1.2.1</code>, <code>v1.3</code>, <code>v1
+                                                                                                                .4</code>) on
 GitHub</p>
 </li>
 <li>
@@ -162,7 +167,7 @@ GitHub</p>
 <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/121">#121</a></p>
 </li>
 <li>
-<p>Reviewed user guide and enforced standardisation in user guide:
+<p>Reviewed user and developer guide and enforced standardisation:
 <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/228">#228</a></p>
 </li>
 </ul>
@@ -412,7 +417,39 @@ this application with the community!</p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="implementation-of-a-core-feature-code-cookbook-add-recipe-code"><a class="link" href="#implementation-of-a-core-feature-code-cookbook-add-recipe-code">Implementation of a core feature: <code>cookbook add recipe</code></a></h3>
+<h3 id="cooking-papa-ui-component"><a class="link" href="#cooking-papa-ui-component">Cooking Papa UI component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram">
+</div>
+<div class="title">Figure 4. Structure of the UI Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The UI consists of a <code>MainWindow</code> that is made up of several UI parts: <code>CommandBox</code>, <code>ResultDisplay</code>,
+<code>CookbookPanel</code>,
+<code>RecipeCard</code>, <code>InventoryPanel</code>, <code>CartPanel</code>, <code>IngredientCard</code>,
+<code>StatusBarFooter</code>. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="{repoURL}/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executes user commands using the <code>Logic</code> component.</p>
+</li>
+<li>
+<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.
+=== Implementation of a core feature: <code>cookbook add recipe</code></p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Below is a step by step sequence of what happens when a user enters this command:</p>
 </div>
@@ -497,12 +534,22 @@ their addition was successful.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="uml-sequence-diagram-for-a-core-feature-code-cookbook-add-recipe-code"><a class="link" href="#uml-sequence-diagram-for-a-core-feature-code-cookbook-add-recipe-code">UML Sequence Diagram for a core feature: <code>cookbook add recipe</code></a></h3>
+<h3 id="uml-diagrams-for-code-cookbook-add-recipe-code"><a class="link" href="#uml-diagrams-for-code-cookbook-add-recipe-code">UML Diagrams for <code>cookbook add recipe</code></a></h3>
+<div class="paragraph">
+<p>The following sequence diagram shows how the recipe adding function works (full command [<code>cookbook add recipe
+                                                                                          n/Recipe name d/Recipe
+                                                                                          description i/Ingredient 1
+                                                                                          q/1 piece i/Ingredient 2
+                                                                                          q/20 ml s/Do step 1 s/Do
+                                                                                          step 2 t/This t/Is t/A
+                                                                                          t/Tag</code>]  omitted from diagram
+for brevity):</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/CookbookAddRecipeSequenceDiagram.png" alt="CookbookAddRecipeSequenceDiagram">
 </div>
-<div class="title">Figure 4. Sequence diagram for CookbookAddCommand</div>
+<div class="title">Figure 5. Sequence diagram for CookbookAddCommand</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram shows a possible flow of events for a user using this feature:</p>
@@ -511,11 +558,11 @@ their addition was successful.</p>
 <div class="content">
 <img src="../images/CookbookAddActivityDiagram.png" alt="CookbookAddActivityDiagram">
 </div>
-<div class="title">Figure 5. Activity diagram for CookbookAddCommand</div>
+<div class="title">Figure 6. Activity diagram for CookbookAddCommand</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="crucial-design-considerations-for-a-core-feature-code-cookbook-add-recipe-code"><a class="link" href="#crucial-design-considerations-for-a-core-feature-code-cookbook-add-recipe-code">Crucial Design Considerations for a core feature: <code>cookbook add recipe</code></a></h3>
+<h3 id="design-considerations-for-code-cookbook-add-recipe-code"><a class="link" href="#design-considerations-for-code-cookbook-add-recipe-code">Design Considerations for <code>cookbook add recipe</code></a></h3>
 <div class="sect4">
 <h5 id="aspect-1-how-to-parse-optional-parameters"><a class="link" href="#aspect-1-how-to-parse-optional-parameters">Aspect 1: How to parse optional parameters</a></h5>
 <table class="tableblock frame-all grid-all spread">
@@ -754,12 +801,20 @@ their addition was successful.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="uml-sequence-diagram-for-a-core-feature-code-cart-export-code"><a class="link" href="#uml-sequence-diagram-for-a-core-feature-code-cart-export-code">UML Sequence Diagram for a core feature: <code>cart export</code></a></h3>
+<h3 id="uml-diagrams-for-code-cart-export-code"><a class="link" href="#uml-diagrams-for-code-cart-export-code">UML Diagrams for <code>cart export</code></a></h3>
+<div class="paragraph">
+<p>The following sequence diagram shows how the function of exporting ingredients in the cart to a PDF file works:</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/CartExportCommandSequenceDiagram.png" alt="CartExportCommandSequenceDiagram">
 </div>
-<div class="title">Figure 6. Sequence diagram for CartExportCommand</div>
+<div class="title">Figure 7. Sequence diagram for CartExportCommand</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows a possible flow of events for a user using this command:
+.Activity diagram for CartExportCommand
+image::CartExportActivityDiagram.png[]</p>
 </div>
 </div>
 <div class="sect2">
@@ -852,7 +907,7 @@ the function of the command is to view a recipe, not to "un-view" it.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="uml-sequence-diagram-for-a-core-feature-code-cookbook-view-recipe-code"><a class="link" href="#uml-sequence-diagram-for-a-core-feature-code-cookbook-view-recipe-code">UML Sequence Diagram for a core feature: <code>cookbook view recipe</code></a></h3>
+<h3 id="uml-sequence-diagrams-for-code-cookbook-view-recipe-code"><a class="link" href="#uml-sequence-diagrams-for-code-cookbook-view-recipe-code">UML Sequence Diagrams for <code>cookbook view recipe</code></a></h3>
 <div class="paragraph">
 <p>The following sequence diagram shows how the recipe viewing function interacts between the classes in <code>Logic</code>:</p>
 </div>
@@ -871,4 +926,4 @@ the function of the command is to view a recipe, not to "un-view" it.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:05:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:26:24 UTC</div></div></div></body></html>
