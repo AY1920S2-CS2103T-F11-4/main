@@ -10,7 +10,8 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>Cooking Papa is a desktop cookbook application used to manage recipes and ingredients for cooking. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 15 kLoC.</p>
 </div>
 </div>
 </div>
@@ -20,29 +21,42 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Major enhancement</strong>: Implemented <code>inventory cook recipe</code> command</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does: Allows the user to remove all ingredients of a specified recipe from their inventory after cooking it.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature improves the usability of the application significantly as users need to
+remove the used ingredients from their inventory after preparing a recipe. The application should thus provide
+a convenient command to assist the user in accomplishing this task.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+<p>Highlights: This feature will be frequently used as it allows users to update their inventory after preparing a recipe.</p>
 </li>
 <li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Credits: The implementation and testing of the <code>Ingredient</code> and <code>IngredientList</code> classes was a team effort which is vital to the successful
+implementation of this feature.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p><strong>Minor enhancement</strong>: Implemented commands under <code>cookbook</code> category</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Implemented the add, remove and view commands and their parsers</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p>Implemented skeleton classes for the search commands and their parsers</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=shanecsj&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">Code contributed by @shanecsj</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,7 +67,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Kept track of deadlines and requirements for milestone submissions</p>
+</li>
+<li>
+<p>Managed bugs for v1.4 [Issue <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/issues/241">#241</a>]</p>
 </li>
 </ul>
 </div>
@@ -63,10 +80,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Fixed discrepancies in some commands
+(Pull request <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/243">#243</a>)</p>
 </li>
 <li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Wrote additional tests for existing features to increase coverage
+(Pull request <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/138">#138</a>)</p>
 </li>
 </ul>
 </div>
@@ -76,7 +95,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Updated existing contents of the User Guide: <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/31">#31</a>, <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/245">#245</a></p>
+</li>
+<li>
+<p>Updated existing contents of the Developer Guide: <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/146">#146</a>, <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/253">#253</a></p>
 </li>
 </ul>
 </div>
@@ -86,29 +108,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>Reviewed team members' PR before merging</p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Reported Developer Guide suggestions for other teams (Example: <a href="https://github.com/AY1920S2-CS2103T-W13-4/main/issues/84">1</a>)</p>
 </li>
 </ul>
 </div>
@@ -117,9 +120,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -136,6 +136,321 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="cookbook-commands"><a class="link" href="#cookbook-commands">Cookbook Commands</a></h3>
+<div class="paragraph">
+<p>Cookbook commands are commands that allow users to add and remove recipes from the cookbook,
+as well as view recipes stored in the cookbook. More commands can be done with recipes, and
+are covered in <a href="#Recipe">[Recipe]</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="view-a-recipe-from-the-cookbook"><a class="link" href="#view-a-recipe-from-the-cookbook">View a recipe from the cookbook</a></h4>
+<div class="paragraph">
+<p>This command allows you to view a recipe, the ingredients required, and the steps to cook it.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook view recipe INDEX</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook view recipe 1</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="../images/CookbookViewExample2.png" alt="CookbookViewExample2" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to show you
+the details of the recipe.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>A recipe&#8217;s details can also be viewed by pressing the "eye" icon, without the need to type in the command above:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookViewExample1.png" alt="CookbookViewExample1" width="790">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-a-new-recipe-to-the-cookbook"><a class="link" href="#add-a-new-recipe-to-the-cookbook">Add a new recipe to the cookbook</a></h4>
+<div class="paragraph">
+<p>This command allows you to add (and store) a new recipe with the provided recipe details to the cookbook.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [s/STEP]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code></p>
+</li>
+<li>
+<p>Examples:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook add recipe n/Bacon Carbonara d/Best cream pasta made in Italy</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Adds a recipe with only its name and description specified.<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>New recipe added: Bacon Carbonara
+Description: Best cream pasta made in Italy
+Ingredients:
+Preparation Steps:
+Tags:</pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook add recipe n/Chicken Ham Sandwich d/Juicy ham sandwiched between crispy toasted bread.
+i/Chicken Ham q/1 slice i/White Bread q/2 slices s/Toast the bread s/Grill the ham.
+t/sandwich t/easy</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Adds a recipe with its name, description, ingredients, steps, and tags specified.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>New recipe (index 1) added: Chicken Ham Sandwich</pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Note: the number of ingredient names provided must be the same as the number of ingredient quantities provided,
+otherwise Cooking Papa will not be able to add the recipe.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-recipe-from-the-cookbook"><a class="link" href="#remove-a-recipe-from-the-cookbook">Remove a recipe from the cookbook</a></h4>
+<div class="paragraph">
+<p>This command allows you to remove a recipe of the specified index from the cookbook.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook remove recipe INDEX</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook remove recipe 1</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre>Removed recipe: Bacon Carbonara from the cookbook</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to remove the recipe.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to remove the recipe.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="search-recipes-by-keyword"><a class="link" href="#search-recipes-by-keyword">Search recipes by keyword</a></h4>
+<div class="paragraph">
+<p>This command allows you to search for recipes by keywords, returning a list of recipes.</p>
+</div>
+<div class="paragraph">
+<p>Note: Adding more keywords will not narrow the search results, but will expand the search results to return any recipe
+that contains any of the given keywords.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook search recipe k/KEYWORD&#8230;&#8203;</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe k/Carbonara</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with names matching the keyword 'Carbonara'.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search recipe k/Carbonara k/Simple k/Cheesy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with names matching the keywords 'Carbonara', or <code>Simple</code>, or <code>Cheesy</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-recipes-by-tag"><a class="link" href="#search-recipes-by-tag">Search recipes by tag</a></h4>
+<div class="paragraph">
+<p>This command allows you to search for recipes by tags, returning a list of recipes.</p>
+</div>
+<div class="paragraph">
+<p>Note: Adding more tags will not narrow the search results, but will expand the search results to return any
+recipe that contains any of the given tags.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook search tag t/TAG…</code></p>
+</li>
+<li>
+<p>Examples:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search tag t/Easy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes wisth tags matching 'Easy'.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search tag t/Pasta t/Cream t/Easy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes with tags matching 'Pasta', or 'Cream', or 'Easy'.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="search-recipes-by-ingredients-owned"><a class="link" href="#search-recipes-by-ingredients-owned">Search recipes by ingredients owned</a></h4>
+<div class="paragraph">
+<p>This command allows you to see search for recipes you can cook with your current inventory of ingredients.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook search inventory</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook search inventory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Searches the cookbook for recipes whose ingredients are available in the inventory.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="list-all-recipes-in-the-cookbook"><a class="link" href="#list-all-recipes-in-the-cookbook">List all recipes in the cookbook</a></h4>
+<div class="paragraph">
+<p>This commands allows you to view the whole collection of recipes in the cookbook. Additionally, it can be used after
+using the search commands to view all the recipes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>cookbook list</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookbook list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists all recipes in the cookbook</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -151,14 +466,138 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="remove-ingredients-of-a-recipe-from-the-inventory"><a class="link" href="#remove-ingredients-of-a-recipe-from-the-inventory">Remove ingredients of a recipe from the inventory</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>The mechanism is facilitated by <code>InventoryCookCommand</code>, which extends the <code>Command</code> abstract class. The format of the command is as follows: <code>inventory cook recipe INDEX</code>.</p>
+</div>
+<div class="paragraph">
+<p>This command was implemented to allow users to remove multiple ingredients and their quantities found in a recipe from their inventory.
+If the inventory contains an ingredient that has a higher quantity than specified in the selected recipe, its quantity will be subtracted accordingly.
+If the ingredient has a lower quantity than specified in the selected recipe or if there is a missing ingredient in the inventory, the feature will not be executed and an error will be thrown.
+Without this command, users can only remove ingredients through the <code>inventory remove ingredient</code> command one at a time.
+Moreover, they have to constantly cross-check the ingredient quantities in the recipe for accuracy.
+Therefore, this command provides convenience after users have prepared a recipe and wish to update their inventory ingredients through a single step.</p>
+</div>
+<div class="paragraph">
+<p>Below is a step-by-step sequence of what happens when a user enters this command:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters an inventory cook command <code>inventory cook recipe INDEX</code> using the command line input.</p>
+</li>
+<li>
+<p><code>InventoryCookCommandParser</code> parses the input to check and verify the input provided by the user. If the input provided is invalid, a <code>ParseException</code> will be thrown.</p>
+</li>
+<li>
+<p>The valid index is then passed to <code>InventoryCookCommand</code> as an <code>Index</code> object.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>InventoryCookCommand#execute()</code> and checks if the <code>Index</code> provided is within bounds and if the specified <code>Recipe</code> contains ingredients.
+Otherwise, a <code>CommandException</code> is thrown.</p>
+</li>
+<li>
+<p>Subsequently, two checks are performed to check if the inventory contains all of the ingredients specified and whether those quantities are sufficient to be subtracted.</p>
+</li>
+<li>
+<p>If all the checks passed, <code>model#removeInventoryIngredient</code> is called through a <code>stream()</code> to remove the ingredients of a selected recipe from the inventory.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">selectedRecipe.getIngredients().stream().forEach(model::removeInventoryIngredient);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>A <code>CommandResult</code> with a success message is returned to <code>LogicManager</code> and passed back to <code>MainWindow</code> which displays the text to the user through the GUI.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the command <code>inventory cook recipe 1</code> works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/InventoryCookRecipeSequenceDiagram.png" alt="InventoryCookRecipeSequenceDiagram">
+</div>
+<div class="title">Figure 1. Sequence Diagram for InventoryCookCommand</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-allowing-users-to-execute-the-code-inventory-cook-recipe-code-command-when-there-are-missing-or-insufficient-ingredients-in-the-inventory"><a class="link" href="#aspect-allowing-users-to-execute-the-code-inventory-cook-recipe-code-command-when-there-are-missing-or-insufficient-ingredients-in-the-inventory">Aspect: Allowing users to execute the <code>inventory cook recipe</code> command when there are missing or insufficient ingredients in the inventory.</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Design considerations for the <code>inventory cook recipe</code> command</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Design A: Allow the execution of <code>inventory cook recipe</code> command regardless of missing or insufficient ingredients in the inventory</th>
+<th class="tableblock halign-left valign-top">Design B (Current choice): Do not allow execution of <code>inventory cook recipe</code> command when there are missing or insufficient ingredients in the inventory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow the users to execute the command regardless of missing or insufficient ingredients in the inventory. Missing ingredients will be ignored and ingredients with insufficient quantities will be entirely removed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When there are missing or insufficient ingredients in the inventory, the execution of the command will throw an error to warn users whether they have missing ingredients or insufficient ingredients in their inventory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Straightforward for users to use the command as they do not have to check whether they have all the ingredients in sufficient quantities.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enhances user experience. The application can notify users that they have missing or insufficient ingredients when they attempt to prepare a recipe through this command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reduces code readability as more methods and steps are needed to check and isolate a list of missing and insufficient ingredients. This list of ingredients are also to be treated differently from the other ingredients when removing from the inventory.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A potential hassle for users as they have to ensure that all ingredients are present and are sufficient in their inventory to use the command.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
+<h2 id="miscellaneous"><a class="link" href="#miscellaneous">Miscellaneous</a></h2>
 <div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<div class="sect2">
+<h3 id="uml-diagrams"><a class="link" href="#uml-diagrams">UML Diagrams</a></h3>
+<div class="sect3">
+<h4 id="sequence-diagram"><a class="link" href="#sequence-diagram">Sequence Diagram</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/InventoryCookRecipeSequenceDiagram.png" alt="InventoryCookRecipeSequenceDiagram">
+</div>
+<div class="title">Figure 2. Sequence diagram for InventoryCookCommand</div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:10:08 UTC</div></div></div></body></html>
+<div class="sect3">
+<h4 id="activity-diagram"><a class="link" href="#activity-diagram">Activity Diagram</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/InventoryCookRecipeActivityDiagram.png" alt="InventoryCookRecipeActivityDiagram">
+</div>
+<div class="title">Figure 3. Activity diagram when user enters <code>inventory cook recipe</code> command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="class-diagram"><a class="link" href="#class-diagram">Class Diagram</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookClassDiagram.png" alt="CookbookClassDiagram">
+</div>
+<div class="title">Figure 4. Class diagram for <code>Cookbook</code> class</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:11:43 UTC</div></div></div></body></html>

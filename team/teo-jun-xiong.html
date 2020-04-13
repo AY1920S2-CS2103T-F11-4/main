@@ -10,7 +10,7 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>Cooking Papa is a desktop cookbook application used to manage recipes and ingredients for cooking. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.</p>
 </div>
 </div>
 </div>
@@ -20,29 +20,90 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Major enhancement</strong>: implemented and developed Cooking Papa&#8217;s GUI</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does: developed Cooking Papa&#8217;s GUI to better reflect its casual usage and more cheerful nature, rather than
+the base
+AB3&#8217;s dark
+theme.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature improves the product significantly because the color scheme is more in line with
+Cooking Papa&#8217;s use, with the bright yet muted colors complementing the fun font styles, giving off a casual vibe, and
+invites users to use Cooking Papa.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+<p>Highlights: This enhancement required a lot of understanding of the interactions between various JavaFX objects,
+as well as the base CSS stylesheets provided by AB3, and integrating them together, which took many hours of
+trial-and-error,
+as well
+as
+Googling.</p>
+<div class="paragraph">
+<p>While constraints meant that Cooking Papa would be tested from the command line, a well-designed GUI was imperative
+to convey the application&#8217;s casual nature.
+Coordinating various colors proved to be a challenge, and the color scheme went through three rounds of reiterations,
+before settling on the current one. Moving away from the rigid sharp edges of AB3 was also a challenge, and required
+various UI elements and color choices to "soften" the overall aesthetics of Cooking Papa.</p>
+</div>
 </li>
 <li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Credits: <em>JavaFX 11</em> as well as <em>SceneBuilder</em> helped immensely in the development of the GUI.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p><strong>Major enhancement</strong>: integrated <code>cookbook view recipe</code> command into the GUI</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Justification: This feature improves the product significantly because it integrated the GUI seamlessly with the
+command.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p>Highlights: This enhancement arose due to the lack of connection between the existing <code>cookbook view recipe</code>
+command, which shows users the details of a recipe, and the GUI. It was initially displayed as a plain text result in
+the result display box of the GUI, and this causes command results (errors, success messages, usage messages), to
+appear in the same UI component as the recipe details, which meant that the component had two uses.</p>
+<div class="paragraph">
+<p>The idea to make <code>cookbook view recipe</code> a button on the GUI that could be toggled surfaced to improve user experience.
+Developing a button that
+could toggle the details shown was trivial, however, limiting the command to just a button on the GUI meant that it
+would not be testable on the command line. Therefore, the challenge was to connect the GUI to the Logic component,
+and typing <code>cookbook view recipe</code> on the command line (or in the command box of the GUI) would trigger the button.
+The result was a GUI much more interactive and functional, but it was still testable on
+the command line.</p>
+</div>
+</li>
+<li>
+<p>Credits: <em>JavaFX 11</em> as well as <em>SceneBuilder</em> helped immensely in the development of the <code>cookbook view recipe</code>
+button.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added an command which allowed users to export the ingredients in their cart to a PDF file,
+which allows them bring along with them to the supermarkets. This feature solved the constraint of the application
+being desktop-only, and with it, Cooking Papa can <em>still</em> help users when they are away from their computers.</p>
+<div class="paragraph">
+<p>Credits: <em>Apache PDFbox</em> and <em>mkl</em> on
+<a href="https://stackoverflow.com/questions/19635275/how-to-generate-multiple-lines-in-pdf-using-apache-pdfbox">StackOverflow</a>
+for a great example on using <code>PDFbox</code>.</p>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: regularly reviewed source code, and carried out testing and bug fixing. This includes the
+standardisation of coding style and messages shown to the user (
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/122">#122</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/228">#228</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/242">#242</a>).</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=f11&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=teo-jun-xiong&amp;tabRepo=AY1920S2-CS2103T-F11-4%2Fmain%5Bmaster%5D">Source code</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,7 +114,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Managed releases <code>v1.2.1</code> and <code>v1.3</code> (2 releases) out of 5 releases(<code>v1.1</code>, <code>v1.2</code>, <code>v.1.2.1</code>, <code>v1.3</code>, <code>v1.4</code>) on
+GitHub</p>
+</li>
+<li>
+<p>Managed features development under Project on GitHub
+(<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/projects/1">features</a>)</p>
 </li>
 </ul>
 </div>
@@ -63,10 +129,22 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Updated the GUI color scheme and designed GUI layout:
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/137">#137</a></p>
 </li>
 <li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Wrote additional tests for existing features to increase coverage from 56% to 77%:
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/131">#131</a></p>
+</li>
+<li>
+<p>Integrated button with <code>cookbook view recipe</code> command:
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/208">#208</a></p>
+</li>
+<li>
+<p>Implemented core features:
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/115">#115</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/139">#139</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/254">#254</a></p>
 </li>
 </ul>
 </div>
@@ -76,7 +154,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Removed instances of AB3 in user guide:
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/13">#13</a></p>
+</li>
+<li>
+<p>Added UML diagrams and document implementation of core features:
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/121">#121</a></p>
+</li>
+<li>
+<p>Reviewed user guide and enforced standardisation in user guide:
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/228">#228</a></p>
 </li>
 </ul>
 </div>
@@ -86,16 +173,20 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>PRs reviewed (with non-trivial review comments):
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/22">#22</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/44">#44</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/57">#57</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/61">#61</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/131">#131</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/220">#220</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/221">#221</a>,
+<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/222">#222</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
+<p>Contributed to forum discussions:
+<a href="https://github.com/nus-cs2103-AY1920S2/forum/issues/15">15</a>
+<a href="https://github.com/nus-cs2103-AY1920S2/forum/issues/65">65</a></p>
 </li>
 </ul>
 </div>
@@ -105,10 +196,11 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
+<p>Integrated a third party library (Apache PDFbox) to the project
+(<a href="https://github.com/AY1920S2-CS2103T-F11-4/main/pull/212">#212</a>)</p>
 </li>
 <li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Integrated new Github plugins to the team repo: TravisCI, AppVeyor, Coveralls, Codacy</p>
 </li>
 </ul>
 </div>
@@ -117,9 +209,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -136,6 +225,177 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">Help command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
+<div class="paragraph">
+<p>This command shows a popup window with a URL to Cooking Papa&#8217;s user guide (what you are reading now). This is for access
+should you need some help executing a certain action in Cooking Papa.</p>
+</div>
+<div class="paragraph">
+<p>There are 2 ways a user can access the help window:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type <code>help</code>.</p>
+</li>
+<li>
+<p>Click on the <code>Help</code> button on the top left corner of Cooking Papa, and then click on the <code>Help</code> button in the
+dropdown menu. You can then click the <code>Copy URL</code> button which can then be pasted into a web browser to access Cooking
+Papa&#8217;s user guide.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookHelpExample.png" alt="CookbookHelpExample" width="250">
+</div>
+<div class="title">Figure 1. Cooking Papa 'Help' button to access the Help window</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookHelpExample2.png" alt="CookbookHelpExample2" width="700">
+</div>
+<div class="title">Figure 2. Cooking Papa Help window and 'Copy URL' button</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">Exit command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
+<div class="paragraph">
+<p>There are 3 ways a user can exit Cooking Papa:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type <code>exit</code>.</p>
+</li>
+<li>
+<p>Click on the <code>x</code> button on the top right corner of the Cooking Papa.</p>
+</li>
+<li>
+<p>Click on the <code>File</code> button on the top left corner of Cooking Papa, and then click on the <code>Exit</code> button in the dropdown menu.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExitExample.png" alt="ExitExample" width="790">
+</div>
+<div class="title">Figure 3. Cooking Papa 'X' button to exit the application.</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="calendar-commands-v2-0-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#calendar-commands-v2-0-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">Calendar Commands [v2.0] <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
+<div class="paragraph">
+<p>Calendar commands are commands that allow you to set date-related commands, such as reminders and
+recipe of the day</p>
+</div>
+<div class="sect3">
+<h4 id="add-a-recipe-to-cook-on-a-certain-day"><a class="link" href="#add-a-recipe-to-cook-on-a-certain-day">Add a recipe to cook on a certain day</a></h4>
+<div class="paragraph">
+<p>Reminds the user to cook a certain recipe on a certain day.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>calendar set DD-MM-YYYY cook recipe INDEX</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar set 10-10-2020 cook recipe 1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds recipe 1 to your calendar for cooking on 10th October 2020.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="view-recipes-to-cook-on-a-certain-day"><a class="link" href="#view-recipes-to-cook-on-a-certain-day">View recipes to cook on a certain day</a></h4>
+<div class="paragraph">
+<p>User can view the recipes they were supposed to cook on a certain day. The date input can
+be replaced with 'today' for the current date, or 'tomorrow' for the next day.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>calendar view recipes DD-MM-YYYY</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar view recipes 10-10-2020</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows the recipes scheduled for cooking on 10th October 2020.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar view recipes today</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows the recipes scheduled for cooking on the current day.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calendar view recipes tomorrow</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows the recipes scheduled for cooking on the day after the current day.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#faq-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">FAQ <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CookingPapa folder.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Where can I install the latest version of CookingPapa?<br>
+<strong>A</strong>: You can find the latest release <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/releases">here</a>. Please download
+the latest version of CookingPapa.jar to enjoy the most udpated features.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Do I need to be connected to the internet to access this application?<br>
+<strong>A</strong>: All information is stored locally in your own computer. No internet connection is required.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Something is not working as expected. Who can I contact?<br>
+<strong>A</strong>: You may report your bugs here <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/issues">here</a>. Bug reports are highly
+appreciated!</p>
+</div>
+<div class="paragraph">
+<p><strong>Q</strong>: Is this application free?<br>
+<strong>A</strong>: Yes! This application is open-source under the MIT license. You may feel free to modify, contribute and share
+this application with the community!</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -151,5 +411,464 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="implementation-of-a-core-feature-code-cookbook-add-recipe-code"><a class="link" href="#implementation-of-a-core-feature-code-cookbook-add-recipe-code">Implementation of a core feature: <code>cookbook add recipe</code></a></h3>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user enters this command:</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:10:08 UTC</div></div></div></body></html>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters a recipe adding command using the command line input <code>cookbook add recipe n/NAME d/DESCRIPTION
+[i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203; [s/STEP_DESCRIPTION]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>.</p>
+</li>
+<li>
+<p><code>CookingPapaParser</code> parses the user input and checks if it is valid. If it is invalid, i.e. an unknown command
+category, a <code>ParseException</code> will be thrown. If the input is valid, with the command category <code>cookbook</code>, a new
+<code>CookbookCommandParser</code> is created.</p>
+</li>
+<li>
+<p><code>CookbookCommandParser</code> then parses <code>add recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203;
+[s/STEP_DESCRIPTION]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code>. If it is invalid, i.e. an unknown command word, a <code>ParseException</code> will be
+thrown. If the input is valid, with the command word <code>add</code>, a new <code>CookbookAddCommandParser</code> is created.</p>
+</li>
+<li>
+<p><code>CookbookAddCommandParser</code> parses <code>recipe n/NAME d/DESCRIPTION [i/INGREDIENT]&#8230;&#8203; [q/QUANTITY]&#8230;&#8203;
+[s/STEP_DESCRIPTION]&#8230;&#8203; [t/TAG]&#8230;&#8203;</code> and checks if <code>n/NAME</code> and <code>d/DESCRIPTION</code> are provided. If either are not
+provided, then a <code>ParseException</code> will be thrown.</p>
+<div class="paragraph">
+<p>It then
+parses the input into the following fields: recipe name, recipe description, ingredients, steps, and tags.</p>
+</div>
+<div class="paragraph">
+<p>Note that
+the ingredient names and ingredient quantities provided must be the same, or a <code>ParseException</code> will be thrown:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (names.size() != quantities.size()) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(
+        <span class="predefined-type">String</span>.format(MESSAGE_DIFFERENT_NUMBER_OF_INPUTS, names.size(), quantities.size()));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p></p>
+</div>
+</li>
+<li>
+<p>These fields are then passed as parameters for <code>Recipe</code>, which is then passed as the parameter for
+<code>CookbookAddCommand</code> and returned to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CookbookAddCommand#execute()</code> which checks if the cookbook already contains the same recipe with the same name, description, ingredient names, ingredient quantities, and tags using <code>Model#hasCookbookRecipe()</code>.</p>
+<div class="paragraph">
+<p>If there is a duplicate, a <code>CommandException</code> is thrown, stating that the user is attempting to add a duplicate recipe:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (model.hasCookbookRecipe(toAdd)) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_RECIPE);
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If <code>CommandException</code> is not thrown, <code>Model#addCookbookRecipe</code> will be executed, with the recipe to be added as a parameter.</p>
+</li>
+<li>
+<p><code>Model#addCookbookRecipe()</code> then executes <code>Cookbook#addRecipe()</code>, which adds the recipe to the cookbook, and the
+<code>FilteredList&lt;Recipe&gt;</code> representing the recipes in the cookbook are updated with <code>Model#updateFilteredCookbookRecipeList()</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">updateFilteredCookbookRecipeList(PREDICATE_SHOW_ALL_RECIPES)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>PREDICATE_SHOW_ALL_RECIPES = unused &#8594; true</code>.</p>
+</div>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the text to display to the user is then returned to <code>LogicManager</code>, which can passed back to
+<code>MainWindow</code>, which displays it to the user on the CLI and GUI: <code>resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser())</code>. The text displayed will notify the user on whether
+their addition was successful.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uml-sequence-diagram-for-a-core-feature-code-cookbook-add-recipe-code"><a class="link" href="#uml-sequence-diagram-for-a-core-feature-code-cookbook-add-recipe-code">UML Sequence Diagram for a core feature: <code>cookbook add recipe</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookAddRecipeSequenceDiagram.png" alt="CookbookAddRecipeSequenceDiagram">
+</div>
+<div class="title">Figure 4. Sequence diagram for CookbookAddCommand</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows a possible flow of events for a user using this feature:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookAddActivityDiagram.png" alt="CookbookAddActivityDiagram">
+</div>
+<div class="title">Figure 5. Activity diagram for CookbookAddCommand</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="crucial-design-considerations-for-a-core-feature-code-cookbook-add-recipe-code"><a class="link" href="#crucial-design-considerations-for-a-core-feature-code-cookbook-add-recipe-code">Crucial Design Considerations for a core feature: <code>cookbook add recipe</code></a></h3>
+<div class="sect4">
+<h5 id="aspect-1-how-to-parse-optional-parameters"><a class="link" href="#aspect-1-how-to-parse-optional-parameters">Aspect 1: How to parse optional parameters</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Design considerations for parsing optional parameters</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 42%;">
+<col style="width: 42%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A (current choice): Parse each category separately</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: Parse all the categories together</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each category (ingredient name, ingredient quantity, step description, tag) are parsed separately and returned as
+<code>List</code>. If the returned <code>List</code> is empty, then it means that that field was not provided in the input, and will be set
+to an empty <code>List</code> in the recipe e.g., no ingredients were provided in the command.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Each category will be parsed together in one function in <code>CookbookAddCommandParser</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Provides more flexibility for the user and does not make it mandatory to input fields that they may not necessarily
+have.</p>
+</li>
+<li>
+<p>No need to deal with null values, can simply check if list is empty.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Straightforward</p>
+</li>
+<li>
+<p>No need to create and call multiple methods from other classes</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>More methods have to be executed which may increase time and NPath complexity.</p>
+</li>
+<li>
+<p>Debugging and tracing becomes more confusing due to the method being defined in the lowest level of abstraction.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Have to deal with null values and include null checks (<code>ifPresent()</code> etc.)</p>
+</li>
+<li>
+<p>Method will be very long and decreases readability</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Design A was chosen because it was more user-friendly, and removed the restriction of having to include ingredients,
+steps, and tags at the stage of recipe creation, some of which the user may not have at the moment, i.e.
+experimenting with different ingredients. Additionally, design A allowed us to be more modular while coding.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-2-result-to-show-user"><a class="link" href="#aspect-2-result-to-show-user">Aspect 2: Result to show user</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Design considerations for results to show users</caption>
+<colgroup>
+<col style="width: 16%;">
+<col style="width: 42%;">
+<col style="width: 42%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A (current choice): Show a short result on the success of the command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: Show all the details back to
+the user</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show a message to a usage which notifies them that the command was successful in adding the recipe to
+the cookbook.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a message similar to design choice A, and also show all the details of the added recipe.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Short and succinct message, tells the user what they need to know</p>
+</li>
+<li>
+<p>User interface is cleaner and more intuitive, and does not overload users with unnecessary information</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easier to implement</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Requires the graphical user interface to be able to toggle and show recipes, without the need for a command,
+implemented here:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookAddRecipe3.png" alt="CookbookAddRecipe3">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Overloads the user with unnecessary information</p>
+</li>
+<li>
+<p>Requires result display to take up more space than required, to reduce the need for users to scroll down the result
+display.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Design A was chosen because it did not reuse the same component for multiple uses. Additionally, it allows us to
+reduce the size of result display, as most of the time, it displays only a short message displaying the success of a
+command.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementation-of-a-core-feature-code-cart-export-code"><a class="link" href="#implementation-of-a-core-feature-code-cart-export-code">Implementation of a core feature: <code>cart export</code></a></h3>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user enters this command:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters a cart export command using the command line input <code>cart export</code>.</p>
+</li>
+<li>
+<p><code>CookingPapaParser</code> parses the user input and checks if it is valid. If it is invalid, i.e. an unknown command
+category, a <code>ParseException</code> will be thrown. If the input is valid, with the command category <code>cart</code>, a new
+<code>CartCommandParser</code> is created.</p>
+</li>
+<li>
+<p><code>CartCommandParser</code> then parses <code>export</code>. If it is invalid, i.e. an unknown command word, a <code>ParseException</code> will be
+thrown. If the input is valid, with the command category <code>export</code>, a new <code>CookbookExportCommandParser</code> is created.</p>
+</li>
+<li>
+<p><code>CartExportCommandParser</code> parses the user input and checks if the argument passed to it is an empty String, as the
+command takes in no extra parameters.</p>
+<div class="paragraph">
+<p>Note that if the String is not empty, a <code>ParseException</code> will be thrown:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (userInput.isEmpty()) {
+    <span class="keyword">return</span> <span class="keyword">new</span> CartExportCommand();
+} <span class="keyword">else</span> {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, CartExportCommand.MESSAGE_USAGE));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means that <code>cart export ingredient</code> will not work.</p>
+</div>
+</li>
+<li>
+<p><code>CartExportCommandParser</code> then returns a <code>CartExportCommand</code> to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CartExportCommand#execute()</code> calls the static method of <code>PdfExporter</code>,
+<code>PdfExporter#exportCart()</code>, which takes in the <code>ObservableList&lt;Ingredient&gt;</code> stored in <code>Cart</code></p>
+</li>
+<li>
+<p>Step 4 is executed within a try-catch block. If a previously generated pdf (saved as <code>cart.pdf</code> by default) is
+opened in another program, or there is an issue writing to the PDF file, a <code>CommandResult</code> with an error
+message will returned to <code>LogicManager</code> (skipping step 7 and 8):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">try</span> {
+    PdfExporter.exportCart(model.getCart().getIngredientList());
+} <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FILE_NOT_FOUND);
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The ingredients in the <code>Cart</code> is passed to the static method <code>PdfExporter#exportCart()</code>, which then makes use of
+the library, <code>PDFbox</code>, to parse the data.</p>
+</li>
+<li>
+<p>Within <code>PdfExporter</code>, <code>PdfExporter#getTextFromCart</code> parse the data and splits them manually, in order to wrap the
+text (this has to be done due to the inadequacy of <code>PDFbox</code>). The method returns a <code>List&lt;String&gt;</code>, where each string
+represents a new line on the PDF file.</p>
+</li>
+<li>
+<p>Subsequently, <code>PdfExporter</code> checks if the number of <code>String</code> s in the list in step 7 is greater than the number of
+lines a single page of the PDF can accomodate. If it is, it adds a new page, and adds lines to the PDF until the
+limit is hit. This repeats until all the lines are added to the PDF.</p>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the text to display to the user will be returned to <code>LogicManager</code>. The
+<code>CommandResult</code> is then passed back to <code>MainWindow</code>, which displays it to the user on the CLI and GUI: <code>resultDisplay
+.setFeedbackToUser(commandResult.getFeedbackToUser())</code>. The text displayed will notify the user on whether
+their addition was successful.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uml-sequence-diagram-for-a-core-feature-code-cart-export-code"><a class="link" href="#uml-sequence-diagram-for-a-core-feature-code-cart-export-code">UML Sequence Diagram for a core feature: <code>cart export</code></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CartExportCommandSequenceDiagram.png" alt="CartExportCommandSequenceDiagram">
+</div>
+<div class="title">Figure 6. Sequence diagram for CartExportCommand</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementation-of-a-core-feature-code-cookbook-view-recipe-code"><a class="link" href="#implementation-of-a-core-feature-code-cookbook-view-recipe-code">Implementation of a core feature: <code>cookbook view recipe</code></a></h3>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user enters this command:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters a view recipe command using the command line input <code>cookbook view recipe INDEX</code>.</p>
+</li>
+<li>
+<p><code>CookingPapaParser</code> parses the user input and checks if it is valid. If it is invalid, i.e. an unknown command
+category, a <code>ParseException</code> will be thrown. If the input is valid, with the command category <code>cookbook</code>, a new
+<code>CookbookCommandParser</code> is created.</p>
+</li>
+<li>
+<p><code>CookbookCommandParser</code> then parses <code>view recipe INDEX</code>. If it is invalid, i.e. an unknown command word, a
+                                       <code>ParseException</code> will be
+thrown. If the input is valid, with the command category <code>view</code>, a new <code>CookbookViewCommandParser</code> is created.</p>
+</li>
+<li>
+<p><code>CookbookViewCommandParser</code> then parses <code>recipe INDEX</code> and checks if the <code>String</code> contains "recipe", and an index.
+If either are absent, a <code>ParseException</code> will be thrown. If the <code>String</code> is valid, a <code>CookbookView</code> is created.</p>
+</li>
+<li>
+<p><code>CookbookViewCommandParser</code> then returns a <code>CookbookViewCommand</code> to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CookbookViewCommand#execute()</code> which checks if the provided <code>Index</code> is within the bounds of
+the <code>FilteredCookbookRecipeList()</code> in <code>Cookbook</code>, i.e. <code>index.getZeroBased() &gt;= list.size()</code>. If it is not, a
+<code>CommandException</code> will be thrown. If it is valid, a <code>CommandResult</code> is created with a boolean value <code>true</code>.</p>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the text to display to the user will be returned to <code>LogicManager</code>. The <code>CommandResult</code> is
+then passed back to <code>MainWindow</code>. The boolean value stated in step 6 determines whether a successfully parsed command
+is a <code>cookbook view recipe INDEX</code> command.</p>
+</li>
+<li>
+<p><code>MainWindow#handleViewRecipe</code> is then executed, which creates a new <code>CookbookPanel</code> with the same set of data,
+calling <code>CookbookPanel#handleViewRecipe</code>, which creates new <code>RecipeCard</code> s for <code>Cookbook</code>, and for the <code>RecipeCard</code>
+that has an index equal to the index processed from the user&#8217;s input, it will create a <code>RecipeCard</code> that toggles open
+the recipe details. More on how the <code>RecipeCard</code> manages this will be discussed in the following section on how
+clicking on a button in the GUI has the same effect as the <code>cookbook view recipe INDEX</code> command.</p>
+</li>
+<li>
+<p>Lastly, the user then is shown a <code>CookbookPanel</code> with the selected recipe toggled open, which displays the full
+details
+of that recipe:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookViewExample2.png" alt="CookbookViewExample2">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user clicks the button on the GUI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>When the button is pressed, the onAction method, <code>RecipeCard#handleViewButtonAction()</code> is executed. A <code>RecipeCard</code>
+has a variable <code>isFullyDisplayed</code>, which indicates whether it is displaying an overview of the recipe, or
+fully displaying details of the recipe.</p>
+</li>
+<li>
+<p>If <code>isFullyDisplayed</code> is false, i.e. the <code>RecipeCard</code> is currently displaying an overview of the recipe,
+<code>RecipeCard#displayRecipeComplete()</code> is executed, which replaces the text displayed by the FXML object, <code>Label</code>, with
+the full details of the recipe.</p>
+</li>
+<li>
+<p>If <code>isFullyDisplayed</code> is true, i.e. the <code>RecipeCard</code> is currently fully displaying the details of the recipe,
+<code>RecipeCard#displayRecipeOverview()</code> is executed, which replaces the text displayed by the FXML object, <code>Label</code> with
+the overview of the recipe.</p>
+</li>
+<li>
+<p>Both methods executed in step 3 and 4 will flip the boolean value of <code>isFullyDisplayed</code>, and this means that the
+next time the button for the same recipe is clicked, it toggles back. For example, if a recipe with its overview
+shown has its view button clicked, it will show the full details of the recipe. If the button is clicked again, it
+toggles, and shows the overview of the recipe.</p>
+<div class="paragraph">
+<p>This feature is not reflected with <code>cookbook view recipe INDEX</code> when it is entered again in the command line, because
+the function of the command is to view a recipe, not to "un-view" it.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uml-sequence-diagram-for-a-core-feature-code-cookbook-view-recipe-code"><a class="link" href="#uml-sequence-diagram-for-a-core-feature-code-cookbook-view-recipe-code">UML Sequence Diagram for a core feature: <code>cookbook view recipe</code></a></h3>
+<div class="paragraph">
+<p>The following sequence diagram shows how the recipe viewing function interacts between the classes in <code>Logic</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookViewSequenceDiagram.png" alt="CookbookViewSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the recipe viewing function interacts between the classes in <code>Ui</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookViewSEquenceDiagram2.png" alt="CookbookViewSEquenceDiagram2">
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:11:43 UTC</div></div></div></body></html>

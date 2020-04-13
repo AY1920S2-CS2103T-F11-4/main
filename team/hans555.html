@@ -144,6 +144,201 @@ implementation of this feature.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="Inventory"><a class="link" href="#Inventory">Inventory Commands <a href="https://github.com/hans555">(by Ong Han Sheng)</a></a></h3>
+<div class="paragraph">
+<p>Inventory commands are commands that update the user&#8217;s very own inventory at home.
+These commands include adding, remove and viewing the current inventory database.</p>
+</div>
+<div class="sect3">
+<h4 id="add-an-ingredient-to-the-inventory"><a class="link" href="#add-an-ingredient-to-the-inventory">Add an ingredient to the inventory</a></h4>
+<div class="paragraph">
+<p>This commands allows you to add ingredients to your inventory. Ingredient names added are case-insensitive.
+Ingredient names such as 'Bacon' and 'bacon' will be recognised by CookingPapa as 'Bacon'.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>inventory add ingredient i/INGREDIENT q/QUANTITY</code></p>
+</li>
+<li>
+<p>Examples:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory add ingredient i/Eggs q/10</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 10 eggs into your inventory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory add ingredient i/Butter q/200g</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 200g of butter into your inventory.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="remove-an-ingredient-from-the-inventory"><a class="link" href="#remove-an-ingredient-from-the-inventory">Remove an ingredient from the inventory</a></h4>
+<div class="paragraph">
+<p>This command allows you to remove ingredients from the inventory.
+You can indicate the quantity you want to remove for an ingredient, which should not be greater that than the
+ingredient&#8217;s quantity.
+Please ensure that the unit of the quantity matches the ingredient&#8217;s unit in the inventory.</p>
+</div>
+<div class="paragraph">
+<p>Note: If you do not indicate any quantity, all entries in the inventory that have the specified ingredient name will be
+removed regardless of the unit.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>inventory remove ingredient i/INGREDIENT [q/QUANTITY]</code></p>
+</li>
+<li>
+<p>Examples:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory remove ingredient i/Bacon</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all bacon from your inventory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory remove ingredient i/Butter q/200g</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 200g of butter from your inventory.
+<em>(If your inventory had 500 g of butter, it will be subtracted and updated to 300 g of butter)</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="remove-all-ingredients-from-the-inventory"><a class="link" href="#remove-all-ingredients-from-the-inventory">Remove all ingredients from the inventory.</a></h4>
+<div class="paragraph">
+<p>This command allows you to remove all ingredients from the inventory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>inventory clear</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all ingredients from the inventory</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="cook-a-recipe-using-the-ingredients-in-the-inventory"><a class="link" href="#cook-a-recipe-using-the-ingredients-in-the-inventory">Cook a recipe using the ingredients in the inventory</a></h4>
+<div class="paragraph">
+<p>This command allows you to remove the selected&#8217;s recipe ingredients from the inventory after
+cooking a delicious meal.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>inventory cook recipe INDEX</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inventory cook recipe 3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all ingredients required to cook recipe 3 from the inventory</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recipe-of-the-day-generator-v2-0-a-href-https-github-com-hans555-by-ong-han-sheng-a"><a class="link" href="#recipe-of-the-day-generator-v2-0-a-href-https-github-com-hans555-by-ong-han-sheng-a">Recipe of the day generator [v2.0] <a href="https://github.com/hans555">(by Ong Han Sheng)</a></a></h3>
+<div class="paragraph">
+<p>This command allows CookingPapa to recommend a recipe to cook based on the recipes currently in the cookbook.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>generate recipe of the day</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generate recipe of the day</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the recipe of the day</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -159,14 +354,156 @@ implementation of this feature.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
+<div class="sect2">
+<h3 id="add-a-recipe-s-ingredients-to-cart-a-href-https-github-com-hans555-by-ong-han-sheng-a"><a class="link" href="#add-a-recipe-s-ingredients-to-cart-a-href-https-github-com-hans555-by-ong-han-sheng-a">Add a Recipe&#8217;s Ingredients to Cart <a href="https://github.com/hans555">(by Ong Han Sheng)</a></a></h3>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p>The user may want to buy the required ingredients to cook a certain recipe in the cookbook. This feature allows the user
+to add a certain recipe&#8217;s required ingredients into the cart.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>The action of adding a recipe&#8217;s ingredients to cart mechanism is facilitated by <code>CartAddRecipeIngredientCommand</code>, which
+extends the <code>CartAddCommand</code> abstract class. The format is as follows: <code>cart add recipe INDEX</code>.</p>
+</div>
+<div class="paragraph">
+<p>This command is implemented to ease the tedious process of having the user adding every single ingredient
+to their cart when they want to purchase ingredients to cook a certain recipe. This provides convenience to users
+that frequently use our application and such process like shopping for a certain recipe&#8217;s ingredient is
+intuitive to users. Furthermore, this command creates interaction between the <code>Cookbook</code> and <code>Cart</code> which
+helps to further integrate the application as an all-in-one application.</p>
+</div>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user enters this command:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters the command <code>cart add recipe INDEX</code>  in the command line  input.</p>
+</li>
+<li>
+<p><code>CartAddRecipeIngredientParser</code> parses the user input and checks if the index provided is an integer.
+Note that the parser will throw a <code>ParseException</code> if the given index is not an integer.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">try</span> {
+    recipeIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+} <span class="keyword">catch</span> (<span class="exception">ParseException</span> pe) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX, CartAddCommand.MESSAGE_USAGE), pe);
+}</code></pre>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:10:08 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>The index is passed as a parameter for <code>CartAddRecipeIngredientCommand</code> which is returned to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CartAddRecipeIngredientCommand#execute()</code> which checks if the given index is
+a valid index of a recipe. Note that the command will throw a <code>CommandException</code> if the given index is not valid.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (recipeIndex.getZeroBased() &gt;= model.getCookbook().getRecipeList().size()) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX, MESSAGE_USAGE));
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the index is valid, the selected recipe&#8217;s ingredients will be added accordingly. This is done through calling
+<code>Model#addCartIngredient()</code>, with each ingredient as the parameter.</p>
+</li>
+<li>
+<p><code>Model#addCartIngredient</code> calls <code>Cart#addIngredident()</code> which then adds the ingredient to the cart.
+If a certain ingredient exists in the cart, adding a ingredient to a cart will increase the
+quantity instead. Otherwise, a new instance of that ingredient will be added to the cart.
+After adding an ingredient, the cart will be updated with <code>Model#updateFilteredCartIngredientList()</code>.</p>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the successful text message is returned to <code>LogicManager</code>
+and will be displayed to the user via the GUI to feedback to the user that
+the selected recipe&#8217;s ingredients has been successfully added to the cart.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the function of adding recipe&#8217;s ingredients to cart works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CartAddRecipeIngredientSequenceDiagram.png" alt="CartAddRecipeIngredientSequenceDiagram">
+</div>
+<div class="title">Figure 1. Sequence diagram for CartAddRecipeIngredientCommand</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-allowing-users-to-add-all-or-some-recipe-s-ingredients"><a class="link" href="#aspect-allowing-users-to-add-all-or-some-recipe-s-ingredients">Aspect: Allowing users to add all or some recipe&#8217;s ingredients</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Design considerations for allowing users to add only recipe&#8217;s ingredients that are not present in the inventory to the cart</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A (current choice): Adding all recipe&#8217;s ingredients to the cart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: Adding only recipe&#8217;s ingredients
+that are missing in the inventory to the cart</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows user to add a recipe&#8217;s ingredients to the cart for shopping. This design is currently chosen due to ease of
+implementation and it works for all situations.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows user to add a recipe&#8217;s ingredients base on the inventory status. However, there are some situations where
+this design not does work. One example would be like planning to cook at outside where the inventory status is unknown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easier to implement as it does not need to check if the ingredients are already present in the inventory</p>
+</li>
+<li>
+<p>Works for all situations as it ensures that the user is able to cook this recipe after buying the ingredients in the cart</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Provide a more intuitive experience of the application as user only need to buy ingredients that are missing in the inventory</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Less flexible as users have to manually remove some of the recipe&#8217;s ingredients that they do not want to buy</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Harder to implement as additional checking is required to filter a recipe&#8217;s ingredients that are missing in the inventory</p>
+</li>
+<li>
+<p>Users have to manually add some of the recipe&#8217;s ingredients that they want to buy although it is present in the inventory</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:11:43 UTC</div></div></div></body></html>

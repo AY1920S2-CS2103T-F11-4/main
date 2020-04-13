@@ -145,6 +145,11 @@ is a key part of our project.</p>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide-2"><a class="link" href="#contributions-to-the-user-guide-2">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="Cart"><a class="link" href="#Cart">Cart Commands <a href="http://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></h3>
 <div class="paragraph">
@@ -256,7 +261,7 @@ regardless of the unit.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes all eggs from the cart</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cart remove i/Milk q/200ml</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cart remove ingredient i/Milk q/200ml</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes 200ml of milk from the cart.
 <em>(If your cart had 500 ml of milk, it will be subtracted and updated to 300 ml of milk)</em></p></td>
 </tr>
@@ -432,7 +437,7 @@ INGREDIENT and its QUANTITY, STEP, and TAG are optional parameters and will be a
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes by tags.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search recipe inventory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search inventory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search for recipes whose ingredients are available in the inventory.</p></td>
 </tr>
 <tr>
@@ -467,7 +472,7 @@ INGREDIENT and its QUANTITY, STEP, and TAG are optional parameters and will be a
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes a tag 'TAG' to the recipe at given INDEX.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><code>inventory</code></p></td>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock"><code>inventory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add ingredient  i/INGREDIENT q/QUANTITY</code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Adds QUANTITY of INGREDIENTS into your inventory.</p>
@@ -480,6 +485,10 @@ INGREDIENT and its QUANTITY, STEP, and TAG are optional parameters and will be a
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes all ingredients from the inventory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cook recipe INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes the ingredients and its' corresponding quantities of recipe INDEX from the inventory.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock"><code>cart</code></p></td>
@@ -727,4 +736,4 @@ add back the ingredients to the cart after it is cleared if they wish to.</p></t
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:10:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:11:43 UTC</div></div></div></body></html>

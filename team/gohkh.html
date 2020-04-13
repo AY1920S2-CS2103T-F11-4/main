@@ -107,6 +107,16 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 </div>
 </li>
 <li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated UML class diagrams of the <code>Logic</code>, <code>Model</code> and <code>Storage</code> components from the Address Book Level 3 diagrams</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p>Community:</p>
 <div class="ulist">
 <ul>
@@ -172,7 +182,7 @@ also tag your recipes to make it easier for you to find them.</p>
 <p>This command allows you to add ingredients to an existing recipe in the cookbook.</p>
 </div>
 <div class="paragraph">
-<p>You can increase the quantity of an ingredient that is already in the recipe, provided that you indicate a quantity with
+<p>You can increase the quantity of an ingredient that is already in the recipe, as long as you provide a quantity with
 the same unit. Otherwise, Cooking Papa will not add the ingredient.</p>
 </div>
 <div class="paragraph">
@@ -207,13 +217,15 @@ name and quantity indicated in your command.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add ingredient i/Garlic q/3 cloves</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 3 cloves of garlic to the first recipe&#8217;s list of ingredients.
-Sample command feedback: <code>New ingredient added for Aglio olio: 2 cloves Garlic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 3 cloves of garlic to the first recipe&#8217;s list of ingredients.<br>
+Sample command feedback:<br>
+<code>New ingredient added for Aglio olio: 2 cloves Garlic</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 2 add ingredient i/Eggs q/2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 2 eggs to the second recipe&#8217;s list of ingredients.
-Sample command feedback: <code>New ingredient added for Carbonara: 2 Eggs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds 2 eggs to the second recipe&#8217;s list of ingredients.<br>
+Sample command feedback:<br>
+<code>New ingredient added for Carbonara: 2 Eggs</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -221,16 +233,14 @@ Sample command feedback: <code>New ingredient added for Carbonara: 2 Eggs</code>
 <div class="sect3">
 <h4 id="remove-an-ingredient-from-a-recipe"><a class="link" href="#remove-an-ingredient-from-a-recipe">Remove an ingredient from a recipe</a></h4>
 <div class="paragraph">
-<p>This command allows you to remove ingredients from a recipe.</p>
+<p>This command allows you to remove ingredients from an existing recipe in the cookbook.</p>
 </div>
 <div class="paragraph">
-<p>You can indicate the quantity you want to remove for an ingredient, which should not be greater that than the
-ingredient&#8217;s quantity. Please ensure that the unit of the quantity matches the ingredient&#8217;s unit in the recipe. <strong>If
-you do not indicate any quantity, the specified ingredient will be removed from the recipe entirely.</strong></p>
+<p>You can reduce the quantity of an ingredient that is already in the recipe, as long as you provide a quantity with
+the same unit, and a value not greater than that in the recipe.  Otherwise, Cooking Papa will not remove the ingredient.</p>
 </div>
 <div class="paragraph">
-<p>Note: you must have added a recipe to the cookbook, otherwise Cooking Papa will not be able to remove an ingredient
-from the recipe.</p>
+<p>If you do not indicate any quantity, all of the specified ingredient will be removed from the recipe.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -256,12 +266,15 @@ from the recipe.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 remove ingredient i/Eggs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all eggs from the list of ingredients in recipe 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes all eggs from the list of ingredients in recipe 1.<br>
+Sample command feedback:<br>
+<code>All Eggs removed from recipe 1</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 2 remove ingredient i/Milk q/200 ml</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 200 ml of milk from the list of ingredients in recipe 2.
-<em>(If recipe 2 specifies 500 ml of milk, it will be subtracted and updated to 300 ml of milk.)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes 200 ml of milk from the list of ingredients in recipe 2, provided that the original quantity of milk in the recipe is greater than 200 ml.<br>
+Sample command feedback:<br>
+<code>200 ml milk removed from recipe 2</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -269,11 +282,19 @@ from the recipe.</p>
 <div class="sect3">
 <h4 id="add-a-preparation-step-to-a-recipe"><a class="link" href="#add-a-preparation-step-to-a-recipe">Add a preparation step to a recipe</a></h4>
 <div class="paragraph">
-<p>This command allows you to add a preparation step to the selected recipe.
-Requires a valid index in the list of recipes and the cooking step.
-The STEP_INDEX given must be at most 1 more than the current number of steps currently in the recipe.
-(eg. If the number of steps in the current recipe you are trying to add to has 4 steps,
-the user can only add a STEP_INDEX of up to 5)</p>
+<p>This command allows you to add a step to an existing recipe in the cookbook.</p>
+</div>
+<div class="paragraph">
+<p>For this command, you have to specify the index of the step that you wish to add,
+which must be positive, and at most 1 more than the current number of steps currently in your chosen recipe.
+For example, if there are currently 5 steps in the recipe you are trying to add to,
+you can only choose an index from 1 to 6.</p>
+</div>
+<div class="paragraph">
+<p>This command pushes back the original step at your specified step index and any subsequent steps, if any.</p>
+</div>
+<div class="paragraph">
+<p>You can use <code>next</code> as a substitute for the largest possible step index, to add a step to the end of the selected recipe&#8217;s list of steps.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -281,7 +302,7 @@ the user can only add a STEP_INDEX of up to 5)</p>
 <p>Format: <code>recipe INDEX add step x/STEP_INDEX s/STEP_DESCRIPTION</code></p>
 </li>
 <li>
-<p>Examples:</p>
+<p>Example:</p>
 </li>
 </ul>
 </div>
@@ -298,8 +319,16 @@ the user can only add a STEP_INDEX of up to 5)</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add step x/1 s/Bring the water to boil</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a preparation step 1 (Bring water to boil) to recipe 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add step x/1 s/Bring the water to boil.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds "Bring water to boil." to recipe 1 as the first step.<br>
+Sample command feedback:<br>
+<code>New step added for Aglio olio: Bring the water to boil.</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add step x/next s/Serve the pasta topped with the remaining cheese.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds "Serve the pasta topped with the remaining cheese." to recipe 1 as the last step.<br>
+Sample command feedback:<br>
+<code>New step added for Aglio olio: Serve the pasta topped with the remaining cheese.</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -307,8 +336,14 @@ the user can only add a STEP_INDEX of up to 5)</p>
 <div class="sect3">
 <h4 id="remove-a-preparation-step-from-a-recipe"><a class="link" href="#remove-a-preparation-step-from-a-recipe">Remove a preparation step from a recipe</a></h4>
 <div class="paragraph">
-<p>This command allows you to remove a preparation step from the selected recipe.
-Requires a valid index in the list of recipes and the cooking step.</p>
+<p>This command allows you to remove a step to an existing recipe in the cookbook.</p>
+</div>
+<div class="paragraph">
+<p>Similar to the previous command, you have to specify the index of the step that you wish to add,
+which must be positive, and at most 1 more than the current number of steps currently in your chosen recipe.</p>
+</div>
+<div class="paragraph">
+<p>In this case, you cannot use <code>next</code> as a substitute for the largest step index.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -333,8 +368,10 @@ Requires a valid index in the list of recipes and the cooking step.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 remove step x/2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes preparation step 2 in recipe 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 remove step x/1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes step 1 in recipe 1.<br>
+Sample command feedback:<br>
+<code>Step deleted for Aglio olio: Bring water to boil.</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -342,8 +379,9 @@ Requires a valid index in the list of recipes and the cooking step.</p>
 <div class="sect3">
 <h4 id="add-a-tag-to-a-recipe"><a class="link" href="#add-a-tag-to-a-recipe">Add a tag to a recipe</a></h4>
 <div class="paragraph">
-<p>This command allows you to add a tag to the selected recipe.
-Requires a valid index in the list of recipes.</p>
+<p>This command allows you to add a tag to an existing recipe in the cookbook.
+Only one tag is accepted at a time. If you provide multiple steps, Cooking Papa
+will only add the last tag in your command.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -369,7 +407,7 @@ Requires a valid index in the list of recipes.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 add tag t/Pasta</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a tag (Pasta) to the recipe 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a tag "Pasta" to the recipe 1.</p></td>
 </tr>
 </tbody>
 </table>
@@ -377,8 +415,9 @@ Requires a valid index in the list of recipes.</p>
 <div class="sect3">
 <h4 id="remove-a-tag-from-a-recipe"><a class="link" href="#remove-a-tag-from-a-recipe">Remove a tag from a recipe</a></h4>
 <div class="paragraph">
-<p>This command allows you to remove a tag from the selected recipe.
-Requires a valid index in the list of recipes.</p>
+<p>This command allows you to remove a tag from an existing recipe in the cookbook.
+Only one tag is accepted at a time. If you provide multiple steps, Cooking Papa
+will only remove the last tag in your command.</p>
 </div>
 <div class="paragraph">
 <p>Note: you must have the tag you wish to remove in the selected recipe, otherwise Cooking Papa will not be able to remove the tag from the recipe.</p>
@@ -406,29 +445,61 @@ Requires a valid index in the list of recipes.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 remove tag t/Beef</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Removes the tag 'Beef' from the recipe 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 remove tag t/Spicy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes the tag "Spicy" from the recipe 1.</p></td>
 </tr>
 </tbody>
 </table>
+<hr>
+<div class="paragraph">
+<p><strong>Example Scenario</strong></p>
+</div>
 <div class="paragraph">
 <p>With all these recipe commands, you are equipped to modify any recipe in the cookbook to your liking!
 Below outlines a scenario where you might find these commands useful.
 Imagine that you have just added a new recipe for instant ramen via the <code>cookbook add recipe</code> command, which now has the
-index 3.
-You have provided the name and description for the recipe, but have yet to add ingredients and steps to the recipe.
+index 3.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand0.png" alt="RecipeCommand0" width="750">
+</div>
+<div class="title">Figure 1. Cooking Papa with the recipe for instant ramen at index 3.</div>
+</div>
+<div class="paragraph">
+<p>You have provided the name and description for the recipe, but have yet to add ingredients and steps to the recipe.
 Here are the steps you can follow to modify the recipe:</p>
 </div>
 <div class="paragraph">
 <p>Step 1: To add an ingredient to the instant ramen recipe, type <code>recipe 3 add ingredient i/Instant ramen q/1 packet</code> into the command box and press <kbd>Enter</kbd> on the keyboard.
 Cooking Papa indicates that cucumber has been added to the recipe.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand1.png" alt="RecipeCommand1" width="400">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand2.png" alt="RecipeCommand2" width="400">
+</div>
+</div>
 <div class="paragraph">
 <p>Step 2: Repeat step 1 for all the ingredients you need for the instant ramen.</p>
 </div>
 <div class="paragraph">
-<p>Step 3: To add the first step the instant ramen recipe, type <code>recipe 3 add ingredient x/next s/Add the oil, garlic, and ginger to a small sauce pot and saute over medium for about one minute.</code> into the command box and press <kbd>Enter</kbd> on the keyboard.
+<p>Step 3: To add the first step the instant ramen recipe, type <code>recipe 3 add step x/next s/Add the oil, garlic, and ginger to a small sauce pot and saute over medium for about one minute.</code> into the command box and press <kbd>Enter</kbd> on the keyboard.
 Cooking Papa indicates that the new step has been added to the recipe.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand3.png" alt="RecipeCommand3" width="400">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand4.png" alt="RecipeCommand4" width="400">
+</div>
 </div>
 <div class="paragraph">
 <p>Step 4: Repeat step 3 for all the steps, following chronological order.</p>
@@ -438,15 +509,119 @@ Cooking Papa indicates that the new step has been added to the recipe.</p>
 Type <code>recipe 3 add tag t/Easy t/Healthy</code> to add the tags "Easy" and "Healthy" to the recipe. Upon pressing <kbd>Enter</kbd>,
 Cooking Papa indicates that the tags have been added.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand5.png" alt="RecipeCommand5" width="400">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand6.png" alt="RecipeCommand6" width="400">
+</div>
+</div>
 <div class="paragraph">
 <p>Step 6: The recipe is finally ready for use. Type <code>cookbook view recipe 3</code> into the command box to view the recipe and and press <kbd>Enter</kbd>.
 Cooking Papa shows the full recipe for instant ramen, and you can now use it to prepare your meal.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand7.png" alt="RecipeCommand7" width="400">
+</div>
 </div>
 <div class="paragraph">
 <p>Step 7: After trying the recipe, if you find that there was too much of ginger for your liking,
 type <code>recipe 3 remove ingredient i/Grated ginger q/1/2 tsp</code> into the command box and press <kbd>Enter</kbd> to remove half a teaspoon of grated ginger from the recipe.
 Cooking Papa indicates that half a teaspoon of grated ginger has been removed from the recipe.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand8.png" alt="RecipeCommand8" width="400">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecipeCommand9.png" alt="RecipeCommand9" width="400">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-recipe-details-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a"><a class="link" href="#edit-recipe-details-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a">Edit recipe details [v2.0] <a href="https://github.com/gohkh?tab=repositories">(by Goh Ka Hui)</a></a></h3>
+<div class="paragraph">
+<p>The following commands allow you to edit the details of the recipes that are currently in the cookbook.</p>
+</div>
+<div class="sect3">
+<h4 id="edit-an-ingredient-in-a-recipe"><a class="link" href="#edit-an-ingredient-in-a-recipe">Edit an ingredient in a recipe</a></h4>
+<div class="paragraph">
+<p>This command allows you to edit an ingredient in an existing recipe in the cookbook.
+It replaces the original quantity of the ingredient with the new quantity that you specify in the command.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>recipe INDEX edit i/INGREDIENT q/QUANTITY</code></p>
+</li>
+<li>
+<p>Examples:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 edit i/Eggs q/2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes the quantity of eggs to 2 in the first recipe&#8217;s list of ingredients.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 2 edit i/Milk q/100 ml</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes the quantity of milk to 100 ml in the second recipe&#8217;s list of ingredients.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="edit-a-preparation-step-in-a-recipe"><a class="link" href="#edit-a-preparation-step-in-a-recipe">Edit a preparation step in a recipe</a></h4>
+<div class="paragraph">
+<p>This command allows you to edit a step in an existing recipe in the cookbook.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>recipe INDEX edit step x/STEP_INDEX s/STEP_DESCRIPTION</code></p>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>recipe 1 edit step x/2 s/Fry the eggs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes preparation step 2 to 'Fry the eggs' in recipe 1</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -465,7 +640,7 @@ Cooking Papa indicates that half a teaspoon of grated ginger has been removed fr
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="search-for-recipes-based-on-ingredients-in-the-inventory"><a class="link" href="#search-for-recipes-based-on-ingredients-in-the-inventory">Search for recipes based on ingredients in the inventory</a></h3>
+<h3 id="search-for-recipes-based-on-ingredients-in-the-inventory-a-href-https-github-com-gohkh-by-goh-ka-hui-a"><a class="link" href="#search-for-recipes-based-on-ingredients-in-the-inventory-a-href-https-github-com-gohkh-by-goh-ka-hui-a">Search for recipes based on ingredients in the inventory <a href="https://github.com/gohkh">(by Goh Ka Hui)</a></a></h3>
 <div class="paragraph">
 <p>The user may use this command to search for recipes that they can cook using the ingredients available in their
 inventory.</p>
@@ -473,7 +648,8 @@ inventory.</p>
 <div class="sect3">
 <h4 id="implementation-reasoning"><a class="link" href="#implementation-reasoning">Implementation reasoning</a></h4>
 <div class="paragraph">
-<p>This command was implemented to address users needs of easily finding a recipe based on the ingredients they have. It
+<p>This command was implemented to address the users' need of easily finding a recipe based on the ingredients they have
+. It
 allows users to whip up a meal without having to go grocery shopping if they are short of time. This feature sorts
 recipes by how much the inventory fulfils their ingredient requirements, and filters out recipes whose ingredient
 requirements are not met at all. Users can immediately see at the top of the cookbook the recipes that their ingredients
@@ -486,7 +662,7 @@ are most suitable for preparing. A user can use this feature by typing the comma
 <p>The comparison between the ingredients a recipe requires and the ingredients in the inventory is facilitated by the
 <code>RecipeInventoryIngredientsSimilarityComparator</code>. It extends <code>Comparator&lt;Recipe&gt;</code> and stores the inventory being used
 for ingredient comparison. Additionally, it implements the method <code>calculateSimilarity()</code>, which accepts a <code>Recipe</code> and
-a <code>ReadOnlyInventory</code> as parameters, and returns a double value between 0 and 1 (inclusive) that represents the
+a <code>ReadOnlyInventory</code> as parameters, and returns a double value between 0 and 1 (both inclusive) that represents the
 proportion of the recipe&#8217;s ingredient requirements that are fulfilled.</p>
 </div>
 <div class="paragraph">
@@ -497,6 +673,7 @@ and <code>Inventory</code>:</p>
 <div class="content">
 <img src="../images/CookbookSearchByInventoryClassDiagram.png" alt="CookbookSearchByInventoryClassDiagram">
 </div>
+<div class="title">Figure 2. Class diagram for RecipeInventoryIngredientsSimilarityComparator</div>
 </div>
 <div class="paragraph">
 <p>The <code>calculateSimilarity()</code> method first calculates the proportion of ingredient quantity fulfilled by the inventory
@@ -523,12 +700,13 @@ a guard clause as shown in the following code snippet:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The following activity digram shows a possible flow of events for a user using this feature:</p>
+<p>The following activity diagram shows a possible flow of events for a user using this feature:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/CookbookSearchByInventoryActivityDiagram.png" alt="CookbookSearchByInventoryActivityDiagram">
 </div>
+<div class="title">Figure 3. Acitivty diagram for CookbookSearchByInventory</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram summarizes how objects interact when a user executes the command,
@@ -538,6 +716,7 @@ with more focus on how the command is parsed in the `Logic`component:</p>
 <div class="content">
 <img src="../images/CookbookSearchByInventorySequenceDiagram.png" alt="CookbookSearchByInventorySequenceDiagram">
 </div>
+<div class="title">Figure 4. Sequence diagram for CookbokoSearchByInventory</div>
 </div>
 </div>
 <div class="sect3">
@@ -545,6 +724,7 @@ with more focus on how the command is parsed in the `Logic`component:</p>
 <div class="sect4">
 <h5 id="aspect-1-weighting-of-each-ingredient"><a class="link" href="#aspect-1-weighting-of-each-ingredient">Aspect 1: Weighting of each ingredient</a></h5>
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Design considerations for weighing of each ingredient</caption>
 <colgroup>
 <col style="width: 12%;">
 <col style="width: 44%;">
@@ -586,6 +766,7 @@ The cons for Design B were deemed to outweigh the pros, especially since the imp
 <div class="sect4">
 <h5 id="aspect-2-handling-ingredients-with-different-units"><a class="link" href="#aspect-2-handling-ingredients-with-different-units">Aspect 2: Handling ingredients with different units</a></h5>
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Design consideration for handling ingredients with different units</caption>
 <colgroup>
 <col style="width: 12%;">
 <col style="width: 44%;">
@@ -626,4 +807,4 @@ Given more time, Design B will be implemented to handle conversion for standard 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:10:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:11:43 UTC</div></div></div></body></html>
