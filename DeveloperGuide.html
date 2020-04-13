@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Cooking Papa - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Cooking Papa - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">CookingPapa</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103T-F11-4/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Cooking Papa - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>AY1920S2-CS2103T-F11-4</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
@@ -27,7 +27,8 @@
 <li><a href="#search-for-recipes-based-on-ingredients-in-the-inventory">3.3. Search for recipes based on ingredients in the inventory</a></li>
 <li><a href="#adding-ingredients-to-inventory-and-cart">3.4. Adding ingredients to inventory and cart</a></li>
 <li><a href="#moving-ingredients-from-cart-to-inventory">3.5. Moving ingredients from cart to inventory</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#add-a-recipe-s-ingredients-to-cart">3.6. Add a Recipe&#8217;s Ingredients to Cart</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -868,18 +869,161 @@ ingredients in the cart, so exporting the inventory as well as the cookbook is l
 </div>
 <div class="sect2">
 <h3 id="search-for-recipes-based-on-ingredients-in-the-inventory"><a class="link" href="#search-for-recipes-based-on-ingredients-in-the-inventory">3.3. Search for recipes based on ingredients in the inventory</a></h3>
-<div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The comparison is facilitated by the <code>RecipeInventorySimilarityComparator</code>. It extends <code>Comparator&lt;Recipe&gt;</code> and stores
-the inventory being used for ingredient comparison.</p>
+<p>The user may use this command to search for recipes that they can cook using the ingredients available in their
+inventory.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-reasoning-3"><a class="link" href="#implementation-reasoning-3">3.3.1. Implementation reasoning</a></h4>
+<div class="paragraph">
+<p>This command was implemented to address users needs of easily finding a recipe based on the ingredients they have. It
+allows users to whip up a meal without having to go grocery shopping if they are short of time. This feature sorts
+recipes by how much the inventory fulfils their ingredient requirements, and filters out recipes whose ingredient
+requirements are not met at all. Users can immediately see at the top of the cookbook the recipes that their ingredients
+are most suitable for preparing. A user can use this feature by typing the command: <code>cookbook search inventory</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.2. Implementation</a></h4>
+<div class="paragraph">
+<p>The comparison between the ingredients a recipe requires and the ingredients in the inventory is facilitated by the
+<code>RecipeInventoryIngredientsSimilarityComparator</code>. It extends <code>Comparator&lt;Recipe&gt;</code> and stores the inventory being used
+for ingredient comparison. Additionally, it implements the method <code>calculateSimilarity()</code>, which accepts a <code>Recipe</code> and
+a <code>ReadOnlyInventory</code> as parameters, and returns a double value between 0 and 1 (inclusive) that represents the
+proportion of the recipe&#8217;s ingredient requirements that are fulfilled.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram summarizes how objects interact when a user executes the command:</p>
+<p>The following class diagram summarizes how the <code>RecipeInventoryIngredientsSimilarityComparator</code> interacts with <code>Recipe</code>
+and <code>Inventory</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookSearchByInventoryClassDiagram.png" alt="CookbookSearchByInventoryClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>calculateSimilarity()</code> method first calculates the proportion of ingredient quantity fulfilled by the inventory
+for each ingredient that the recipe requires. For example, if one of the ingredients required by a recipe is <code>4 eggs</code>
+and the inventory contains <code>2 eggs</code>, the proportion fulfilled for this particular ingredient is <code>0.5</code>. This is done for
+all the ingredients in the recipe. If the units of an ingredient in the recipe does not match that of the same
+ingredient in the inventory, the proportion will be set at <code>0.5</code> by default. An example is when the recipe requires
+<code>1 cup flour</code> and the inventory contains <code>200 g flour</code>.</p>
+</div>
+<div class="paragraph">
+<p>When the proportion fulfilled has been calculated for each ingredient, the values for each ingredient are summed up and
+divided by the number of ingredients to obtain the average. In the case where the recipe does not have any ingredients
+added to it yet, the <code>calculateSimilarity()</code> method will return <code>0</code>, indicating no similarity to the inventory
+ingredients. This is because it is likely that recipes with no ingredients have just been added by the user, and the
+ingredients have not been added yet. If the user is using this feature to search for a recipe to cook, they would
+probably not be interested in seeing a recipe that they have not added ingredients for yet. This is implemented via
+a guard clause as shown in the following code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (recipe.getIngredients().size() == NO_INGREDIENTS) {
+    <span class="keyword">return</span> ZERO_SIMILARITY;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity digram shows a possible flow of events for a user using this feature:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CookbookSearchByInventoryActivityDiagram.png" alt="CookbookSearchByInventoryActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes how objects interact when a user executes the command,
+with more focus on how the command is parsed in the `Logic`component:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/CookbookSearchByInventorySequenceDiagram.png" alt="CookbookSearchByInventorySequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.3. Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-1-weighting-of-each-ingredient"><a class="link" href="#aspect-1-weighting-of-each-ingredient">Aspect 1: Weighting of each ingredient</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Design A (Current choice): Every ingredient is weighted equally</th>
+<th class="tableblock halign-left valign-top">Design B: More important ingredients are given a larger weigting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The similarity of a recipe&#8217;s ingredients to an inventory&#8217;s ingredients is calculated by taking the mean of the proportions calculated for each ingredient,
+with equal weighting given to all ingredients.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The similarity of a recipe&#8217;s ingredients to an inventory&#8217;s ingredients is calculated by taking the weighted mean of the proportions calculated for each ingredient,
+with larger weightings given to more important ingredients ingredients.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gives a good rough estimate of the proportion of ingredient requirements fulfilled for a recipe, and straightforward to implement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">May give a better gauge of the proportion of ingredient requirements fulfilled for a recipe, by accounting for the importance of the ingredient.
+For example, beef would be an important ingredient for a steak recipe, but garnishes might be considered less important as they can be substituted more easily.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Does not account for the importance of the ingredient in the recipe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Difficult to judge the importance of the ingredient, and complicated to implement categorisation of the types ingredients and their relative importance.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Design A was chosen as it provided a fair estimate of the similarity between the recipe and inventory ingredients, with a simple implementation.
+The cons for Design B were deemed to outweigh the pros, especially since the importance of an ingredient in a recipe could be rather subjective.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-2-handling-ingredients-with-different-units"><a class="link" href="#aspect-2-handling-ingredients-with-different-units">Aspect 2: Handling ingredients with different units</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Design A (Current choice): Use a default similarity value of <code>0.5</code></th>
+<th class="tableblock halign-left valign-top">Design B: Convert the units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The similarity value of an ingredient with different units in the recipe and the inventory is treated as <code>0.5</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The similarity value of an ingredient with different units in the recipe and the inventory is calculated by converting the units,
+such that the proportion of the recipe ingredient in the inventory can be determined.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simple to implement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Able to calculate the proportion of the recipe ingredient fulfilled by the inventory, even when dealing with different units.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to calculate the proportion of the recipe ingredient fulfilled by the inventory when dealing with different units, and can only give a fixed default value of <code>0.5</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More complicated to implement as it requires CookingPapa to recognise the units in both the recipe and inventory and be able to convert between them.
+Some units such as <code>cup</code> may also not have a standard conversion factor.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Design A was chosen due to time constraints, as handling the conversion between different units would take time away from developing other parts of the application.
+Given more time, Design B will be implemented to handle conversion for standard units, such as between <code>g</code> and <code>kg</code>, but Design A would still have to be used for units with non-standard conversion factors.</p>
 </div>
 </div>
 </div>
@@ -889,18 +1033,13 @@ the inventory being used for ingredient comparison.</p>
 <div class="paragraph">
 <p>The inventory and cart acts as storage for <code>Ingredient</code> classes. They are facilitated by <code>InventoryCommand</code> and <code>CartCommand</code>
 respectively, which extends the <code>Command</code> abstract class. Since <code>CartAddCommand</code> and <code>InventoryAddCommand</code> both serve the
-same purpose in different contexts of <code>Cart</code> and <code>Inventory</code> respectively, they will be mentioned together in tandem.<br>
-The format of the commands are as follows:</p>
+same purpose in different contexts of <code>Cart</code> and <code>Inventory</code> respectively, they will be mentioned together in tandem.<br></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>For cart: <code>cart add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code></p>
-</li>
-<li>
-<p>For inventory: <code>inventory add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>This command was implemented to allow the user know to add an ingredient to the cart or inventory respectively.
+An ingredient only has two main components - its name and quantity. We allow the user to use their own measurement up to their own
+preferences and do not force any fixed unit of measurement. Although similar, <code>Cart</code> and <code>Ingredients</code> differ in certain functions
+from a user&#8217;s point of view. For a user to immediately sort where they wish to sort the ingredient they are adding, <code>Cart</code> and</p>
 </div>
 <div class="sect3">
 <h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
@@ -940,19 +1079,6 @@ user that the <code>Ingredient</code> has been successfully added.</p>
 <div class="paragraph">
 <p>The above implementation is the same for <code>Inventory</code> with the command <code>inventory  add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code></p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="implementation-reasoning-3"><a class="link" href="#implementation-reasoning-3">3.4.2. Implementation reasoning</a></h4>
-<div class="paragraph">
-<p>This command was implemented to allow the user know to add an ingredient to the cart or inventory respectively.
-An ingredient only has two main components - its name and quantity. We allow the user to use their own measurement up to their own
-preferences and do not force any fixed unit of measurement. Although similar, <code>Cart</code> and <code>Ingredients</code> differ in certain functions
-from a user&#8217;s point of view. For a user to immediately sort where they wish to sort the ingredient they are adding, <code>Cart</code> and
-<code>Inventory</code> is the first parameter they would use for the command.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="sequence-diagram-3"><a class="link" href="#sequence-diagram-3">3.4.3. Sequence diagram</a></h4>
 <div class="paragraph">
 <p>The following sequence diagram shows how the function of adding ingredients to cart work (full command omitted for brevity):</p>
 </div>
@@ -964,37 +1090,7 @@ from a user&#8217;s point of view. For a user to immediately sort where they wis
 </div>
 </div>
 <div class="sect3">
-<h4 id="how-the-feature-works-2"><a class="link" href="#how-the-feature-works-2">3.4.4. How the feature works</a></h4>
-<div class="paragraph">
-<p>Step 1: The below diagram shows an initially empty cart</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CartAddCommand1.png" alt="CartAddCommand1">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2: Input the command <code>cart add ingredient i/INGREDIENT_NAME q/INGREDIENT_QUANTITY</code>. An example command is as follows: <code>cart add ingredient i/Eggs q/10</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CartAddCommand2.png" alt="CartAddCommand2">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3: Hit <kbd>Enter</kbd>. The cart should be updated as follows:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CartAddCommand3.png" alt="CartAddCommand3">
-</div>
-</div>
-<div class="paragraph">
-<p>The above implementation is the same for <code>Inventory</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.5. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-the-need-for-many-parsers-for-this-command"><a class="link" href="#aspect-the-need-for-many-parsers-for-this-command">Aspect: The need for many parsers for this command</a></h5>
 <table class="tableblock frame-all grid-all spread">
@@ -1017,16 +1113,16 @@ from a user&#8217;s point of view. For a user to immediately sort where they wis
 <td class="tableblock halign-left valign-top"><p class="tableblock">The command will go through the parsers in the following order: <code>CookingPapaParser</code> &#8594; <code>CartCommandParser</code> &#8594; <code>CartAddCommandParser</code>
 &#8594; <code>CartAddIngredientParser</code> before finally returning <code>CartAddIngredientCommand</code>. We eventually went with this as we wanted the add
 functionality to be expanded, namely to be able to add all the ingredients of cookbook recipes into the cart.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CartAddCommand</code> will not be created facilitate <code>CartAddIngredientCommand</code> and <code>CartAddRecipeIngredientCommand</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CartAddCommand</code> will not be created to facilitate <code>CartAddIngredientCommand</code> and <code>CartAddRecipeIngredientCommand</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">More organised and can do more with <code>cart add</code> as the prefix.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Many parser classes to make and keep track of.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The classes can be more specific and atomic in their actions.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The classes can be more specific and atomic in their actions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Many parser classes to make and keep track of.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Might lead to disorganisation during troubleshooting with so many classes to keep track.</p></td>
 </tr>
 </tbody>
@@ -1038,6 +1134,12 @@ functionality to be expanded, namely to be able to add all the ingredients of co
 <h3 id="moving-ingredients-from-cart-to-inventory"><a class="link" href="#moving-ingredients-from-cart-to-inventory">3.5. Moving ingredients from cart to inventory</a></h3>
 <div class="paragraph">
 <p>The user may use this command after their shopping trip. With this one command, all ingredients will be shifted from the cart to the inventory.</p>
+</div>
+<div class="paragraph">
+<p>This command is implemented to ease the process of having the user adding every single ingredient to their inventory after they have bought ingredients from their cart
+and eventually deleting the cart after that tedious process. These gives a convenience to users that frequently use our application and we forsee
+that such an action will be used very often by these users. As this command only performs an atomic action, no extra
+arguments are needed to further supplement the use of this command.</p>
 </div>
 <div class="sect3">
 <h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
@@ -1075,18 +1177,6 @@ and will then feedback to the user.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect3">
-<h4 id="implementation-reasoning-4"><a class="link" href="#implementation-reasoning-4">3.5.2. Implementation reasoning</a></h4>
-<div class="paragraph">
-<p>This command is implemented to ease the process of having the user adding every single ingredient to their inventory after they have bought ingredients from their cart
-and eventually deleting the cart after that tedious process. These gives a convenience to users that frequently use our application and we forsee
-that such an action will be used very often by these users. As this command only performs an atomic action, no extra
-arguments are needed to further supplement the use of this command.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="sequence-diagram-4"><a class="link" href="#sequence-diagram-4">3.5.3. Sequence Diagram</a></h4>
 <div class="paragraph">
 <p>The following sequence diagram shows how this function works (full command omitted for brevity):</p>
 </div>
@@ -1098,27 +1188,7 @@ arguments are needed to further supplement the use of this command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="how-this-feature-works"><a class="link" href="#how-this-feature-works">3.5.4. How this feature works</a></h4>
-<div class="paragraph">
-<p>Step 1: This feature is intended when you have ingredients in the cart. As an example, the diagram below shows an
-empty inventory, along with a cart with an ingredient.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CartMoveCommand1.png" alt="CartMoveCommand1">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2: Press <kbd>Enter</kbd>. The ingredients from cart will all be shifted to inventory as shown in the diagram below</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CartMoveCommand2.png" alt="CartMoveCommand2">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.5. Design considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-allowing-users-to-move-some-or-all-ingredients-from-cart-to-inventory"><a class="link" href="#aspect-allowing-users-to-move-some-or-all-ingredients-from-cart-to-inventory">Aspect: Allowing users to move some or all ingredients from cart to inventory</a></h5>
 <table class="tableblock frame-all grid-all spread">
@@ -1160,7 +1230,158 @@ add back the ingredients to the cart after it is cleared if they wish to.</p></t
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="add-a-recipe-s-ingredients-to-cart"><a class="link" href="#add-a-recipe-s-ingredients-to-cart">3.6. Add a Recipe&#8217;s Ingredients to Cart</a></h3>
+<div class="paragraph">
+<p>The user may want to buy the required ingredients to cook a certain recipe in the cookbook. This feature allows the user
+to add a certain recipe&#8217;s required ingredients into the cart.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-7"><a class="link" href="#implementation-7">3.6.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The action of adding a recipe&#8217;s ingredients to cart mechanism is facilitated by <code>CartAddRecipeIngredientCommand</code>, which
+extends the <code>CartAddCommand</code> abstract class. The format is as follows: <code>cart add recipe INDEX</code>.</p>
+</div>
+<div class="paragraph">
+<p>This command is implemented to ease the tedious process of having the user adding every single ingredient
+to their cart when they want to purchase ingredients to cook a certain recipe. This provides convenience to users
+that frequently use our application and such process like shopping for a certain recipe&#8217;s ingredient is
+intuitive to users. Furthermore, this command creates interaction between the <code>Cookbook</code> and <code>Cart</code> which
+helps to further integrate the application as an all-in-one application.</p>
+</div>
+<div class="paragraph">
+<p>Below is a step by step sequence of what happens when a user enters this command:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user enters the command <code>cart add recipe INDEX</code>  in the command line  input.</p>
+</li>
+<li>
+<p><code>CartAddRecipeIngredientParser</code> parses the user input and checks if the index provided is an integer.
+Note that the parser will throw a <code>ParseException</code> if the given index is not an integer.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">try</span> {
+    recipeIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+} <span class="keyword">catch</span> (<span class="exception">ParseException</span> pe) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX, CartAddCommand.MESSAGE_USAGE), pe);
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The index is passed as a parameter for <code>CartAddRecipeIngredientCommand</code> which is returned to <code>LogicManager</code>.</p>
+</li>
+<li>
+<p><code>LogicManager</code> calls <code>CartAddRecipeIngredientCommand#execute()</code> which checks if the given index is
+a valid index of a recipe. Note that the command will throw a <code>CommandException</code> if the given index is not valid.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (recipeIndex.getZeroBased() &gt;= model.getCookbook().getRecipeList().size()) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX, MESSAGE_USAGE));
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the index is valid, the selected recipe&#8217;s ingredients will be added accordingly. This is done through calling
+<code>Model#addCartIngredient()</code>, with each ingredient as the parameter.</p>
+</li>
+<li>
+<p><code>Model#addCartIngredient</code> calls <code>Cart#addIngredident()</code> which then adds the ingredient to the cart.
+If a certain ingredient exists in the cart, adding a ingredient to a cart will increase the
+quantity instead. Otherwise, a new instance of that ingredient will be added to the cart.
+After adding an ingredient, the cart will be updated with <code>Model#updateFilteredCartIngredientList()</code>.</p>
+</li>
+<li>
+<p>A <code>CommandResult</code> with the successful text message is returned to <code>LogicManager</code>
+and will be displayed to the user via the GUI to feedback to the user that
+the selected recipe&#8217;s ingredients has been successfully added to the cart.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the function of adding recipe&#8217;s ingredients to cart works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CartAddRecipeIngredientSequenceDiagram.png" alt="CartAddRecipeIngredientSequenceDiagram">
+</div>
+<div class="title">Figure 18. Sequence diagram for CartAddRecipeIngredientCommand</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-allowing-users-to-add-all-or-some-recipe-s-ingredients"><a class="link" href="#aspect-allowing-users-to-add-all-or-some-recipe-s-ingredients">Aspect: Allowing users to add all or some recipe&#8217;s ingredients</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. Design considerations for allowing users to add only recipe&#8217;s ingredients that are not present in the inventory to the cart</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 44%;">
+<col style="width: 44%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design A (current choice): Adding all recipe&#8217;s ingredients to the cart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design B: Adding only recipe&#8217;s ingredients
+that are missing in the inventory to the cart</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows user to add a recipe&#8217;s ingredients to the cart for shopping. This design is currently chosen due to ease of
+implementation and it works for all situations.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows user to add a recipe&#8217;s ingredients base on the inventory status. However, there are some situations where
+this design not does work. One example would be like planning to cook at outside where the inventory status is unknown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easier to implement as it does not need to check if the ingredients are already present in the inventory</p>
+</li>
+<li>
+<p>Works for all situations as it ensures that the user is able to cook this recipe after buying the ingredients in the cart</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Provide a more intuitive experience of the application as user only need to buy ingredients that are missing in the inventory</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Less flexible as users have to manually remove some of the recipe&#8217;s ingredients that they do not want to buy</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Harder to implement as additional checking is required to filter a recipe&#8217;s ingredients that are missing in the inventory</p>
+</li>
+<li>
+<p>Users have to manually add some of the recipe&#8217;s ingredients that they want to buy although it is present in the inventory</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1682,7 +1903,7 @@ Expected: a PDF file will be created in the same folder as Cooking Papa, and the
 <div class="content">
 <img src="images/CookbookExportExample2.png" alt="CookbookExportExample2">
 </div>
-<div class="title">Figure 18. Content of cart.pdf created from sample cart data</div>
+<div class="title">Figure 19. Content of cart.pdf created from sample cart data</div>
 </div>
 </li>
 <li>
@@ -1744,4 +1965,4 @@ status quo, is a huge achievement.</p></td>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 13:12:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 05:10:08 UTC</div></div></div></body></html>
