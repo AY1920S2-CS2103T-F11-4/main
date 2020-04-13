@@ -111,7 +111,13 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 <div class="ulist">
 <ul>
 <li>
-<p>Updated UML class diagrams of the <code>Logic</code>, <code>Model</code> and <code>Storage</code> components from the Address Book Level 3 diagrams</p>
+<p>Wrote the Recipe Commands section and the Edit Recipe Commands section of the user guide</p>
+</li>
+<li>
+<p>Updated UML class diagrams of the <code>Logic</code>, <code>Model</code> and <code>Storage</code> components from the Address Book Level 3 diagrams in the developer guide</p>
+</li>
+<li>
+<p>Added manual testing instructions for adding and removing ingredients in a recipe</p>
 </li>
 </ul>
 </div>
@@ -187,10 +193,7 @@ the same unit. Otherwise, Cooking Papa will not add the ingredient.</p>
 </div>
 <div class="paragraph">
 <p>Ingredient quantities are case-sensitive, but ingredient names are not, when you adding to an existing ingredient in a
-recipe.</p>
-</div>
-<div class="paragraph">
-<p>Note: If you indicate multiple ingredient names or quantities, Cooking Papa will only add an ingredient with the last
+recipe. If you indicate multiple ingredient names or quantities, Cooking Papa will only add an ingredient with the last
 name and quantity indicated in your command.</p>
 </div>
 <div class="ulist">
@@ -236,11 +239,13 @@ Sample command feedback:<br>
 <p>This command allows you to remove ingredients from an existing recipe in the cookbook.</p>
 </div>
 <div class="paragraph">
-<p>You can reduce the quantity of an ingredient that is already in the recipe, as long as you provide a quantity with
-the same unit, and a value not greater than that in the recipe.  Otherwise, Cooking Papa will not remove the ingredient.</p>
+<p>If you wish to remove an ingredient from the recipe entirely, do not indicate any quantity.
+Cooking Papa will then remove all of the specified ingredient from the recipe.</p>
 </div>
 <div class="paragraph">
-<p>If you do not indicate any quantity, all of the specified ingredient will be removed from the recipe.</p>
+<p>If you want to reduce the quantity of an ingredient that is already in the recipe, provide a quantity with the same unit
+as in the recipe. The value must be less than that of the corresponding ingredient in the recipe. Otherwise, Cooking Papa
+will not remove the ingredient.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -419,9 +424,6 @@ will only add the last tag in your command.</p>
 Only one tag is accepted at a time. If you provide multiple steps, Cooking Papa
 will only remove the last tag in your command.</p>
 </div>
-<div class="paragraph">
-<p>Note: you must have the tag you wish to remove in the selected recipe, otherwise Cooking Papa will not be able to remove the tag from the recipe.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -476,12 +478,12 @@ Cooking Papa indicates that cucumber has been added to the recipe.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand1.png" alt="RecipeCommand1" width="400">
+<img src="../images/RecipeCommand1.png" alt="RecipeCommand1" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand2.png" alt="RecipeCommand2" width="400">
+<img src="../images/RecipeCommand2.png" alt="RecipeCommand2" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -493,12 +495,12 @@ Cooking Papa indicates that the new step has been added to the recipe.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand3.png" alt="RecipeCommand3" width="400">
+<img src="../images/RecipeCommand3.png" alt="RecipeCommand3" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand4.png" alt="RecipeCommand4" width="400">
+<img src="../images/RecipeCommand4.png" alt="RecipeCommand4" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -511,12 +513,12 @@ Cooking Papa indicates that the tags have been added.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand5.png" alt="RecipeCommand5" width="400">
+<img src="../images/RecipeCommand5.png" alt="RecipeCommand5" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand6.png" alt="RecipeCommand6" width="400">
+<img src="../images/RecipeCommand6.png" alt="RecipeCommand6" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -525,7 +527,7 @@ Cooking Papa shows the full recipe for instant ramen, and you can now use it to 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand7.png" alt="RecipeCommand7" width="400">
+<img src="../images/RecipeCommand7.png" alt="RecipeCommand7" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -535,18 +537,18 @@ Cooking Papa indicates that half a teaspoon of grated ginger has been removed fr
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand8.png" alt="RecipeCommand8" width="400">
+<img src="../images/RecipeCommand8.png" alt="RecipeCommand8" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RecipeCommand9.png" alt="RecipeCommand9" width="400">
+<img src="../images/RecipeCommand9.png" alt="RecipeCommand9" width="350">
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-recipe-details-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a"><a class="link" href="#edit-recipe-details-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a">Edit recipe details [v2.0] <a href="https://github.com/gohkh?tab=repositories">(by Goh Ka Hui)</a></a></h3>
+<h3 id="edit-recipe-commands-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a"><a class="link" href="#edit-recipe-commands-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a">Edit Recipe Commands [v2.0] <a href="https://github.com/gohkh?tab=repositories">(by Goh Ka Hui)</a></a></h3>
 <div class="paragraph">
 <p>The following commands allow you to edit the details of the recipes that are currently in the cookbook.</p>
 </div>
@@ -640,10 +642,129 @@ It replaces the original quantity of the ingredient with the new quantity that y
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="search-for-recipes-based-on-ingredients-in-the-inventory-a-href-https-github-com-gohkh-by-goh-ka-hui-a"><a class="link" href="#search-for-recipes-based-on-ingredients-in-the-inventory-a-href-https-github-com-gohkh-by-goh-ka-hui-a">Search for recipes based on ingredients in the inventory <a href="https://github.com/gohkh">(by Goh Ka Hui)</a></a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">Logic component <a href="https://github.com/gohkh">(by Goh Ka Hui)</a></a></h3>
+<div id="fig-LogicClassDiagram" class="imageblock">
+<div class="content">
+<img src="../images/LogicClassDiagram.png" alt="LogicClassDiagram">
+</div>
+<div class="title">Figure 2. Structure of the Logic component</div>
+</div>
 <div class="paragraph">
-<p>The user may use this command to search for recipes that they can cook using the ingredients available in their
+<p><strong>API</strong> :
+<a href="{repoURL}/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Logic</code> uses the <code>CookingPapaParser</code> class to parse the user command.</p>
+</li>
+<li>
+<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+</li>
+<li>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a recipe).</p>
+</li>
+<li>
+<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+</li>
+<li>
+<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("cookbook remove recipe 2")</code> API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CookbookRemoveRecipeSequenceDiagram.png" alt="CookbookRemoveRecipeSequenceDiagram">
+</div>
+<div class="title">Figure 3. Interactions inside the Logic component for the <code>cookbook remove recipe 2</code> command</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Model"><a class="link" href="#Design-Model">Model component <a href="https://github.com/gohkh">(by Goh Ka Hui)</a></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram">
+</div>
+<div class="title">Figure 4. Structure of the Model component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the Cookbook data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Recipe&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>stores the Inventory and Cart data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Recipe&gt;</code> each for both Inventory and Cart, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As a more OOP model, we can store a <code>Tag</code> list in <code>Cookbook</code>, which <code>Recipe</code> can reference. This would allow <code>Cookbook</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Recipe</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+<br>
+<span class="image"><img src="../images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">Storage component <a href="https://github.com/gohkh">(by Goh Ka Hui)</a></a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StorageClassDiagram.png" alt="StorageClassDiagram">
+</div>
+<div class="title">Figure 5. Structure of the Storage component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+</li>
+<li>
+<p>can save <code>Cookbook</code> data in json format and read it back.</p>
+</li>
+<li>
+<p>can save <code>Inventory</code> data in json format and read it back.</p>
+</li>
+<li>
+<p>can save <code>Cart</code> data in json format and read it back.
+=== Search for recipes based on ingredients in the inventory <a href="https://github.com/gohkh">(by Goh Ka Hui)</a>
+The user may use this command to search for recipes that they can cook using the ingredients available in their
 inventory.</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="implementation-reasoning"><a class="link" href="#implementation-reasoning">Implementation reasoning</a></h4>
@@ -673,7 +794,7 @@ and <code>Inventory</code>:</p>
 <div class="content">
 <img src="../images/CookbookSearchByInventoryClassDiagram.png" alt="CookbookSearchByInventoryClassDiagram">
 </div>
-<div class="title">Figure 2. Class diagram for RecipeInventoryIngredientsSimilarityComparator</div>
+<div class="title">Figure 6. Class diagram for RecipeInventoryIngredientsSimilarityComparator</div>
 </div>
 <div class="paragraph">
 <p>The <code>calculateSimilarity()</code> method first calculates the proportion of ingredient quantity fulfilled by the inventory
@@ -706,7 +827,7 @@ a guard clause as shown in the following code snippet:</p>
 <div class="content">
 <img src="../images/CookbookSearchByInventoryActivityDiagram.png" alt="CookbookSearchByInventoryActivityDiagram">
 </div>
-<div class="title">Figure 3. Acitivty diagram for CookbookSearchByInventory</div>
+<div class="title">Figure 7. Activity diagram for the <code>cookbook search inventory</code> command</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram summarizes how objects interact when a user executes the command,
@@ -716,7 +837,7 @@ with more focus on how the command is parsed in the `Logic`component:</p>
 <div class="content">
 <img src="../images/CookbookSearchByInventorySequenceDiagram.png" alt="CookbookSearchByInventorySequenceDiagram">
 </div>
-<div class="title">Figure 4. Sequence diagram for CookbokoSearchByInventory</div>
+<div class="title">Figure 8. Sequence diagram for CookbookSearchByInventoryCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -807,4 +928,4 @@ Given more time, Design B will be implemented to handle conversion for standard 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 11:44:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 12:23:50 UTC</div></div></div></body></html>

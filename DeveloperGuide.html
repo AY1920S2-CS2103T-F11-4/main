@@ -48,7 +48,8 @@
 <li><a href="#removing-a-recipe-from-the-cookbook">F.3. Removing a recipe from the cookbook</a></li>
 <li><a href="#searching-for-recipes-by-tags">F.4. Searching for recipes by tags</a></li>
 <li><a href="#adding-an-ingredient-to-a-recipe">F.5. Adding an ingredient to a recipe</a></li>
-<li><a href="#exporting-the-cart-to-a-pdf-file">F.6. Exporting the cart to a PDF file</a></li>
+<li><a href="#removing-an-ingredient-from-a-recipe">F.6. Removing an ingredient from a recipe</a></li>
+<li><a href="#exporting-the-cart-to-a-pdf-file">F.7. Exporting the cart to a PDF file</a></li>
 </ul>
 </li>
 <li><a href="#effort">Appendix G: Effort</a></li>
@@ -72,7 +73,7 @@
 <div class="content">
 <img src="images/ArchitectureDiagram.png" alt="ArchitectureDiagram">
 </div>
-<div class="title">Figure 1. Architecture Diagram</div>
+<div class="title">Figure 1. Architecture diagram</div>
 </div>
 <div class="paragraph">
 <p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
@@ -140,7 +141,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
 </div>
-<div class="title">Figure 2. Class Diagram of the Logic Component</div>
+<div class="title">Figure 2. Class diagram of the Logic component</div>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
@@ -196,7 +197,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
 </div>
-<div class="title">Figure 5. Structure of the Logic Component</div>
+<div class="title">Figure 5. Structure of the Logic component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -228,7 +229,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/CookbookRemoveRecipeSequenceDiagram.png" alt="CookbookRemoveRecipeSequenceDiagram">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>cookbook remove recipe 2</code> Command</div>
+<div class="title">Figure 6. Interactions inside the Logic component for the <code>cookbook remove recipe 2</code> command</div>
 </div>
 </div>
 <div class="sect2">
@@ -237,7 +238,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
 </div>
-<div class="title">Figure 7. Structure of the Model Component</div>
+<div class="title">Figure 7. Structure of the Model component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
@@ -255,6 +256,12 @@ The following class plays an important role at the architecture level:</p>
 </li>
 <li>
 <p>exposes an unmodifiable <code>ObservableList&lt;Recipe&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>stores the Inventory and Cart data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Recipe&gt;</code> each for both Inventory and Cart, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -282,7 +289,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Cookbook</cod
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
-<div class="title">Figure 8. Structure of the Storage Component</div>
+<div class="title">Figure 8. Structure of the Storage component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103T-F11-4/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -869,7 +876,7 @@ a guard clause as shown in the following code snippet:</p>
 <div class="content">
 <img src="images/CookbookSearchByInventoryActivityDiagram.png" alt="CookbookSearchByInventoryActivityDiagram">
 </div>
-<div class="title">Figure 13. Acitivty diagram for CookbookSearchByInventory</div>
+<div class="title">Figure 13. Activity diagram for the <code>cookbook search inventory</code> command</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram summarizes how objects interact when a user executes the command,
@@ -879,7 +886,7 @@ with more focus on how the command is parsed in the `Logic`component:</p>
 <div class="content">
 <img src="images/CookbookSearchByInventorySequenceDiagram.png" alt="CookbookSearchByInventorySequenceDiagram">
 </div>
-<div class="title">Figure 14. Sequence diagram for CookbokoSearchByInventory</div>
+<div class="title">Figure 14. Sequence diagram for CookbookSearchByInventoryCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -2154,7 +2161,7 @@ tagged with "Simple" or "Celebrity".</p>
 <div class="sect2">
 <h3 id="adding-an-ingredient-to-a-recipe"><a class="link" href="#adding-an-ingredient-to-a-recipe">F.5. Adding an ingredient to a recipe</a></h3>
 <div class="paragraph">
-<p>Please note that the results of these test cases are based on the sample cookbook.</p>
+<p>Please note that the results of these test cases are based on the sample cookbook. The tests can be performed in any order.</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
@@ -2177,7 +2184,40 @@ Expected: the specified ingredient is added to the recipe.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-cart-to-a-pdf-file"><a class="link" href="#exporting-the-cart-to-a-pdf-file">F.6. Exporting the cart to a PDF file</a></h3>
+<h3 id="removing-an-ingredient-from-a-recipe"><a class="link" href="#removing-an-ingredient-from-a-recipe">F.6. Removing an ingredient from a recipe</a></h3>
+<div class="paragraph">
+<p>Please note that the results of these test cases are based on the sample cookbook. The tests can be performed in any order.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all recipes in the cookbook with the <code>cookbook list</code> command, and view all the ingredients in recipe 1 with the <code>cookbook view recipe INDEX</code> command, <strong>using the sample cookbook</strong>.</p>
+</li>
+<li>
+<p>Test case: <code>recipe 1 remove ingredient i/Olive Oil q/1/2 tbsp</code><br>
+Expected: 1/2 tbsp of olive oil is removed from the recipe, and the ingredient quantity of olive oil is changed from 1 to 1/2 tbsp.</p>
+</li>
+<li>
+<p>Test case: <code>recipe 1 remove ingredient i/Olive Oil q/1 tsp</code> (an ingredient with incompatible units)<br>
+Expected: the specified ingredient will not be removed, and an error message is shown indicating that the existing ingredient in the recipe has a different unit will be displayed.</p>
+</li>
+<li>
+<p>Test case: <code>recipe 1 remove ingredient i/Ingredient q/1</code> (an ingredient that is not in the recipe)<br>
+Expected: the ingredient is not removed, and an error message is shown indicating that the ingredient is not in the recipe</p>
+</li>
+<li>
+<p>Test case: <code>recipe 1 remove ingredient i/Olive Oil q/10 tbsp</code> (ingredient quantity too high)<br>
+Expected: the ingredient is not removed, and an error message is shown indicating that the specified quantity is greater than that in the recipe</p>
+</li>
+<li>
+<p>Test case: <code>recipe 1 remove ingredient i/Cheese</code> (no quantity specified)<br>
+Expected: cheese is removed from the recipe entirely, and the recipe no longer contains any cheese</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-the-cart-to-a-pdf-file"><a class="link" href="#exporting-the-cart-to-a-pdf-file">F.7. Exporting the cart to a PDF file</a></h3>
 <div class="paragraph">
 <p>Please note that for the export command, the result is based on the sample cart.
 a. Prerequisite: have the sample cart data in <code>cart.json</code>, if the file has been modified, please exit Cooking Papa,
@@ -2263,4 +2303,4 @@ table due to the lack of time, and the payoff for tinkering with PDFbox was not 
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 11:44:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 12:23:50 UTC</div></div></div></body></html>

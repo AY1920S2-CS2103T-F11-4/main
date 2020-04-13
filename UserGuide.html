@@ -17,13 +17,13 @@
 <li><a href="#Recipe">3.2. Recipe Commands <a href="https://github.com/gohkh">(by Goh Ka Hui)</a></a></li>
 <li><a href="#Inventory">3.3. Inventory Commands <a href="https://github.com/hans555">(by Ong Han Sheng)</a></a></li>
 <li><a href="#Cart">3.4. Cart Commands <a href="http://github.com/tzihiang">(by Tay Zi Hiang Willis)</a></a></li>
-<li><a href="#help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.5. Help command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
-<li><a href="#exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.6. Exit command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
+<li><a href="#help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.5. Help Command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
+<li><a href="#exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.6. Exit Command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
 </ul>
 </li>
 <li><a href="#version-2-0-features">4. Version 2.0 Features</a>
 <ul class="sectlevel2">
-<li><a href="#edit-recipe-details-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a">4.1. Edit recipe details [v2.0] <a href="https://github.com/gohkh?tab=repositories">(by Goh Ka Hui)</a></a></li>
+<li><a href="#edit-recipe-commands-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a">4.1. Edit Recipe Commands [v2.0] <a href="https://github.com/gohkh?tab=repositories">(by Goh Ka Hui)</a></a></li>
 <li><a href="#calendar-commands-v2-0-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">4.2. Calendar Commands [v2.0] <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></li>
 <li><a href="#recipe-of-the-day-generator-v2-0-a-href-https-github-com-hans555-by-ong-han-sheng-a">4.3. Recipe of the day generator [v2.0] <a href="https://github.com/hans555">(by Ong Han Sheng)</a></a></li>
 </ul>
@@ -540,10 +540,7 @@ the same unit. Otherwise, Cooking Papa will not add the ingredient.</p>
 </div>
 <div class="paragraph">
 <p>Ingredient quantities are case-sensitive, but ingredient names are not, when you adding to an existing ingredient in a
-recipe.</p>
-</div>
-<div class="paragraph">
-<p>Note: If you indicate multiple ingredient names or quantities, Cooking Papa will only add an ingredient with the last
+recipe. If you indicate multiple ingredient names or quantities, Cooking Papa will only add an ingredient with the last
 name and quantity indicated in your command.</p>
 </div>
 <div class="ulist">
@@ -589,11 +586,13 @@ Sample command feedback:<br>
 <p>This command allows you to remove ingredients from an existing recipe in the cookbook.</p>
 </div>
 <div class="paragraph">
-<p>You can reduce the quantity of an ingredient that is already in the recipe, as long as you provide a quantity with
-the same unit, and a value not greater than that in the recipe.  Otherwise, Cooking Papa will not remove the ingredient.</p>
+<p>If you wish to remove an ingredient from the recipe entirely, do not indicate any quantity.
+Cooking Papa will then remove all of the specified ingredient from the recipe.</p>
 </div>
 <div class="paragraph">
-<p>If you do not indicate any quantity, all of the specified ingredient will be removed from the recipe.</p>
+<p>If you want to reduce the quantity of an ingredient that is already in the recipe, provide a quantity with the same unit
+as in the recipe. The value must be less than that of the corresponding ingredient in the recipe. Otherwise, Cooking Papa
+will not remove the ingredient.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -772,9 +771,6 @@ will only add the last tag in your command.</p>
 Only one tag is accepted at a time. If you provide multiple steps, Cooking Papa
 will only remove the last tag in your command.</p>
 </div>
-<div class="paragraph">
-<p>Note: you must have the tag you wish to remove in the selected recipe, otherwise Cooking Papa will not be able to remove the tag from the recipe.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -829,12 +825,12 @@ Cooking Papa indicates that cucumber has been added to the recipe.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand1.png" alt="RecipeCommand1" width="400">
+<img src="images/RecipeCommand1.png" alt="RecipeCommand1" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand2.png" alt="RecipeCommand2" width="400">
+<img src="images/RecipeCommand2.png" alt="RecipeCommand2" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -846,12 +842,12 @@ Cooking Papa indicates that the new step has been added to the recipe.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand3.png" alt="RecipeCommand3" width="400">
+<img src="images/RecipeCommand3.png" alt="RecipeCommand3" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand4.png" alt="RecipeCommand4" width="400">
+<img src="images/RecipeCommand4.png" alt="RecipeCommand4" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -864,12 +860,12 @@ Cooking Papa indicates that the tags have been added.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand5.png" alt="RecipeCommand5" width="400">
+<img src="images/RecipeCommand5.png" alt="RecipeCommand5" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand6.png" alt="RecipeCommand6" width="400">
+<img src="images/RecipeCommand6.png" alt="RecipeCommand6" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -878,7 +874,7 @@ Cooking Papa shows the full recipe for instant ramen, and you can now use it to 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand7.png" alt="RecipeCommand7" width="400">
+<img src="images/RecipeCommand7.png" alt="RecipeCommand7" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -888,12 +884,12 @@ Cooking Papa indicates that half a teaspoon of grated ginger has been removed fr
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand8.png" alt="RecipeCommand8" width="400">
+<img src="images/RecipeCommand8.png" alt="RecipeCommand8" width="350">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RecipeCommand9.png" alt="RecipeCommand9" width="400">
+<img src="images/RecipeCommand9.png" alt="RecipeCommand9" width="350">
 </div>
 </div>
 </div>
@@ -1299,7 +1295,7 @@ Cooking Papa will not be able to export the cart.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.5. Help command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
+<h3 id="help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#help-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.5. Help Command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
 <div class="paragraph">
 <p>This command shows a popup window with a URL to Cooking Papa&#8217;s user guide (what you are reading now). This is for access
 should you need some help executing a certain action in Cooking Papa.</p>
@@ -1333,7 +1329,7 @@ Papa&#8217;s user guide.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.6. Exit command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
+<h3 id="exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a"><a class="link" href="#exit-command-a-href-https-github-com-teo-jun-xiong-by-teo-jun-xiong-a">3.6. Exit Command <a href="https://github.com/teo-jun-xiong">(by Teo Jun Xiong)</a></a></h3>
 <div class="paragraph">
 <p>There are 3 ways a user can exit Cooking Papa:</p>
 </div>
@@ -1366,7 +1362,7 @@ Papa&#8217;s user guide.</p>
 <p>These features are not implemented yet, but we plan to do so moving forward with the application.</p>
 </div>
 <div class="sect2">
-<h3 id="edit-recipe-details-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a"><a class="link" href="#edit-recipe-details-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a">4.1. Edit recipe details [v2.0] <a href="https://github.com/gohkh?tab=repositories">(by Goh Ka Hui)</a></a></h3>
+<h3 id="edit-recipe-commands-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a"><a class="link" href="#edit-recipe-commands-v2-0-a-href-https-github-com-gohkh-tab-repositories-by-goh-ka-hui-a">4.1. Edit Recipe Commands [v2.0] <a href="https://github.com/gohkh?tab=repositories">(by Goh Ka Hui)</a></a></h3>
 <div class="paragraph">
 <p>The following commands allow you to edit the details of the recipes that are currently in the cookbook.</p>
 </div>
@@ -1721,4 +1717,4 @@ INGREDIENT and its QUANTITY, STEP, and TAG are optional parameters and will be a
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 11:44:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 12:23:50 UTC</div></div></div></body></html>
