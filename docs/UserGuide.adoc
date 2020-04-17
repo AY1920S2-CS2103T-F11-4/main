@@ -451,7 +451,9 @@ Inventory commands are commands that update the user's very own inventory at hom
 These commands include adding, remove and viewing the current inventory database.
 
 ==== Add an ingredient to the inventory
-This commands allows you to add ingredients to your inventory. Ingredient names added are case-insensitive.
+This commands allows you to add ingredients to your inventory.
+
+Note: Ingredient names added are case-insensitive.
 Ingredient names such as 'Bacon' and 'bacon' will be recognised by CookingPapa as 'Bacon'.
 
 - Format: `inventory add ingredient i/INGREDIENT q/QUANTITY`
@@ -715,7 +717,9 @@ be replaced with 'today' for the current date, or 'tomorrow' for the next day.
 
 //tag::hansheng[]
 === Recipe of the day generator [v2.0] https://github.com/hans555[(by Ong Han Sheng)]
-This command allows CookingPapa to recommend a recipe to cook based on the recipes currently in the cookbook.
+This command allows Cooking Papa to recommend a recipe for you when you do not have any idea on what to cook.
+
+Note: This command will only generate recipes that are currently in the cookbook.
 
 - Format: ``generate recipe of the day``
 - Example:
